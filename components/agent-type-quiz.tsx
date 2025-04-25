@@ -167,15 +167,15 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+      <Card className="bg-white shadow-md border-gray-200">
         <CardHeader>
-          <CardTitle className="text-white text-2xl">
+          <CardTitle className="text-gray-800 text-2xl">
             {result ? "Your Agent Type" : "What Type of Agent Are You?"}
           </CardTitle>
-          <CardDescription className="text-white/70">
+          <CardDescription className="text-gray-600">
             {result
               ? "Based on your answers, we've identified your agent personality type"
-              : "Answer a few questions to discover which path at NextLevel is perfect for you"}
+              : "Answer a few questions to discover which path at EZ BIG is perfect for you"}
           </CardDescription>
         </CardHeader>
 
@@ -191,28 +191,28 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
               >
                 <div className="mb-8">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-teal-400 font-medium">
+                    <span className="text-[#407140] font-medium">
                       Question {currentQuestion + 1} of {questions.length}
                     </span>
-                    <span className="text-white/60 text-sm">
+                    <span className="text-gray-500 text-sm">
                       {Math.round(((currentQuestion + 1) / questions.length) * 100)}% Complete
                     </span>
                   </div>
-                  <div className="w-full bg-white/10 h-2 rounded-full">
+                  <div className="w-full bg-gray-200 h-2 rounded-full">
                     <div
-                      className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-500"
+                      className="bg-[#407140] h-2 rounded-full transition-all duration-500"
                       style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                     ></div>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-6">{questions[currentQuestion].question}</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-6">{questions[currentQuestion].question}</h3>
 
                 <div className="space-y-4">
                   {questions[currentQuestion].options.map((option, index) => (
                     <motion.button
                       key={index}
-                      className="w-full text-left bg-white/10 hover:bg-white/20 p-4 rounded-lg text-white transition-colors"
+                      className="w-full text-left bg-gray-50 hover:bg-gray-100 p-4 rounded-lg text-gray-800 transition-colors"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleAnswer(index)}
@@ -227,30 +227,30 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
             ) : (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                 <div className="text-center mb-8">
-                  <div className="inline-block bg-teal-400/20 p-4 rounded-full mb-4">
-                    <CheckCircle2 className="h-12 w-12 text-teal-400" />
+                  <div className="inline-block bg-[#407140]/20 p-4 rounded-full mb-4">
+                    <CheckCircle2 className="h-12 w-12 text-[#407140]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{getResultDetails().title}</h3>
-                  <p className="text-white/80">{getResultDetails().description}</p>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{getResultDetails().title}</h3>
+                  <p className="text-gray-600">{getResultDetails().description}</p>
                 </div>
 
-                <div className="bg-white/10 rounded-lg p-6 mb-6">
-                  <h4 className="text-lg font-medium text-white mb-4">Your Key Strengths</h4>
+                <div className="bg-gray-50 rounded-lg p-6 mb-6 shadow-sm">
+                  <h4 className="text-lg font-medium text-gray-800 mb-4">Your Key Strengths</h4>
                   <ul className="grid grid-cols-2 gap-3">
                     {getResultDetails().strengths.map((strength, index) => (
                       <li key={index} className="flex items-center gap-2">
-                        <div className="bg-teal-400/20 p-1 rounded-full">
-                          <CheckCircle2 className="h-4 w-4 text-teal-400" />
+                        <div className="bg-[#407140]/20 p-1 rounded-full">
+                          <CheckCircle2 className="h-4 w-4 text-[#407140]" />
                         </div>
-                        <span className="text-white/90">{strength}</span>
+                        <span className="text-gray-700">{strength}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="bg-gradient-to-br from-teal-600/30 to-teal-400/30 rounded-lg p-6">
-                  <h4 className="text-lg font-medium text-white mb-2">Why You'll Thrive at NextLevel</h4>
-                  <p className="text-white/90">{getResultDetails().nextLevelFit}</p>
+                <div className="bg-[#407140]/10 rounded-lg p-6">
+                  <h4 className="text-lg font-medium text-gray-800 mb-2">Why You'll Thrive at EZ BIG</h4>
+                  <p className="text-gray-700">{getResultDetails().nextLevelFit}</p>
                 </div>
               </motion.div>
             )}
@@ -262,7 +262,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
             <>
               <Button
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/10"
+                className="border-gray-300 text-gray-700 hover:bg-gray-100"
                 onClick={handlePrevious}
                 disabled={currentQuestion === 0}
                 onMouseEnter={() => onMouseEnter("button", "Back")}
@@ -272,7 +272,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
                 Previous
               </Button>
 
-              <div className="text-white/60 text-sm">
+              <div className="text-gray-500 text-sm">
                 {currentQuestion + 1} of {questions.length}
               </div>
             </>
@@ -280,7 +280,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
             <>
               <Button
                 variant="outline"
-                className="border-white/20 text-white hover:bg-white/10"
+                className="border-gray-300 text-gray-700 hover:bg-gray-100"
                 onClick={resetQuiz}
                 onMouseEnter={() => onMouseEnter("button", "Restart")}
                 onMouseLeave={onMouseLeave}
@@ -289,12 +289,12 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
               </Button>
 
               <Button
-                className="bg-gradient-to-r from-teal-500 to-teal-400 hover:from-teal-600 hover:to-teal-500 text-white"
+                className="bg-[#407140] hover:bg-[#345934] text-white"
                 onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
                 onMouseEnter={() => onMouseEnter("button", "Join Now")}
                 onMouseLeave={onMouseLeave}
               >
-                Join NextLevel
+                Join EZ BIG
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </>

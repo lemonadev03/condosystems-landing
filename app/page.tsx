@@ -38,10 +38,10 @@ export default function LandingPage() {
 
   // Scroll progress for gradient background
   const { scrollYProgress } = useScroll()
-  const backgroundBlue = useTransform(
+  const backgroundGreen = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    ["hsl(210, 100%, 20%)", "hsl(200, 100%, 30%)", "hsl(180, 100%, 30%)"],
+    ["hsl(120, 28%, 15%)", "hsl(120, 28%, 20%)", "hsl(120, 28%, 25%)"],
   )
 
   // Counter animation values
@@ -111,31 +111,29 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900">
+    <div className="relative min-h-screen overflow-hidden bg-[#f8f8f8] font-sans">
       <CustomCursor variant={cursorVariant} text={cursorText} />
 
       {/* Background gradient overlay that changes with scroll */}
       <motion.div
-        className="fixed inset-0 pointer-events-none opacity-40"
+        className="fixed inset-0 pointer-events-none opacity-10"
         style={{
-          background: `linear-gradient(135deg, ${backgroundBlue}, transparent)`,
+          background: `linear-gradient(135deg, ${backgroundGreen}, transparent)`,
           zIndex: 0,
         }}
       />
 
       {/* Subtle geometric patterns */}
-      <div className="fixed inset-0 pointer-events-none opacity-10 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat opacity-20"></div>
+      <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat"></div>
       </div>
 
       {/* Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#f8f8f8]/90 backdrop-blur-md shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Building2 className="h-8 w-8 text-teal-400" />
-            <span className="text-xl font-bold bg-gradient-to-r from-white to-teal-300 bg-clip-text text-transparent">
-              NextLevel Realty
-            </span>
+            <Building2 className="h-8 w-8 text-[#407140]" />
+            <span className="text-xl font-bold text-[#407140]">EZ BIG Realty</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -151,22 +149,25 @@ export default function LandingPage() {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "text-sm font-medium relative px-1 py-2 text-white/80 hover:text-white transition-colors",
-                  activeSection === item.id && "text-white",
+                  "text-sm font-medium relative px-1 py-2 text-gray-600 hover:text-[#407140] transition-colors",
+                  activeSection === item.id && "text-[#407140]",
                 )}
                 onMouseEnter={() => handleMouseEnter("link")}
                 onMouseLeave={handleMouseLeave}
               >
                 {item.label}
                 {activeSection === item.id && (
-                  <motion.div layoutId="activeSection" className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-400" />
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#407140]"
+                  />
                 )}
               </button>
             ))}
           </nav>
 
           <Button
-            className="bg-gradient-to-r from-teal-500 to-teal-400 hover:from-teal-600 hover:to-teal-500 text-white"
+            className="bg-[#407140] hover:bg-[#345934] text-white"
             onMouseEnter={() => handleMouseEnter("button", "Join Now")}
             onMouseLeave={handleMouseLeave}
             onClick={() => scrollToSection("cta")}
@@ -184,13 +185,13 @@ export default function LandingPage() {
             heroRef.current = el
             heroInViewRef(el)
           }}
-          className="relative min-h-screen flex items-center justify-center overflow-hidden"
+          className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f8f8f8]"
         >
           {/* Video Background */}
           <div className="absolute inset-0 z-0">
             <video
               ref={videoRef}
-              className="absolute inset-0 w-full h-full object-cover opacity-50"
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
               loop
               muted
               playsInline
@@ -198,15 +199,15 @@ export default function LandingPage() {
               <source src="/placeholder.mp4" type="video/mp4" />
             </video>
 
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#f8f8f8]/70 via-[#f8f8f8]/50 to-[#f8f8f8]/70"></div>
 
             <button
-              className="absolute bottom-8 right-8 z-10 bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-white/20 transition-colors"
+              className="absolute bottom-8 right-8 z-10 bg-[#407140]/20 backdrop-blur-sm p-3 rounded-full hover:bg-[#407140]/30 transition-colors"
               onClick={handleVideoPlay}
               onMouseEnter={() => handleMouseEnter("button", isVideoPlaying ? "Pause" : "Play")}
               onMouseLeave={handleMouseLeave}
             >
-              <Play className="h-6 w-6 text-white" />
+              <Play className="h-6 w-6 text-[#407140]" />
             </button>
           </div>
 
@@ -217,12 +218,10 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                  <span className="block bg-gradient-to-r from-white to-teal-300 bg-clip-text text-transparent">
-                    Elevate Your Real Estate
-                  </span>
-                  <span className="block bg-gradient-to-r from-teal-300 to-white bg-clip-text text-transparent">
-                    Career to the Next Level
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                  <span className="block text-gray-800">Real estate sales is hard, unless</span>
+                  <span className="block text-[#407140] mt-2 text-5xl md:text-7xl lg:text-8xl italic">
+                    You're with the best team out there.
                   </span>
                 </h1>
               </motion.div>
@@ -231,7 +230,7 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl md:text-2xl text-white/80 mb-8"
+                className="text-xl md:text-2xl text-gray-600 mb-8"
               >
                 Join the elite network of real estate professionals who are redefining success in the industry.
               </motion.p>
@@ -244,7 +243,7 @@ export default function LandingPage() {
               >
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 hover:from-teal-600 hover:to-teal-500 text-white px-8 py-6 text-lg"
+                  className="bg-[#407140] hover:bg-[#345934] text-white px-8 py-6 text-lg"
                   onMouseEnter={() => handleMouseEnter("button", "Get Started")}
                   onMouseLeave={handleMouseLeave}
                   onClick={() => scrollToSection("cta")}
@@ -256,7 +255,7 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg"
+                  className="border-[#407140] text-[#407140] hover:bg-[#407140]/10 px-8 py-6 text-lg"
                   onMouseEnter={() => handleMouseEnter("button", "Learn More")}
                   onMouseLeave={handleMouseLeave}
                   onClick={() => scrollToSection("value")}
@@ -268,13 +267,13 @@ export default function LandingPage() {
 
             {/* Floating 3D elements */}
             <div className="absolute top-1/4 left-10 animate-float-slow opacity-60">
-              <Home className="h-16 w-16 text-teal-300" />
+              <Home className="h-16 w-16 text-[#407140]" />
             </div>
             <div className="absolute bottom-1/4 right-10 animate-float opacity-60">
-              <DollarSign className="h-16 w-16 text-teal-300" />
+              <DollarSign className="h-16 w-16 text-[#407140]" />
             </div>
             <div className="absolute top-1/3 right-1/4 animate-float-medium opacity-60">
-              <Users className="h-16 w-16 text-teal-300" />
+              <Users className="h-16 w-16 text-[#407140]" />
             </div>
 
             {/* Scroll indicator */}
@@ -283,8 +282,8 @@ export default function LandingPage() {
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
             >
-              <span className="text-white/60 text-sm mb-2">Scroll to explore</span>
-              <ChevronDown className="h-6 w-6 text-white/60" />
+              <span className="text-gray-500 text-sm mb-2">Scroll to explore</span>
+              <ChevronDown className="h-6 w-6 text-gray-500" />
             </motion.div>
           </div>
         </section>
@@ -296,7 +295,7 @@ export default function LandingPage() {
             valueRef.current = el
             valueInViewRef(el)
           }}
-          className="py-20 md:py-32"
+          className="py-20 md:py-32 bg-white"
         >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
@@ -305,9 +304,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
               >
-                Why Top Agents Choose <span className="text-teal-400">NextLevel</span>
+                Why Top Agents Choose <span className="text-[#407140]">EZ BIG</span>
               </motion.h2>
 
               <motion.p
@@ -315,7 +314,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-white/80"
+                className="text-xl text-gray-600"
               >
                 We've reimagined the real estate affiliate experience to maximize your potential and elevate your
                 career.
@@ -323,10 +322,10 @@ export default function LandingPage() {
             </div>
 
             <Tabs defaultValue="earnings" className="w-full max-w-5xl mx-auto">
-              <TabsList className="grid w-full grid-cols-3 mb-12 bg-white/5 p-1 rounded-lg">
+              <TabsList className="grid w-full grid-cols-3 mb-12 bg-gray-100 p-1 rounded-lg">
                 <TabsTrigger
                   value="earnings"
-                  className="text-lg py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-teal-500 data-[state=active]:to-teal-400 data-[state=active]:text-white"
+                  className="text-lg py-3 data-[state=active]:bg-[#407140] data-[state=active]:text-white rounded-md"
                   onMouseEnter={() => handleMouseEnter("tab")}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -334,7 +333,7 @@ export default function LandingPage() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="support"
-                  className="text-lg py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-teal-500 data-[state=active]:to-teal-400 data-[state=active]:text-white"
+                  className="text-lg py-3 data-[state=active]:bg-[#407140] data-[state=active]:text-white rounded-md"
                   onMouseEnter={() => handleMouseEnter("tab")}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -342,7 +341,7 @@ export default function LandingPage() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="lifestyle"
-                  className="text-lg py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-teal-500 data-[state=active]:to-teal-400 data-[state=active]:text-white"
+                  className="text-lg py-3 data-[state=active]:bg-[#407140] data-[state=active]:text-white rounded-md"
                   onMouseEnter={() => handleMouseEnter("tab")}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -352,9 +351,9 @@ export default function LandingPage() {
 
               <TabsContent value="earnings" className="mt-0">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-colors">
-                    <h3 className="text-2xl font-bold text-white mb-4">Industry-Leading Commission Splits</h3>
-                    <p className="text-white/80 mb-6">
+                  <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Industry-Leading Commission Splits</h3>
+                    <p className="text-gray-600 mb-6">
                       Our innovative commission structure ensures you keep more of what you earn, with splits starting
                       at 80/20 and increasing based on performance.
                     </p>
@@ -362,26 +361,26 @@ export default function LandingPage() {
                     <div className="space-y-4">
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-white/80">Standard Agent</span>
-                          <span className="text-teal-400">80%</span>
+                          <span className="text-gray-600">Standard Agent</span>
+                          <span className="text-[#407140]">80%</span>
                         </div>
-                        <Progress value={80} className="h-2 bg-white/20" indicatorClassName="bg-teal-400" />
+                        <Progress value={80} className="h-2 bg-gray-200" indicatorClassName="bg-[#407140]" />
                       </div>
 
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-white/80">Elite Agent</span>
-                          <span className="text-teal-400">90%</span>
+                          <span className="text-gray-600">Elite Agent</span>
+                          <span className="text-[#407140]">90%</span>
                         </div>
-                        <Progress value={90} className="h-2 bg-white/20" indicatorClassName="bg-teal-400" />
+                        <Progress value={90} className="h-2 bg-gray-200" indicatorClassName="bg-[#407140]" />
                       </div>
 
                       <div>
                         <div className="flex justify-between mb-1">
-                          <span className="text-white/80">Legacy Partner</span>
-                          <span className="text-teal-400">95%</span>
+                          <span className="text-gray-600">Legacy Partner</span>
+                          <span className="text-[#407140]">95%</span>
                         </div>
-                        <Progress value={95} className="h-2 bg-white/20" indicatorClassName="bg-teal-400" />
+                        <Progress value={95} className="h-2 bg-gray-200" indicatorClassName="bg-[#407140]" />
                       </div>
                     </div>
                   </div>
@@ -392,7 +391,7 @@ export default function LandingPage() {
                       alt="Successful real estate agent"
                       width={800}
                       height={600}
-                      className="rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                      className="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </div>
@@ -406,45 +405,45 @@ export default function LandingPage() {
                       alt="Real estate team collaboration"
                       width={800}
                       height={600}
-                      className="rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                      className="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-500"
                     />
                   </div>
 
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-colors">
-                    <h3 className="text-2xl font-bold text-white mb-4">Comprehensive Support System</h3>
-                    <p className="text-white/80 mb-6">
+                  <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Comprehensive Support System</h3>
+                    <p className="text-gray-600 mb-6">
                       Never feel alone in your business. Our dedicated support team and community of successful agents
                       are always available to help you overcome challenges.
                     </p>
 
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <div className="bg-teal-400/20 p-2 rounded-full mt-1">
-                          <Users className="h-5 w-5 text-teal-400" />
+                        <div className="bg-[#407140]/20 p-2 rounded-full mt-1">
+                          <Users className="h-5 w-5 text-[#407140]" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-white">Dedicated Mentorship</h4>
-                          <p className="text-white/70">One-on-one guidance from top-performing agents</p>
+                          <h4 className="font-medium text-gray-800">Dedicated Mentorship</h4>
+                          <p className="text-gray-600">One-on-one guidance from top-performing agents</p>
                         </div>
                       </li>
 
                       <li className="flex items-start gap-3">
-                        <div className="bg-teal-400/20 p-2 rounded-full mt-1">
-                          <Building2 className="h-5 w-5 text-teal-400" />
+                        <div className="bg-[#407140]/20 p-2 rounded-full mt-1">
+                          <Building2 className="h-5 w-5 text-[#407140]" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-white">Administrative Support</h4>
-                          <p className="text-white/70">Focus on selling while we handle the paperwork</p>
+                          <h4 className="font-medium text-gray-800">Administrative Support</h4>
+                          <p className="text-gray-600">Focus on selling while we handle the paperwork</p>
                         </div>
                       </li>
 
                       <li className="flex items-start gap-3">
-                        <div className="bg-teal-400/20 p-2 rounded-full mt-1">
-                          <MapPin className="h-5 w-5 text-teal-400" />
+                        <div className="bg-[#407140]/20 p-2 rounded-full mt-1">
+                          <MapPin className="h-5 w-5 text-[#407140]" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-white">Lead Generation</h4>
-                          <p className="text-white/70">Cutting-edge marketing tools and qualified leads</p>
+                          <h4 className="font-medium text-gray-800">Lead Generation</h4>
+                          <p className="text-gray-600">Cutting-edge marketing tools and qualified leads</p>
                         </div>
                       </li>
                     </ul>
@@ -454,37 +453,37 @@ export default function LandingPage() {
 
               <TabsContent value="lifestyle" className="mt-0">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/10 transition-colors">
-                    <h3 className="text-2xl font-bold text-white mb-4">Work-Life Balance Reimagined</h3>
-                    <p className="text-white/80 mb-6">
+                  <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Work-Life Balance Reimagined</h3>
+                    <p className="text-gray-600 mb-6">
                       Our innovative approach allows you to build a thriving real estate career while maintaining the
                       lifestyle you desire.
                     </p>
 
                     <div className="space-y-6">
                       <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-teal-400 to-transparent"></div>
+                        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#407140] to-transparent"></div>
                         <div className="pl-6">
-                          <h4 className="font-medium text-white">Flexible Scheduling</h4>
-                          <p className="text-white/70">
+                          <h4 className="font-medium text-gray-800">Flexible Scheduling</h4>
+                          <p className="text-gray-600">
                             Build your business around your life, not the other way around
                           </p>
                         </div>
                       </div>
 
                       <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-teal-400 to-transparent"></div>
+                        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#407140] to-transparent"></div>
                         <div className="pl-6">
-                          <h4 className="font-medium text-white">Remote Work Options</h4>
-                          <p className="text-white/70">State-of-the-art technology allows you to work from anywhere</p>
+                          <h4 className="font-medium text-gray-800">Remote Work Options</h4>
+                          <p className="text-gray-600">State-of-the-art technology allows you to work from anywhere</p>
                         </div>
                       </div>
 
                       <div className="relative">
-                        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-teal-400 to-transparent"></div>
+                        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#407140] to-transparent"></div>
                         <div className="pl-6">
-                          <h4 className="font-medium text-white">Wellness Programs</h4>
-                          <p className="text-white/70">
+                          <h4 className="font-medium text-gray-800">Wellness Programs</h4>
+                          <p className="text-gray-600">
                             Exclusive access to fitness, mental health, and lifestyle benefits
                           </p>
                         </div>
@@ -494,11 +493,11 @@ export default function LandingPage() {
 
                   <div>
                     <Image
-                      src="/placeholder.svg?key=vn3ee"
+                      src="/welcoming-real-estate-team.png"
                       alt="Real estate work-life balance"
                       width={800}
                       height={600}
-                      className="rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                      className="rounded-2xl shadow-lg transform hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </div>
@@ -514,7 +513,7 @@ export default function LandingPage() {
             processRef.current = el
             processInViewRef(el)
           }}
-          className="py-20 md:py-32 bg-gradient-to-b from-slate-950/50 to-slate-900/50 backdrop-blur-sm"
+          className="py-20 md:py-32 bg-[#f8f8f8]"
         >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
@@ -523,9 +522,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
               >
-                Your Journey to <span className="text-teal-400">Excellence</span>
+                Your Journey to <span className="text-[#407140]">Excellence</span>
               </motion.h2>
 
               <motion.p
@@ -533,7 +532,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-white/80"
+                className="text-xl text-gray-600"
               >
                 We've designed a clear path to help you transform your real estate career and achieve unprecedented
                 success.
@@ -551,7 +550,7 @@ export default function LandingPage() {
             testimonialsRef.current = el
             testimonialsInViewRef(el)
           }}
-          className="py-20 md:py-32"
+          className="py-20 md:py-32 bg-white"
         >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
@@ -560,9 +559,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
               >
-                Success <span className="text-teal-400">Stories</span>
+                Success <span className="text-[#407140]">Stories</span>
               </motion.h2>
 
               <motion.p
@@ -570,45 +569,45 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-white/80"
+                className="text-xl text-gray-600"
               >
-                Hear from agents who transformed their careers with NextLevel Realty.
+                Hear from agents who transformed their careers with EZ BIG Realty.
               </motion.p>
             </div>
 
             {/* Success Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               <motion.div
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/10 transition-colors"
+                className="bg-gray-50 shadow-md rounded-2xl p-8 text-center hover:shadow-lg transition-shadow"
                 whileHover={{ y: -10 }}
               >
-                <h3 className="text-5xl font-bold text-white mb-2">
+                <h3 className="text-5xl font-bold text-gray-800 mb-2">
                   <motion.span>{Math.round(count1.get())}</motion.span>
-                  <span className="text-teal-400">+</span>
+                  <span className="text-[#407140]">+</span>
                 </h3>
-                <p className="text-white/80 text-lg">Successful Affiliates</p>
+                <p className="text-gray-600 text-lg">Successful Affiliates</p>
               </motion.div>
 
               <motion.div
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/10 transition-colors"
+                className="bg-gray-50 shadow-md rounded-2xl p-8 text-center hover:shadow-lg transition-shadow"
                 whileHover={{ y: -10 }}
               >
-                <h3 className="text-5xl font-bold text-white mb-2">
+                <h3 className="text-5xl font-bold text-gray-800 mb-2">
                   <motion.span>{Math.round(count2.get())}</motion.span>
-                  <span className="text-teal-400">%</span>
+                  <span className="text-[#407140]">%</span>
                 </h3>
-                <p className="text-white/80 text-lg">Average Income Increase</p>
+                <p className="text-gray-600 text-lg">Average Income Increase</p>
               </motion.div>
 
               <motion.div
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/10 transition-colors"
+                className="bg-gray-50 shadow-md rounded-2xl p-8 text-center hover:shadow-lg transition-shadow"
                 whileHover={{ y: -10 }}
               >
-                <h3 className="text-5xl font-bold text-white mb-2">
+                <h3 className="text-5xl font-bold text-gray-800 mb-2">
                   <motion.span>{Math.round(count3.get())}</motion.span>
-                  <span className="text-teal-400">+</span>
+                  <span className="text-[#407140]">+</span>
                 </h3>
-                <p className="text-white/80 text-lg">Markets Nationwide</p>
+                <p className="text-gray-600 text-lg">Markets Nationwide</p>
               </motion.div>
             </div>
 
@@ -620,7 +619,7 @@ export default function LandingPage() {
                   role: "Elite Agent, 3 Years",
                   image: "/confident-agent.png",
                   quote:
-                    "Joining NextLevel was the best career decision I've ever made. My income doubled in the first year, and the support system is unmatched in the industry.",
+                    "Joining EZ BIG was the best career decision I've ever made. My income doubled in the first year, and the support system is unmatched in the industry.",
                   before: "$85K/year",
                   after: "$210K/year",
                 },
@@ -655,8 +654,8 @@ export default function LandingPage() {
                 >
                   <div className="relative h-full w-full transition-all duration-500 preserve-3d group-hover:rotate-y-180">
                     {/* Front of card */}
-                    <div className="absolute inset-0 backface-hidden bg-white/5 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                      <div className="w-24 h-24 rounded-full overflow-hidden mb-6 border-2 border-teal-400">
+                    <div className="absolute inset-0 backface-hidden bg-gray-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                      <div className="w-24 h-24 rounded-full overflow-hidden mb-6 border-2 border-[#407140]">
                         <Image
                           src={testimonial.image || "/placeholder.svg"}
                           alt={testimonial.name}
@@ -665,33 +664,33 @@ export default function LandingPage() {
                           className="object-cover w-full h-full"
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-1">{testimonial.name}</h3>
-                      <p className="text-teal-400 mb-4">{testimonial.role}</p>
-                      <p className="text-white/80 italic">"{testimonial.quote}"</p>
-                      <p className="text-white/60 text-sm mt-4">Click to see transformation</p>
+                      <h3 className="text-xl font-bold text-gray-800 mb-1">{testimonial.name}</h3>
+                      <p className="text-[#407140] mb-4">{testimonial.role}</p>
+                      <p className="text-gray-600 italic">"{testimonial.quote}"</p>
+                      <p className="text-gray-500 text-sm mt-4">Click to see transformation</p>
                     </div>
 
                     {/* Back of card */}
-                    <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-teal-600 to-teal-400 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                    <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-[#407140] to-[#4c8a4c] rounded-2xl p-6 flex flex-col items-center justify-center text-center">
                       <h3 className="text-2xl font-bold text-white mb-6">Income Transformation</h3>
 
                       <div className="w-full max-w-xs mx-auto mb-8">
                         <div className="bg-white/20 p-4 rounded-t-lg">
-                          <p className="text-white/80 mb-1">Before NextLevel</p>
+                          <p className="text-white/80 mb-1">Before EZ BIG</p>
                           <p className="text-3xl font-bold text-white">{testimonial.before}</p>
                         </div>
                         <div className="h-12 flex items-center justify-center bg-white/10">
                           <ArrowRight className="h-8 w-8 text-white" />
                         </div>
                         <div className="bg-white/20 p-4 rounded-b-lg">
-                          <p className="text-white/80 mb-1">After NextLevel</p>
+                          <p className="text-white/80 mb-1">After EZ BIG</p>
                           <p className="text-3xl font-bold text-white">{testimonial.after}</p>
                         </div>
                       </div>
 
                       <p className="text-white/90">Ready to write your success story?</p>
                       <Button
-                        className="mt-4 bg-white text-teal-600 hover:bg-white/90"
+                        className="mt-4 bg-white text-[#407140] hover:bg-white/90"
                         onClick={() => scrollToSection("cta")}
                       >
                         Join Now
@@ -709,22 +708,22 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-2xl md:text-3xl font-bold text-white text-center mb-8"
+                className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8"
               >
-                Our <span className="text-teal-400">Nationwide</span> Presence
+                Our <span className="text-[#407140]">Nationwide</span> Presence
               </motion.h3>
 
-              <div className="relative h-[400px] md:h-[500px] bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden">
+              <div className="relative h-[400px] md:h-[500px] bg-gray-50 shadow-md rounded-2xl overflow-hidden">
                 <Image
                   src="/usa-map-locations.png"
                   alt="Map showing team presence"
                   fill
-                  className="object-cover opacity-80"
+                  className="object-cover opacity-90"
                 />
 
                 {/* Interactive map pins would go here */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-white/80 text-lg bg-black/50 backdrop-blur-sm p-4 rounded-lg">
+                  <p className="text-gray-800 text-lg bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-md">
                     Join our growing network of 1,250+ agents across 32+ markets
                   </p>
                 </div>
@@ -740,7 +739,7 @@ export default function LandingPage() {
             calculatorRef.current = el
             calculatorInViewRef(el)
           }}
-          className="py-20 md:py-32 bg-gradient-to-b from-slate-950/50 to-slate-900/50 backdrop-blur-sm"
+          className="py-20 md:py-32 bg-[#f8f8f8]"
         >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
@@ -749,9 +748,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
               >
-                Calculate Your <span className="text-teal-400">Potential</span>
+                Calculate Your <span className="text-[#407140]">Potential</span>
               </motion.h2>
 
               <motion.p
@@ -759,7 +758,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-white/80"
+                className="text-xl text-gray-600"
               >
                 See how your income could transform with our industry-leading commission structure and support.
               </motion.p>
@@ -776,7 +775,7 @@ export default function LandingPage() {
             quizRef.current = el
             quizInViewRef(el)
           }}
-          className="py-20 md:py-32"
+          className="py-20 md:py-32 bg-white"
         >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
@@ -785,9 +784,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
               >
-                Discover Your <span className="text-teal-400">Agent Type</span>
+                Discover Your <span className="text-[#407140]">Agent Type</span>
               </motion.h2>
 
               <motion.p
@@ -795,9 +794,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-white/80"
+                className="text-xl text-gray-600"
               >
-                Take our quick quiz to find out which path at NextLevel is perfect for your skills and goals.
+                Take our quick quiz to find out which path at EZ BIG is perfect for your skills and goals.
               </motion.p>
             </div>
 
@@ -806,7 +805,7 @@ export default function LandingPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-b from-slate-950/50 to-slate-900/50 backdrop-blur-sm">
+        <section className="py-20 md:py-32 bg-[#f8f8f8]">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <motion.h2
@@ -814,9 +813,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6"
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
               >
-                Frequently Asked <span className="text-teal-400">Questions</span>
+                Frequently Asked <span className="text-[#407140]">Questions</span>
               </motion.h2>
 
               <motion.p
@@ -824,9 +823,9 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-white/80"
+                className="text-xl text-gray-600"
               >
-                Everything you need to know about joining the NextLevel family.
+                Everything you need to know about joining the EZ BIG family.
               </motion.p>
             </div>
 
@@ -834,9 +833,9 @@ export default function LandingPage() {
               <Accordion type="single" collapsible className="space-y-4">
                 {[
                   {
-                    question: "What makes NextLevel different from other brokerages?",
+                    question: "What makes EZ BIG different from other brokerages?",
                     answer:
-                      "NextLevel combines industry-leading commission splits with comprehensive support systems, cutting-edge technology, and a collaborative culture. We focus on agent success through personalized mentorship, advanced marketing tools, and a commitment to work-life balance that's unmatched in the industry.",
+                      "EZ BIG combines industry-leading commission splits with comprehensive support systems, cutting-edge technology, and a collaborative culture. We focus on agent success through personalized mentorship, advanced marketing tools, and a commitment to work-life balance that's unmatched in the industry.",
                   },
                   {
                     question: "What kind of support will I receive?",
@@ -849,12 +848,12 @@ export default function LandingPage() {
                       "Our commission structure starts at an 80/20 split in your favor and increases based on performance. Elite agents can earn up to 90%, and Legacy Partners can earn up to 95%. There are no desk fees, and we offer multiple paths to increase your commission split based on your individual goals.",
                   },
                   {
-                    question: "Is NextLevel available in my area?",
+                    question: "Is EZ BIG available in my area?",
                     answer:
-                      "NextLevel is rapidly expanding across the country and currently operates in 32+ markets nationwide. If we're not in your area yet, we have expansion plans and would be happy to discuss bringing NextLevel to your market.",
+                      "EZ BIG is rapidly expanding across the country and currently operates in 32+ markets nationwide. If we're not in your area yet, we have expansion plans and would be happy to discuss bringing EZ BIG to your market.",
                   },
                   {
-                    question: "What technology does NextLevel provide?",
+                    question: "What technology does EZ BIG provide?",
                     answer:
                       "Our proprietary technology platform includes CRM systems, transaction management software, marketing automation tools, lead generation systems, and virtual showing capabilities. We continuously invest in technology to ensure our agents have the most advanced tools available.",
                   },
@@ -867,16 +866,16 @@ export default function LandingPage() {
                   <AccordionItem
                     key={index}
                     value={`item-${index}`}
-                    className="border border-white/10 rounded-lg overflow-hidden"
+                    className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm"
                   >
                     <AccordionTrigger
-                      className="px-6 py-4 hover:bg-white/5 text-white text-left"
+                      className="px-6 py-4 hover:bg-gray-50 text-gray-800 text-left"
                       onMouseEnter={() => handleMouseEnter("accordion")}
                       onMouseLeave={handleMouseLeave}
                     >
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="px-6 py-4 text-white/80">{faq.answer}</AccordionContent>
+                    <AccordionContent className="px-6 py-4 text-gray-600">{faq.answer}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
@@ -891,10 +890,10 @@ export default function LandingPage() {
             ctaRef.current = el
             ctaInViewRef(el)
           }}
-          className="py-20 md:py-32"
+          className="py-20 md:py-32 bg-white"
         >
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto bg-gradient-to-br from-teal-600 to-teal-400 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="max-w-5xl mx-auto bg-[#407140] rounded-3xl overflow-hidden shadow-xl">
               <div className="grid md:grid-cols-2">
                 <div className="p-8 md:p-12 flex flex-col justify-center">
                   <motion.h2
@@ -1004,19 +1003,19 @@ export default function LandingPage() {
                         id="experience"
                         className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
                       >
-                        <option value="" className="bg-slate-800">
+                        <option value="" className="bg-gray-800">
                           Select experience
                         </option>
-                        <option value="0-1" className="bg-slate-800">
+                        <option value="0-1" className="bg-gray-800">
                           0-1 years
                         </option>
-                        <option value="1-3" className="bg-slate-800">
+                        <option value="1-3" className="bg-gray-800">
                           1-3 years
                         </option>
-                        <option value="3-5" className="bg-slate-800">
+                        <option value="3-5" className="bg-gray-800">
                           3-5 years
                         </option>
-                        <option value="5+" className="bg-slate-800">
+                        <option value="5+" className="bg-gray-800">
                           5+ years
                         </option>
                       </select>
@@ -1024,7 +1023,7 @@ export default function LandingPage() {
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-white mb-1">
-                        Why are you interested in NextLevel?
+                        Why are you interested in EZ BIG?
                       </label>
                       <textarea
                         id="message"
@@ -1035,11 +1034,11 @@ export default function LandingPage() {
                     </div>
 
                     <Button
-                      className="w-full bg-white text-teal-600 hover:bg-white/90 py-6 text-lg font-medium"
+                      className="w-full bg-white text-[#407140] hover:bg-white/90 py-6 text-lg font-medium"
                       onMouseEnter={() => handleMouseEnter("button", "Submit")}
                       onMouseLeave={handleMouseLeave}
                     >
-                      Start Your NextLevel Journey
+                      Start Your EZ BIG Journey
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
 
@@ -1061,36 +1060,34 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="bg-slate-950 border-t border-white/10 py-12">
+      <footer className="bg-gray-100 border-t border-gray-200 py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Building2 className="h-8 w-8 text-teal-400" />
-                <span className="text-xl font-bold bg-gradient-to-r from-white to-teal-300 bg-clip-text text-transparent">
-                  NextLevel Realty
-                </span>
+                <Building2 className="h-8 w-8 text-[#407140]" />
+                <span className="text-xl font-bold text-[#407140]">EZ BIG Realty</span>
               </div>
-              <p className="text-white/70 mb-4">
+              <p className="text-gray-600 mb-4">
                 Redefining success in real estate through innovation, support, and exceptional opportunities.
               </p>
               <div className="flex gap-4">
-                <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                <Link href="#" className="text-gray-500 hover:text-[#407140] transition-colors">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
                   </svg>
                 </Link>
-                <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                <Link href="#" className="text-gray-500 hover:text-[#407140] transition-colors">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm5.23 15.23c-.399.4-.94.4-1.34 0l-3.89-3.89-3.89 3.89c-.4.4-.94.4-1.34 0-.4-.4-.4-.94 0-1.34l3.89-3.89-3.89-3.89c-.4-.4-.4-.94 0-1.34.4-.4.94-.4 1.34 0l3.89 3.89 3.89-3.89c.4-.4.94-.4 1.34 0 .4.4.4.94 0 1.34l-3.89 3.89 3.89 3.89c.4.4.4.94 0 1.34z" />
                   </svg>
                 </Link>
-                <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                <Link href="#" className="text-gray-500 hover:text-[#407140] transition-colors">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm-1.25 15h-2.5v-8h2.5v8zm-1.25-9c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm8.75 9h-2.5v-4.5c0-1.1-.9-2-2-2s-2 .9-2 2V17h-2.5V9h2.5v1.5c.747-.908 1.8-1.5 3-1.5 2.209 0 4 1.791 4 4V17z" />
                   </svg>
                 </Link>
-                <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                <Link href="#" className="text-gray-500 hover:text-[#407140] transition-colors">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm5.5 7.5h-1.513c-.96 0-1.487.6-1.487 1.36v1.64h2.4l-.4 2.4h-2v6.2h-2.4v-6.2h-2v-2.4h2v-1.8c0-2 1.2-3.1 3-3.1 1.2 0 1.8.1 2.4.2v1.7z" />
                   </svg>
@@ -1099,30 +1096,30 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-white mb-4">Company</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-4">Company</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Our Team
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Careers
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Press
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Contact
                   </Link>
                 </li>
@@ -1130,30 +1127,30 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-white mb-4">Resources</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-4">Resources</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Agent Resources
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Training
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Events
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     FAQ
                   </Link>
                 </li>
@@ -1161,30 +1158,30 @@ export default function LandingPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-white mb-4">Legal</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Terms of Service
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Cookie Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     GDPR
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-white/70 hover:text-teal-400 transition-colors">
+                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Licensing
                   </Link>
                 </li>
@@ -1192,9 +1189,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 mt-12 pt-8 text-center">
-            <p className="text-white/60 text-sm">
-              &copy; {new Date().getFullYear()} NextLevel Realty. All rights reserved.
+          <div className="border-t border-gray-200 mt-12 pt-8 text-center">
+            <p className="text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} EZ BIG Realty. All rights reserved.
             </p>
           </div>
         </div>

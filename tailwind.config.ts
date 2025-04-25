@@ -19,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Lexend", "system-ui", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,18 +57,18 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        teal: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
-          950: "#042f2e",
+        forest: {
+          50: "#f3f8f3",
+          100: "#e7f1e7",
+          200: "#d0e3d0",
+          300: "#b0d0b0",
+          400: "#8ab88a",
+          500: "#64a064",
+          600: "#407140", // Our accent color
+          700: "#345934",
+          800: "#2c472c",
+          900: "#243c24",
+          950: "#0f200f",
         },
       },
       borderRadius: {

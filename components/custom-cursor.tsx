@@ -45,7 +45,7 @@ export default function CustomCursor({ variant = "default", text = "" }: CustomC
       y: position.y - 40,
       height: 80,
       width: 80,
-      backgroundColor: "rgba(20, 184, 166, 0.3)",
+      backgroundColor: "rgba(64, 113, 64, 0.3)",
       mixBlendMode: "normal" as const,
     },
     link: {
@@ -61,7 +61,7 @@ export default function CustomCursor({ variant = "default", text = "" }: CustomC
       y: position.y - 30,
       height: 60,
       width: 60,
-      backgroundColor: "rgba(20, 184, 166, 0.2)",
+      backgroundColor: "rgba(64, 113, 64, 0.2)",
       mixBlendMode: "normal" as const,
     },
     tab: {
@@ -69,7 +69,7 @@ export default function CustomCursor({ variant = "default", text = "" }: CustomC
       y: position.y - 24,
       height: 48,
       width: 48,
-      backgroundColor: "rgba(20, 184, 166, 0.2)",
+      backgroundColor: "rgba(64, 113, 64, 0.2)",
       mixBlendMode: "normal" as const,
     },
     accordion: {
