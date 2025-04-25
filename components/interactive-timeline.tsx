@@ -60,7 +60,7 @@ export default function InteractiveTimeline() {
   return (
     <div className="relative">
       {/* Timeline connector */}
-      <div className="absolute left-1/2 top-8 bottom-8 w-1 bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
+      <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
 
       {/* Timeline steps */}
       <div className="space-y-16 md:space-y-24 relative">
@@ -78,24 +78,30 @@ function TimelineStep({ step, index }) {
     triggerOnce: true,
   })
 
-  return (
-    <div ref={ref} className={`relative ${index % 2 === 0 ? "md:text-right" : ""}`}>
-      {/* Timeline dot */}
-      <div className="absolute left-1/2 top-8 transform -translate-x-1/2 w-8 h-8 rounded-full bg-white border-2 border-[#407140] z-10 hidden md:flex items-center justify-center">
-        {inView && <div className="w-3 h-3 rounded-full bg-[#407140]"></div>}
-      </div>
+  const isEven = index % 2 === 0
 
+  return (
+    <div ref={ref} className="relative">
       {/* Content */}
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        <div className={`space-y-4 ${index % 2 === 1 ? "md:order-2" : ""}`}>
-          <div className="flex items-center gap-3 md:justify-start">
+      <div className="grid md:grid-cols-2 gap-8 items-center relative">
+        {/* Timeline dot - positioned absolutely to center it vertically */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-[#407140] z-10 hidden md:flex items-center justify-center">
+          {inView && <div className="w-3 h-3 rounded-full bg-[#407140]"></div>}
+        </div>
+
+        <div className={`space-y-4 ${!isEven ? "md:order-2" : ""}`}>
+          <div className={`flex items-center gap-3 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
             <div className="flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-[#407140]/20">
               {step.icon}
             </div>
-            <h3 className="text-2xl font-bold text-gray-800">{step.title}</h3>
+            {isEven ? (
+              <h3 className="text-2xl font-bold text-gray-800 md:text-right">{step.title}</h3>
+            ) : (
+              <h3 className="text-2xl font-bold text-gray-800">{step.title}</h3>
+            )}
           </div>
 
-          <p className="text-gray-600">{step.description}</p>
+          <p className={`text-gray-600 ${isEven ? "md:text-right" : ""}`}>{step.description}</p>
 
           {inView && (
             <motion.div
@@ -117,7 +123,7 @@ function TimelineStep({ step, index }) {
           )}
         </div>
 
-        <div className={`${index % 2 === 1 ? "md:order-1" : ""}`}>
+        <div className={`${!isEven ? "md:order-1" : ""}`}>
           <motion.div
             whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
