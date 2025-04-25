@@ -894,7 +894,7 @@ export default function LandingPage() {
                   {
                     question: "How do I get started?",
                     answer:
-                      "Getting started is easy! Simply fill out the application form below, and one of our team members will contact you within 24 hours to schedule a consultation. We'll discuss your goals, answer any questions, and guide you through the onboarding process.",
+                      "Getting started is easy! Simply click the 'Join Our Team' button below, and you'll be directed to our onboarding site where you can complete the application process. One of our team members will contact you within 24 hours to schedule a consultation.",
                   },
                 ].map((faq, index) => (
                   <AccordionItem
@@ -917,7 +917,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section - Redesigned with big text on left, button on right */}
         <section
           id="cta"
           ref={(el) => {
@@ -935,7 +935,7 @@ export default function LandingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-3xl md:text-4xl font-bold text-white mb-6"
+                    className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
                   >
                     Ready to Transform Your Real Estate Career?
                   </motion.h2>
@@ -945,148 +945,56 @@ export default function LandingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-white/90 mb-8"
+                    className="text-white/90 text-xl mb-8"
                   >
-                    Join the elite network of real estate professionals who are redefining success in the industry. Fill
-                    out the form to get started on your journey to the next level.
+                    Join the elite network of real estate professionals who are redefining success in the industry.
                   </motion.p>
-
-                  <ul className="space-y-3 mb-8">
-                    {[
-                      "Industry-leading commission splits",
-                      "Comprehensive support system",
-                      "Cutting-edge technology platform",
-                      "Exclusive lead generation tools",
-                      "Work-life balance focus",
-                    ].map((benefit, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                        className="flex items-center gap-2 text-white"
-                      >
-                        <div className="bg-white/20 p-1 rounded-full">
-                          <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        {benefit}
-                      </motion.li>
-                    ))}
-                  </ul>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm p-8 md:p-12">
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="first-name" className="block text-sm font-medium text-white mb-1">
-                          First Name
-                        </label>
-                        <input
-                          type="text"
-                          id="first-name"
-                          className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                          placeholder="Enter your first name"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="last-name" className="block text-sm font-medium text-white mb-1">
-                          Last Name
-                        </label>
-                        <input
-                          type="text"
-                          id="last-name"
-                          className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                          placeholder="Enter your last name"
-                        />
-                      </div>
-                    </div>
+                <div className="bg-white/10 backdrop-blur-sm p-8 md:p-12 flex flex-col justify-center">
+                  <div className="bg-white/10 rounded-xl p-6 mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-4">Take the Next Step</h3>
+                    <p className="text-white/90 mb-6">
+                      Click below to visit our onboarding site where you can complete your application and begin your
+                      journey with EZ BIG Realty.
+                    </p>
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                        placeholder="Enter your email address"
-                      />
-                    </div>
+                    <ul className="space-y-3 mb-8">
+                      {[
+                        "Simple online application",
+                        "Fast approval process",
+                        "Immediate access to resources",
+                        "Dedicated onboarding specialist",
+                      ].map((benefit, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                          className="flex items-center gap-2 text-white"
+                        >
+                          <div className="bg-white/20 p-1 rounded-full">
+                            <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          {benefit}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
 
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-white mb-1">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                        placeholder="Enter your phone number"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="experience" className="block text-sm font-medium text-white mb-1">
-                        Years of Experience
-                      </label>
-                      <select
-                        id="experience"
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                      >
-                        <option value="" className="bg-gray-800">
-                          Select experience
-                        </option>
-                        <option value="0-1" className="bg-gray-800">
-                          0-1 years
-                        </option>
-                        <option value="1-3" className="bg-gray-800">
-                          1-3 years
-                        </option>
-                        <option value="3-5" className="bg-gray-800">
-                          3-5 years
-                        </option>
-                        <option value="5+" className="bg-gray-800">
-                          5+ years
-                        </option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-white mb-1">
-                        Why are you interested in EZ BIG?
-                      </label>
-                      <textarea
-                        id="message"
-                        rows={4}
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                        placeholder="Tell us a bit about your goals..."
-                      ></textarea>
-                    </div>
-
+                  <a href="https://onboarding.ezbig.com" target="_blank" rel="noopener noreferrer" className="block">
                     <Button
-                      className="w-full bg-white text-[#407140] hover:bg-white/90 py-6 text-lg font-medium"
-                      onMouseEnter={() => handleMouseEnter("button", "Submit")}
+                      className="w-full bg-white text-[#407140] hover:bg-white/90 py-6 text-xl font-medium"
+                      onMouseEnter={() => handleMouseEnter("button", "Join Now")}
                       onMouseLeave={handleMouseLeave}
                     >
-                      Start Your EZ BIG Journey
+                      Join Our Team Now
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
-
-                    <p className="text-white/70 text-sm text-center">
-                      By submitting, you agree to our{" "}
-                      <Link href="#" className="underline hover:text-white">
-                        Privacy Policy
-                      </Link>{" "}
-                      and{" "}
-                      <Link href="#" className="underline hover:text-white">
-                        Terms of Service
-                      </Link>
-                    </p>
-                  </form>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1133,27 +1041,27 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold text-gray-800 mb-4">Company</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/about-us" className="text-gray-600 hover:text-[#407140] transition-colors">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/our-team" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Our Team
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/careers" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Careers
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/press" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Press
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/contact" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Contact
                   </Link>
                 </li>
@@ -1164,27 +1072,27 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold text-gray-800 mb-4">Resources</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/blog" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/agent-resources" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Agent Resources
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/training" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Training
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/events" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Events
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/faq" className="text-gray-600 hover:text-[#407140] transition-colors">
                     FAQ
                   </Link>
                 </li>
@@ -1195,27 +1103,27 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold text-gray-800 mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/privacy-policy" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/terms-of-service" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Terms of Service
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/cookie-policy" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Cookie Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/gdpr" className="text-gray-600 hover:text-[#407140] transition-colors">
                     GDPR
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-[#407140] transition-colors">
+                  <Link href="/licensing" className="text-gray-600 hover:text-[#407140] transition-colors">
                     Licensing
                   </Link>
                 </li>
