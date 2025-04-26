@@ -15,6 +15,7 @@ import QuizSection from "@/components/quiz-section"
 import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
+import ScrollDrawerSection from "@/components/scroll-drawer-section"
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -133,7 +134,7 @@ export default function LandingPage() {
         activeSection={activeSection}
       />
 
-      <main className="relative z-10">
+      <main className="relative">
         {/* Hero Section */}
         <HeroSection
           onMouseEnter={handleMouseEnter}
@@ -146,37 +147,81 @@ export default function LandingPage() {
         />
 
         {/* Value Proposition Section */}
-        <ValueSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} valueInViewRef={valueInViewRef} />
+        <ScrollDrawerSection id="value" bgColor="bg-white" zIndex={10} inViewRef={valueInViewRef}>
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-16">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
+              >
+                Why Top Agents Choose <span className="text-[#407140]">EZ BIG</span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-xl text-gray-600"
+              >
+                We've reimagined the real estate affiliate experience to maximize your potential and elevate your
+                career.
+              </motion.p>
+            </div>
+
+            {/* Value section content */}
+            <ValueSection
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              valueInViewRef={() => {}} // Empty function since we're handling the ref in ScrollDrawerSection
+            />
+          </div>
+        </ScrollDrawerSection>
 
         {/* Process Section */}
-        <ProcessSection processInViewRef={processInViewRef} />
+        <ScrollDrawerSection id="process" bgColor="bg-[#f8f8f8]" zIndex={11} inViewRef={processInViewRef}>
+          <ProcessSection processInViewRef={() => {}} />
+        </ScrollDrawerSection>
 
         {/* Testimonials Section */}
-        <TestimonialsSection
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          scrollToSection={scrollToSection}
-          testimonialsInViewRef={testimonialsInViewRef}
-          count1={count1}
-          count2={count2}
-          count3={count3}
-        />
+        <ScrollDrawerSection id="testimonials" bgColor="bg-white" zIndex={12} inViewRef={testimonialsInViewRef}>
+          <TestimonialsSection
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            scrollToSection={scrollToSection}
+            testimonialsInViewRef={() => {}}
+            count1={count1}
+            count2={count2}
+            count3={count3}
+          />
+        </ScrollDrawerSection>
 
         {/* Income Calculator Section */}
-        <CalculatorSection
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          calculatorInViewRef={calculatorInViewRef}
-        />
+        <ScrollDrawerSection id="calculator" bgColor="bg-[#f8f8f8]" zIndex={13} inViewRef={calculatorInViewRef}>
+          <CalculatorSection
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            calculatorInViewRef={() => {}}
+          />
+        </ScrollDrawerSection>
 
         {/* Agent Type Quiz Section */}
-        <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={quizInViewRef} />
+        <ScrollDrawerSection id="quiz" bgColor="bg-white" zIndex={14} inViewRef={quizInViewRef}>
+          <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
+        </ScrollDrawerSection>
 
         {/* FAQ Section */}
-        <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+        <ScrollDrawerSection id="faq" bgColor="bg-[#f8f8f8]" zIndex={15}>
+          <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+        </ScrollDrawerSection>
 
         {/* CTA Section */}
-        <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={ctaInViewRef} />
+        <ScrollDrawerSection id="cta" bgColor="bg-white" zIndex={16} inViewRef={ctaInViewRef}>
+          <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
+        </ScrollDrawerSection>
       </main>
 
       <Footer />
