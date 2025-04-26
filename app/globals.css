@@ -152,21 +152,32 @@ h6 {
   background: rgba(64, 113, 64, 0.3);
 }
 
-/* Smooth scrolling */
+/* Remove default smooth scrolling since Lenis will handle it */
 html {
-  scroll-behavior: smooth;
-}
-
-/* Stacking sections */
-.stack-section {
-  position: sticky;
-  top: 0;
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
+  scroll-behavior: auto;
 }
 
 /* Ensure smooth transitions between sections */
 body {
   overflow-x: hidden;
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+html.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+/* Hide scrollbar when Lenis is active */
+html.lenis-smooth::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Prevent horizontal scrollbar */
+html.lenis-smooth {
+  overflow-x: hidden;
+}
+
+/* Ensure content doesn't jump when scrollbar appears/disappears */
+html.lenis-smooth {
+  margin-right: 0 !important;
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import dynamic from "next/dynamic"
 
 import CustomCursor from "@/components/custom-cursor"
 import Navigation from "@/components/navigation"
@@ -16,6 +17,11 @@ import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
 import StackSection from "@/components/stack-section"
+
+// Import SmoothScroll with dynamic import to avoid SSR issues
+const SmoothScroll = dynamic(() => import("@/components/smooth-scroll"), {
+  ssr: false,
+})
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -93,129 +99,142 @@ export default function LandingPage() {
     setCursorText("")
   }
 
-  // Scroll to section
+  // Scroll to section - modified to work with Lenis
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId)
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" })
+    // @ts-ignore - Lenis is added to window in SmoothScroll component
+    if (window.lenis) {
+      // @ts-ignore
+      window.lenis.scrollTo(document.getElementById(sectionId), {
+        offset: 0,
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      })
+    } else {
+      // Fallback to default scrolling
+      const section = document.getElementById(sectionId)
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" })
+      }
     }
   }
 
   return (
-    <div className="relative overflow-hidden bg-[#f8f8f8] font-sans">
-      <CustomCursor variant={cursorVariant} text={cursorText} />
+    <SmoothScroll>
+      <div className="relative overflow-hidden bg-[#f8f8f8] font-sans">
+        <CustomCursor variant={cursorVariant} text={cursorText} />
 
-      {/* Background gradient overlay that changes with scroll */}
-      <motion.div
-        className="fixed inset-0 pointer-events-none opacity-10"
-        style={{
-          background: `linear-gradient(135deg, ${backgroundGreen}, transparent)`,
-          zIndex: 0,
-        }}
-      />
+        {/* Background gradient overlay that changes with scroll */}
+        <motion.div
+          className="fixed inset-0 pointer-events-none opacity-10"
+          style={{
+            background: `linear-gradient(135deg, ${backgroundGreen}, transparent)`,
+            zIndex: 0,
+          }}
+        />
 
-      {/* Subtle geometric patterns */}
-      <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat"></div>
-      </div>
+        {/* Subtle geometric patterns */}
+        <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat"></div>
+        </div>
 
-      {/* Navigation */}
-      <Navigation
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        scrollToSection={scrollToSection}
-        activeSection={activeSection}
-      />
-
-      <main className="relative">
-        {/* Hero Section - Not part of the stacking effect */}
-        <HeroSection
+        {/* Navigation */}
+        <Navigation
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           scrollToSection={scrollToSection}
-          videoRef={videoRef}
-          isVideoPlaying={isVideoPlaying}
-          handleVideoPlay={handleVideoPlay}
-          heroInViewRef={heroInViewRef}
+          activeSection={activeSection}
         />
 
-        {/* Create a wrapper for the stacking sections */}
-        <div className="relative">
-          {/* Value Proposition Section */}
-          <StackSection id="value" bgColor="bg-white" index={0} inViewRef={valueInViewRef}>
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
-              >
-                Why Top Agents Choose <span className="text-[#407140]">EZ BIG</span>
-              </motion.h2>
+        <main className="relative">
+          {/* Hero Section - Not part of the stacking effect */}
+          <HeroSection
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            scrollToSection={scrollToSection}
+            videoRef={videoRef}
+            isVideoPlaying={isVideoPlaying}
+            handleVideoPlay={handleVideoPlay}
+            heroInViewRef={heroInViewRef}
+          />
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xl text-gray-600"
-              >
-                We've reimagined the real estate affiliate experience to maximize your potential and elevate your
-                career.
-              </motion.p>
-            </div>
-            <ValueSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} valueInViewRef={() => {}} />
-          </StackSection>
+          {/* Create a wrapper for the stacking sections */}
+          <div className="relative">
+            {/* Value Proposition Section */}
+            <StackSection id="value" bgColor="bg-white" index={0} inViewRef={valueInViewRef}>
+              <div className="max-w-4xl mx-auto text-center mb-16">
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
+                >
+                  Why Top Agents Choose <span className="text-[#407140]">EZ BIG</span>
+                </motion.h2>
 
-          {/* Process Section */}
-          <StackSection id="process" bgColor="bg-[#f8f8f8]" index={1} inViewRef={processInViewRef}>
-            <ProcessSection processInViewRef={() => {}} />
-          </StackSection>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-xl text-gray-600"
+                >
+                  We've reimagined the real estate affiliate experience to maximize your potential and elevate your
+                  career.
+                </motion.p>
+              </div>
+              <ValueSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} valueInViewRef={() => {}} />
+            </StackSection>
 
-          {/* Testimonials Section */}
-          <StackSection id="testimonials" bgColor="bg-white" index={2} inViewRef={testimonialsInViewRef}>
-            <TestimonialsSection
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              scrollToSection={scrollToSection}
-              testimonialsInViewRef={() => {}}
-              count1={count1}
-              count2={count2}
-              count3={count3}
-            />
-          </StackSection>
+            {/* Process Section */}
+            <StackSection id="process" bgColor="bg-[#f8f8f8]" index={1} inViewRef={processInViewRef}>
+              <ProcessSection processInViewRef={() => {}} />
+            </StackSection>
 
-          {/* Income Calculator Section */}
-          <StackSection id="calculator" bgColor="bg-[#f8f8f8]" index={3} inViewRef={calculatorInViewRef}>
-            <CalculatorSection
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              calculatorInViewRef={() => {}}
-            />
-          </StackSection>
+            {/* Testimonials Section */}
+            <StackSection id="testimonials" bgColor="bg-white" index={2} inViewRef={testimonialsInViewRef}>
+              <TestimonialsSection
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                scrollToSection={scrollToSection}
+                testimonialsInViewRef={() => {}}
+                count1={count1}
+                count2={count2}
+                count3={count3}
+              />
+            </StackSection>
 
-          {/* Agent Type Quiz Section */}
-          <StackSection id="quiz" bgColor="bg-white" index={4} inViewRef={quizInViewRef}>
-            <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
-          </StackSection>
+            {/* Income Calculator Section */}
+            <StackSection id="calculator" bgColor="bg-[#f8f8f8]" index={3} inViewRef={calculatorInViewRef}>
+              <CalculatorSection
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                calculatorInViewRef={() => {}}
+              />
+            </StackSection>
 
-          {/* FAQ Section */}
-          <StackSection id="faq" bgColor="bg-[#f8f8f8]" index={5} inViewRef={faqInViewRef}>
-            <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
-          </StackSection>
+            {/* Agent Type Quiz Section */}
+            <StackSection id="quiz" bgColor="bg-white" index={4} inViewRef={quizInViewRef}>
+              <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
+            </StackSection>
 
-          {/* CTA Section */}
-          <StackSection id="cta" bgColor="bg-white" index={6} inViewRef={ctaInViewRef}>
-            <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
-          </StackSection>
-        </div>
+            {/* FAQ Section */}
+            <StackSection id="faq" bgColor="bg-[#f8f8f8]" index={5} inViewRef={faqInViewRef}>
+              <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+            </StackSection>
 
-        {/* Add a spacer to ensure we can scroll to the bottom */}
-        <div style={{ height: "100vh" }}></div>
-      </main>
+            {/* CTA Section */}
+            <StackSection id="cta" bgColor="bg-white" index={6} inViewRef={ctaInViewRef}>
+              <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
+            </StackSection>
+          </div>
 
-      <Footer />
-    </div>
+          {/* Add a spacer to ensure we can scroll to the bottom */}
+          <div style={{ height: "100vh" }}></div>
+        </main>
+
+        <Footer />
+      </div>
+    </SmoothScroll>
   )
 }
