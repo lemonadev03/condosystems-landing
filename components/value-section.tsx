@@ -20,7 +20,7 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
           <TabsList className="grid w-full grid-cols-3 bg-gray-100/70 p-1.5 rounded-xl">
             <TabsTrigger
               value="earnings"
-              className="text-lg py-3 data-[state=active]:bg-[#407140] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
+              className="text-lg py-3 data-[state=active]:bg-azure-500 data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
               onMouseEnter={() => onMouseEnter("tab")}
               onMouseLeave={onMouseLeave}
             >
@@ -28,7 +28,7 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
             </TabsTrigger>
             <TabsTrigger
               value="support"
-              className="text-lg py-3 data-[state=active]:bg-[#407140] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
+              className="text-lg py-3 data-[state=active]:bg-azure-500 data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
               onMouseEnter={() => onMouseEnter("tab")}
               onMouseLeave={onMouseLeave}
             >
@@ -36,7 +36,7 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
             </TabsTrigger>
             <TabsTrigger
               value="lifestyle"
-              className="text-lg py-3 data-[state=active]:bg-[#407140] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
+              className="text-lg py-3 data-[state=active]:bg-azure-500 data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
               onMouseEnter={() => onMouseEnter("tab")}
               onMouseLeave={onMouseLeave}
             >
@@ -50,10 +50,10 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow border border-gray-100 group">
                 <div className="mb-6">
-                  <span className="inline-block bg-[#407140]/10 text-[#407140] font-medium px-3 py-1 rounded-full text-sm mb-2">
+                  <span className="inline-block bg-azure-500/10 text-azure-500 font-medium px-3 py-1 rounded-full text-sm mb-2">
                     Industry Leading
                   </span>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#407140] transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-azure-500 transition-colors">
                     Commission Splits That Reward Success
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -66,25 +66,25 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-gray-600">Standard Agent</span>
-                      <span className="text-[#407140] font-medium">80%</span>
+                      <span className="text-azure-500 font-medium">80%</span>
                     </div>
-                    <Progress value={80} className="h-2.5 bg-gray-200" indicatorClassName="bg-[#407140]" />
+                    <Progress value={80} className="h-2.5 bg-gray-200" indicatorClassName="bg-azure-500" />
                   </div>
 
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-gray-600">Elite Agent</span>
-                      <span className="text-[#407140] font-medium">90%</span>
+                      <span className="text-azure-500 font-medium">90%</span>
                     </div>
-                    <Progress value={90} className="h-2.5 bg-gray-200" indicatorClassName="bg-[#407140]" />
+                    <Progress value={90} className="h-2.5 bg-gray-200" indicatorClassName="bg-azure-500" />
                   </div>
 
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-gray-600">Legacy Partner</span>
-                      <span className="text-[#407140] font-medium">95%</span>
+                      <span className="text-azure-500 font-medium">95%</span>
                     </div>
-                    <Progress value={95} className="h-2.5 bg-gray-200" indicatorClassName="bg-[#407140]" />
+                    <Progress value={95} className="h-2.5 bg-gray-200" indicatorClassName="bg-azure-500" />
                   </div>
                 </div>
               </div>
@@ -119,10 +119,10 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
 
               <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow border border-gray-100 group">
                 <div className="mb-6">
-                  <span className="inline-block bg-[#407140]/10 text-[#407140] font-medium px-3 py-1 rounded-full text-sm mb-2">
+                  <span className="inline-block bg-azure-500/10 text-azure-500 font-medium px-3 py-1 rounded-full text-sm mb-2">
                     Always Available
                   </span>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#407140] transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-azure-500 transition-colors">
                     Comprehensive Support System
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -133,8 +133,8 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
 
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="bg-[#407140]/20 p-2 rounded-full mt-1">
-                      <Users className="h-5 w-5 text-[#407140]" />
+                    <div className="bg-azure-500/20 p-2 rounded-full mt-1">
+                      <Users className="h-5 w-5 text-azure-500" />
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-800">Dedicated Mentorship</h4>
@@ -143,8 +143,8 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
                   </li>
 
                   <li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="bg-[#407140]/20 p-2 rounded-full mt-1">
-                      <Building2 className="h-5 w-5 text-[#407140]" />
+                    <div className="bg-azure-500/20 p-2 rounded-full mt-1">
+                      <Building2 className="h-5 w-5 text-azure-500" />
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-800">Administrative Support</h4>
@@ -153,8 +153,8 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
                   </li>
 
                   <li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="bg-[#407140]/20 p-2 rounded-full mt-1">
-                      <MapPin className="h-5 w-5 text-[#407140]" />
+                    <div className="bg-azure-500/20 p-2 rounded-full mt-1">
+                      <MapPin className="h-5 w-5 text-azure-500" />
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-800">Lead Generation</h4>
@@ -170,10 +170,10 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow border border-gray-100 group">
                 <div className="mb-6">
-                  <span className="inline-block bg-[#407140]/10 text-[#407140] font-medium px-3 py-1 rounded-full text-sm mb-2">
+                  <span className="inline-block bg-azure-500/10 text-azure-500 font-medium px-3 py-1 rounded-full text-sm mb-2">
                     Work-Life Balance
                   </span>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#407140] transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-azure-500 transition-colors">
                     Lifestyle Designed For You
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -184,7 +184,7 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
 
                 <div className="space-y-6">
                   <div className="relative bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#407140] to-transparent"></div>
+                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-azure-500 to-transparent"></div>
                     <div className="pl-4">
                       <h4 className="font-medium text-gray-800">Flexible Scheduling</h4>
                       <p className="text-gray-600">Build your business around your life, not the other way around</p>
@@ -192,7 +192,7 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
                   </div>
 
                   <div className="relative bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#407140] to-transparent"></div>
+                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-azure-500 to-transparent"></div>
                     <div className="pl-4">
                       <h4 className="font-medium text-gray-800">Remote Work Options</h4>
                       <p className="text-gray-600">State-of-the-art technology allows you to work from anywhere</p>
@@ -200,7 +200,7 @@ export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRe
                   </div>
 
                   <div className="relative bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#407140] to-transparent"></div>
+                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-azure-500 to-transparent"></div>
                     <div className="pl-4">
                       <h4 className="font-medium text-gray-800">Wellness Programs</h4>
                       <p className="text-gray-600">

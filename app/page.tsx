@@ -32,10 +32,10 @@ export default function LandingPage() {
 
   // Scroll progress for gradient background
   const { scrollYProgress } = useScroll()
-  const backgroundGreen = useTransform(
+  const backgroundBlue = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    ["hsl(120, 28%, 15%)", "hsl(120, 28%, 20%)", "hsl(120, 28%, 25%)"],
+    ["hsl(215, 47%, 15%)", "hsl(215, 47%, 20%)", "hsl(215, 47%, 25%)"],
   )
 
   // Counter animation values
@@ -126,7 +126,7 @@ export default function LandingPage() {
         <motion.div
           className="fixed inset-0 pointer-events-none opacity-10"
           style={{
-            background: `linear-gradient(135deg, ${backgroundGreen}, transparent)`,
+            background: `linear-gradient(135deg, ${backgroundBlue}, transparent)`,
             zIndex: 0,
           }}
         />
@@ -175,7 +175,7 @@ export default function LandingPage() {
                   transition={{ duration: 0.6 }}
                   className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
                 >
-                  Why Top Agents Choose <span className="text-[#407140]">EZ BIG</span>
+                  Why Top Agents Choose <span className="text-azure-500">EZ BIG</span>
                 </motion.h2>
 
                 <motion.p

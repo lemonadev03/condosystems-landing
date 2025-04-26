@@ -10,7 +10,7 @@ export default function InteractiveTimeline() {
       title: "Join the Team",
       description:
         "Complete our streamlined onboarding process and get immediate access to our platform and resources.",
-      icon: <Users className="h-6 w-6 text-[#407140]" />,
+      icon: <Users className="h-6 w-6 text-azure-500" />,
       image: "/welcoming-real-estate-team.png",
       details: [
         "Simple application process",
@@ -22,7 +22,7 @@ export default function InteractiveTimeline() {
     {
       title: "Personalized Growth Plan",
       description: "Work with your dedicated mentor to create a customized roadmap for your success.",
-      icon: <Target className="h-6 w-6 text-[#407140]" />,
+      icon: <Target className="h-6 w-6 text-azure-500" />,
       image: "/collaborative-strategy.png",
       details: [
         "One-on-one strategy session",
@@ -34,7 +34,7 @@ export default function InteractiveTimeline() {
     {
       title: "Skill Enhancement",
       description: "Access our exclusive training programs and resources to sharpen your skills and knowledge.",
-      icon: <Lightbulb className="h-6 w-6 text-[#407140]" />,
+      icon: <Lightbulb className="h-6 w-6 text-azure-500" />,
       image: "/real-estate-workshop.png",
       details: [
         "On-demand video training library",
@@ -46,7 +46,7 @@ export default function InteractiveTimeline() {
     {
       title: "Market Domination",
       description: "Leverage our cutting-edge tools and support system to dominate your local market.",
-      icon: <Trophy className="h-6 w-6 text-[#407140]" />,
+      icon: <Trophy className="h-6 w-6 text-azure-500" />,
       image: "/confident-agent-handshake.png",
       details: [
         "Targeted marketing campaigns",
@@ -85,13 +85,13 @@ function TimelineStep({ step, index }) {
       {/* Content */}
       <div className="grid md:grid-cols-2 gap-8 items-center relative">
         {/* Timeline dot - positioned absolutely to center it vertically */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-[#407140] z-10 hidden md:flex items-center justify-center">
-          {inView && <div className="w-3 h-3 rounded-full bg-[#407140]"></div>}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-azure-500 z-10 hidden md:flex items-center justify-center">
+          {inView && <div className="w-3 h-3 rounded-full bg-azure-500"></div>}
         </div>
 
         <div className={`space-y-4 ${!isEven ? "md:order-2" : ""}`}>
           <div className={`flex items-center gap-3 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
-            <div className="flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-[#407140]/20">
+            <div className="flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-azure-500/20">
               {step.icon}
             </div>
             {isEven ? (
@@ -114,7 +114,7 @@ function TimelineStep({ step, index }) {
               <ul className="space-y-2">
                 {step.details.map((detail, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-[#407140] mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-azure-500 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">{detail}</span>
                   </li>
                 ))}

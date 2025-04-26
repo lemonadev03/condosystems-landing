@@ -21,7 +21,7 @@ export default function CalculatorSection({ onMouseEnter, onMouseLeave, calculat
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
           >
-            Calculate Your <span className="text-[#407140]">Potential</span>
+            Calculate Your <span className="text-azure-500">Potential</span>
           </motion.h2>
 
           <motion.p

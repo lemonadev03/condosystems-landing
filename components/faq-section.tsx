@@ -20,7 +20,7 @@ export default function FAQSection({ onMouseEnter, onMouseLeave, inViewRef }: FA
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
         >
-          Frequently Asked <span className="text-[#407140]">Questions</span>
+          Frequently Asked <span className="text-azure-500">Questions</span>
         </motion.h2>
 
         <motion.p

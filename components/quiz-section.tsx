@@ -21,7 +21,7 @@ export default function QuizSection({ onMouseEnter, onMouseLeave, quizInViewRef 
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
           >
-            Discover Your <span className="text-[#407140]">Agent Type</span>
+            Discover Your <span className="text-azure-500">Agent Type</span>
           </motion.h2>
 
           <motion.p

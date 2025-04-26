@@ -14,7 +14,7 @@ export default function CTASection({ onMouseEnter, onMouseLeave, ctaInViewRef }:
   return (
     <section id="cta" ref={ctaInViewRef} className="py-20 md:py-32 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto bg-[#407140] rounded-3xl overflow-hidden shadow-xl">
+        <div className="max-w-5xl mx-auto bg-azure-500 rounded-3xl overflow-hidden shadow-xl">
           <div className="grid md:grid-cols-2">
             <div className="p-8 md:p-12 flex flex-col justify-center">
               <motion.h2
@@ -74,7 +74,7 @@ export default function CTASection({ onMouseEnter, onMouseLeave, ctaInViewRef }:
 
               <a href="https://onboarding.ezbig.com" target="_blank" rel="noopener noreferrer" className="block">
                 <Button
-                  className="w-full bg-white text-[#407140] hover:bg-white/90 py-6 text-xl font-medium"
+                  className="w-full bg-white text-azure-500 hover:bg-white/90 py-6 text-xl font-medium"
                   onMouseEnter={() => onMouseEnter("button", "Join Now")}
                   onMouseLeave={onMouseLeave}
                 >

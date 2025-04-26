@@ -191,7 +191,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
               >
                 <div className="mb-8">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-[#407140] font-medium">
+                    <span className="text-azure-500 font-medium">
                       Question {currentQuestion + 1} of {questions.length}
                     </span>
                     <span className="text-gray-500 text-sm">
@@ -200,7 +200,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
                   </div>
                   <div className="w-full bg-gray-200 h-2 rounded-full">
                     <div
-                      className="bg-[#407140] h-2 rounded-full transition-all duration-500"
+                      className="bg-azure-500 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                     ></div>
                   </div>
@@ -227,8 +227,8 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
             ) : (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                 <div className="text-center mb-8">
-                  <div className="inline-block bg-[#407140]/20 p-4 rounded-full mb-4">
-                    <CheckCircle2 className="h-12 w-12 text-[#407140]" />
+                  <div className="inline-block bg-azure-500/20 p-4 rounded-full mb-4">
+                    <CheckCircle2 className="h-12 w-12 text-azure-500" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">{getResultDetails().title}</h3>
                   <p className="text-gray-600">{getResultDetails().description}</p>
@@ -239,8 +239,8 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
                   <ul className="grid grid-cols-2 gap-3">
                     {getResultDetails().strengths.map((strength, index) => (
                       <li key={index} className="flex items-center gap-2">
-                        <div className="bg-[#407140]/20 p-1 rounded-full">
-                          <CheckCircle2 className="h-4 w-4 text-[#407140]" />
+                        <div className="bg-azure-500/20 p-1 rounded-full">
+                          <CheckCircle2 className="h-4 w-4 text-azure-500" />
                         </div>
                         <span className="text-gray-700">{strength}</span>
                       </li>
@@ -248,7 +248,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
                   </ul>
                 </div>
 
-                <div className="bg-[#407140]/10 rounded-lg p-6">
+                <div className="bg-azure-500/10 rounded-lg p-6">
                   <h4 className="text-lg font-medium text-gray-800 mb-2">Why You'll Thrive at EZ BIG</h4>
                   <p className="text-gray-700">{getResultDetails().nextLevelFit}</p>
                 </div>
@@ -289,7 +289,7 @@ export default function AgentTypeQuiz({ onMouseEnter, onMouseLeave }: AgentTypeQ
               </Button>
 
               <Button
-                className="bg-[#407140] hover:bg-[#345934] text-white"
+                className="bg-azure-500 hover:bg-azure-600 text-white"
                 onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
                 onMouseEnter={() => onMouseEnter("button", "Join Now")}
                 onMouseLeave={onMouseLeave}

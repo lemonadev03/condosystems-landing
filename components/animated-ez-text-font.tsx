@@ -78,7 +78,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
     <div className={`relative inline-block ${className}`}>
       {/* Highlighter background with clean geometric shape */}
       <motion.div
-        className="absolute inset-0 bg-[#407140]/25 z-0"
+        className="absolute inset-0 bg-azure-500/25 z-0"
         style={{
           clipPath: "polygon(0% 5%, 100% 0%, 100% 95%, 0% 100%)",
           transformOrigin: "center bottom",
@@ -101,7 +101,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
           {/* E letter */}
           <motion.path
             d="M20,20 L80,20 M20,60 L70,60 M20,100 L80,100 M20,20 L20,100"
-            stroke="#407140"
+            stroke="#4572ad"
             strokeWidth="20"
             strokeLinecap="square"
             strokeLinejoin="miter"
@@ -113,7 +113,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
           {/* Z letter as a single path to create a proper hexagonal shape */}
           <motion.path
             d="M110,20 L170,20 L110,100 L170,100"
-            stroke="#407140"
+            stroke="#4572ad"
             strokeWidth="20"
             strokeLinecap="square"
             strokeLinejoin="miter"
@@ -135,7 +135,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
 
       {/* Sparkle effects */}
       <motion.div
-        className="absolute -top-4 -right-4 text-[#407140] text-2xl"
+        className="absolute -top-4 -right-4 text-azure-500 text-2xl"
         variants={sparkleVariants}
         custom={0}
         initial="hidden"
@@ -144,7 +144,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
         ✦
       </motion.div>
       <motion.div
-        className="absolute top-1/2 right-0 text-[#407140] text-xl"
+        className="absolute top-1/2 right-0 text-azure-500 text-xl"
         variants={sparkleVariants}
         custom={1}
         initial="hidden"
@@ -153,7 +153,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
         ✧
       </motion.div>
       <motion.div
-        className="absolute -bottom-2 -left-2 text-[#407140] text-xl"
+        className="absolute -bottom-2 -left-2 text-azure-500 text-xl"
         variants={sparkleVariants}
         custom={2}
         initial="hidden"
@@ -162,7 +162,7 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
         ✦
       </motion.div>
       <motion.div
-        className="absolute top-0 left-1/4 text-[#407140] text-sm"
+        className="absolute top-0 left-1/4 text-azure-500 text-sm"
         variants={sparkleVariants}
         custom={3}
         initial="hidden"

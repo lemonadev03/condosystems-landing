@@ -35,7 +35,7 @@ export default function TestimonialsSection({
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
           >
-            Success <span className="text-[#407140]">Stories</span>
+            Success <span className="text-azure-500">Stories</span>
           </motion.h2>
 
           <motion.p
@@ -57,7 +57,7 @@ export default function TestimonialsSection({
           >
             <h3 className="text-5xl font-bold text-gray-800 mb-2">
               <motion.span>{Math.round(count1.get())}</motion.span>
-              <span className="text-[#407140]">+</span>
+              <span className="text-azure-500">+</span>
             </h3>
             <p className="text-gray-600 text-lg">Successful Affiliates</p>
           </motion.div>
@@ -68,7 +68,7 @@ export default function TestimonialsSection({
           >
             <h3 className="text-5xl font-bold text-gray-800 mb-2">
               <motion.span>{Math.round(count2.get())}</motion.span>
-              <span className="text-[#407140]">%</span>
+              <span className="text-azure-500">%</span>
             </h3>
             <p className="text-gray-600 text-lg">Average Income Increase</p>
           </motion.div>
@@ -79,7 +79,7 @@ export default function TestimonialsSection({
           >
             <h3 className="text-5xl font-bold text-gray-800 mb-2">
               <motion.span>{Math.round(count3.get())}</motion.span>
-              <span className="text-[#407140]">+</span>
+              <span className="text-azure-500">+</span>
             </h3>
             <p className="text-gray-600 text-lg">Markets Nationwide</p>
           </motion.div>
@@ -129,7 +129,7 @@ export default function TestimonialsSection({
               <div className="relative h-full w-full transition-all duration-500 preserve-3d group-hover:rotate-y-180">
                 {/* Front of card */}
                 <div className="absolute inset-0 backface-hidden bg-gray-50 shadow-md rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                  <div className="w-24 h-24 rounded-full overflow-hidden mb-6 border-2 border-[#407140]">
+                  <div className="w-24 h-24 rounded-full overflow-hidden mb-6 border-2 border-azure-500">
                     <Image
                       src={testimonial.image || "/placeholder.svg"}
                       alt={testimonial.name}
@@ -139,13 +139,13 @@ export default function TestimonialsSection({
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-1">{testimonial.name}</h3>
-                  <p className="text-[#407140] mb-4">{testimonial.role}</p>
+                  <p className="text-azure-500 mb-4">{testimonial.role}</p>
                   <p className="text-gray-600 italic">"{testimonial.quote}"</p>
                   <p className="text-gray-500 text-sm mt-4">Click to see transformation</p>
                 </div>
 
                 {/* Back of card */}
-                <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-[#407140] to-[#4c8a4c] rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-azure-500 to-azure-400 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
                   <h3 className="text-2xl font-bold text-white mb-6">Income Transformation</h3>
 
                   <div className="w-full max-w-xs mx-auto mb-8">
@@ -164,7 +164,7 @@ export default function TestimonialsSection({
 
                   <p className="text-white/90">Ready to write your success story?</p>
                   <Button
-                    className="mt-4 bg-white text-[#407140] hover:bg-white/90"
+                    className="mt-4 bg-white text-azure-500 hover:bg-white/90"
                     onClick={() => scrollToSection("cta")}
                   >
                     Join Now
@@ -184,7 +184,7 @@ export default function TestimonialsSection({
             transition={{ duration: 0.6 }}
             className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8"
           >
-            Our <span className="text-[#407140]">Nationwide</span> Presence
+            Our <span className="text-azure-500">Nationwide</span> Presence
           </motion.h3>
 
           <div className="relative h-[400px] md:h-[500px] bg-gray-50 shadow-md rounded-2xl overflow-hidden">

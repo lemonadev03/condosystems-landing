@@ -66,7 +66,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
             <TabsList className="grid w-full grid-cols-2 bg-gray-100">
               <TabsTrigger
                 value="nextlevel"
-                className="data-[state=active]:bg-[#407140] data-[state=active]:text-white"
+                className="data-[state=active]:bg-azure-500 data-[state=active]:text-white"
                 onMouseEnter={() => onMouseEnter("tab")}
                 onMouseLeave={onMouseLeave}
               >
@@ -74,7 +74,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
               </TabsTrigger>
               <TabsTrigger
                 value="traditional"
-                className="data-[state=active]:bg-[#407140] data-[state=active]:text-white"
+                className="data-[state=active]:bg-azure-500 data-[state=active]:text-white"
                 onMouseEnter={() => onMouseEnter("tab")}
                 onMouseLeave={onMouseLeave}
               >
@@ -87,7 +87,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
             <div className="space-y-2">
               <div className="flex justify-between">
                 <label className="text-gray-800 font-medium">Number of Transactions per Year</label>
-                <span className="text-[#407140] font-bold">{transactions}</span>
+                <span className="text-azure-500 font-bold">{transactions}</span>
               </div>
               <Slider
                 value={[transactions]}
@@ -109,7 +109,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
             <div className="space-y-2">
               <div className="flex justify-between">
                 <label className="text-gray-800 font-medium">Average Sale Price</label>
-                <span className="text-[#407140] font-bold">${avgPrice.toLocaleString()}</span>
+                <span className="text-azure-500 font-bold">${avgPrice.toLocaleString()}</span>
               </div>
               <Slider
                 value={[avgPrice]}
@@ -131,7 +131,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
             <div className="space-y-2">
               <div className="flex justify-between">
                 <label className="text-gray-800 font-medium">Average Commission Rate</label>
-                <span className="text-[#407140] font-bold">{avgCommission}%</span>
+                <span className="text-azure-500 font-bold">{avgCommission}%</span>
               </div>
               <Slider
                 value={[avgCommission]}
@@ -163,7 +163,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
             </motion.div>
 
             <motion.div
-              className="bg-gradient-to-br from-[#407140] to-[#4c8a4c] rounded-xl p-6 text-center shadow-sm"
+              className="bg-gradient-to-br from-azure-500 to-azure-400 rounded-xl p-6 text-center shadow-sm"
               whileHover={{ y: -5 }}
             >
               <h3 className="text-white/90 mb-2">Your Annual Income</h3>
@@ -175,7 +175,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
           <div className="w-full bg-gray-50 rounded-lg p-4 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-700">Your Income with EZ BIG</span>
-              <span className="text-[#407140] font-bold">
+              <span className="text-azure-500 font-bold">
                 ${Math.round(calculateEarnings().agentEarnings).toLocaleString()}
               </span>
             </div>
@@ -189,7 +189,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
             <div className="mt-4 pt-4 border-t border-gray-200">
               <div className="flex items-center justify-between">
                 <span className="text-gray-800 font-medium">Potential Additional Income</span>
-                <span className="text-[#407140] font-bold">
+                <span className="text-azure-500 font-bold">
                   $
                   {Math.round(
                     calculateEarnings().agentEarnings - transactions * avgPrice * (avgCommission / 100) * 0.5,
@@ -200,7 +200,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
           </div>
 
           <Button
-            className="w-full bg-[#407140] hover:bg-[#345934] text-white py-6 text-lg"
+            className="w-full bg-azure-500 hover:bg-azure-600 text-white py-6 text-lg"
             onMouseEnter={() => onMouseEnter("button", "Join Now")}
             onMouseLeave={onMouseLeave}
             onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}

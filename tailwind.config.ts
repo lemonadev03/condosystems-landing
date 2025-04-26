@@ -57,18 +57,18 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        forest: {
-          50: "#f3f8f3",
-          100: "#e7f1e7",
-          200: "#d0e3d0",
-          300: "#b0d0b0",
-          400: "#8ab88a",
-          500: "#64a064",
-          600: "#407140", // Our accent color
-          700: "#345934",
-          800: "#2c472c",
-          900: "#243c24",
-          950: "#0f200f",
+        azure: {
+          50: "#f0f5fb",
+          100: "#dce7f5",
+          200: "#bfd3eb",
+          300: "#93b5dd",
+          400: "#6292cc",
+          500: "#4572ad", // Our main color (RGB 69, 114, 173)
+          600: "#3a5d93",
+          700: "#324e78",
+          800: "#2d4264",
+          900: "#293955",
+          950: "#1c2536",
         },
       },
       borderRadius: {

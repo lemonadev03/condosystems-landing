@@ -19,7 +19,7 @@ export default function ProcessSection({ processInViewRef }: ProcessSectionProps
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
           >
-            Your Journey to <span className="text-[#407140]">Excellence</span>
+            Your Journey to <span className="text-azure-500">Excellence</span>
           </motion.h2>
 
           <motion.p
