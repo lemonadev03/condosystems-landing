@@ -181,3 +181,64 @@ html.lenis-smooth {
 html.lenis-smooth {
   margin-right: 0 !important;
 }
+
+/* Enhanced section transitions */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add some perspective to enhance the 3D feel */
+html.lenis-smooth {
+  perspective: 1000px;
+}
+
+/* Improve performance */
+html.lenis-smooth * {
+  will-change: transform;
+}
+
+/* Ensure images don't cause layout shifts */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Highlighter effect */
+.highlighter {
+  position: relative;
+  display: inline-block;
+}
+
+.highlighter::after {
+  content: "";
+  position: absolute;
+  bottom: 0.1em;
+  left: -0.1em;
+  right: -0.1em;
+  height: 0.3em;
+  background-color: rgba(64, 113, 64, 0.3);
+  z-index: -1;
+  transform: rotate(-2deg);
+}
+
+/* Sparkle animation */
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle-delayed {
+  animation: sparkle 2s ease-in-out 0.7s infinite;
+}

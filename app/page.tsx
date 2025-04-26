@@ -16,7 +16,6 @@ import QuizSection from "@/components/quiz-section"
 import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
-import StackSection from "@/components/stack-section"
 
 // Import SmoothScroll with dynamic import to avoid SSR issues
 const SmoothScroll = dynamic(() => import("@/components/smooth-scroll"), {
@@ -146,7 +145,7 @@ export default function LandingPage() {
         />
 
         <main className="relative">
-          {/* Hero Section - Not part of the stacking effect */}
+          {/* Hero Section */}
           <HeroSection
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -157,10 +156,17 @@ export default function LandingPage() {
             heroInViewRef={heroInViewRef}
           />
 
-          {/* Create a wrapper for the stacking sections */}
-          <div className="relative">
-            {/* Value Proposition Section */}
-            <StackSection id="value" bgColor="bg-white" index={0} inViewRef={valueInViewRef}>
+          {/* Value Proposition Section */}
+          <motion.section
+            id="value"
+            ref={valueInViewRef}
+            className="py-20 md:py-32 bg-white"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto text-center mb-16">
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
@@ -184,15 +190,35 @@ export default function LandingPage() {
                 </motion.p>
               </div>
               <ValueSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} valueInViewRef={() => {}} />
-            </StackSection>
+            </div>
+          </motion.section>
 
-            {/* Process Section */}
-            <StackSection id="process" bgColor="bg-[#f8f8f8]" index={1} inViewRef={processInViewRef}>
+          {/* Process Section */}
+          <motion.section
+            id="process"
+            ref={processInViewRef}
+            className="py-20 md:py-32 bg-[#f8f8f8]"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <ProcessSection processInViewRef={() => {}} />
-            </StackSection>
+            </div>
+          </motion.section>
 
-            {/* Testimonials Section */}
-            <StackSection id="testimonials" bgColor="bg-white" index={2} inViewRef={testimonialsInViewRef}>
+          {/* Testimonials Section */}
+          <motion.section
+            id="testimonials"
+            ref={testimonialsInViewRef}
+            className="py-20 md:py-32 bg-white"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <TestimonialsSection
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -202,35 +228,72 @@ export default function LandingPage() {
                 count2={count2}
                 count3={count3}
               />
-            </StackSection>
+            </div>
+          </motion.section>
 
-            {/* Income Calculator Section */}
-            <StackSection id="calculator" bgColor="bg-[#f8f8f8]" index={3} inViewRef={calculatorInViewRef}>
+          {/* Income Calculator Section */}
+          <motion.section
+            id="calculator"
+            ref={calculatorInViewRef}
+            className="py-20 md:py-32 bg-[#f8f8f8]"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <CalculatorSection
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 calculatorInViewRef={() => {}}
               />
-            </StackSection>
+            </div>
+          </motion.section>
 
-            {/* Agent Type Quiz Section */}
-            <StackSection id="quiz" bgColor="bg-white" index={4} inViewRef={quizInViewRef}>
+          {/* Agent Type Quiz Section */}
+          <motion.section
+            id="quiz"
+            ref={quizInViewRef}
+            className="py-20 md:py-32 bg-white"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
-            </StackSection>
+            </div>
+          </motion.section>
 
-            {/* FAQ Section */}
-            <StackSection id="faq" bgColor="bg-[#f8f8f8]" index={5} inViewRef={faqInViewRef}>
+          {/* FAQ Section */}
+          <motion.section
+            id="faq"
+            ref={faqInViewRef}
+            className="py-20 md:py-32 bg-[#f8f8f8]"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
-            </StackSection>
+            </div>
+          </motion.section>
 
-            {/* CTA Section */}
-            <StackSection id="cta" bgColor="bg-white" index={6} inViewRef={ctaInViewRef}>
+          {/* CTA Section */}
+          <motion.section
+            id="cta"
+            ref={ctaInViewRef}
+            className="py-20 md:py-32 bg-white"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="container mx-auto px-4">
               <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
-            </StackSection>
-          </div>
-
-          {/* Add a spacer to ensure we can scroll to the bottom */}
-          <div style={{ height: "100vh" }}></div>
+            </div>
+          </motion.section>
         </main>
 
         <Footer />

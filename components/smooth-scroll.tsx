@@ -9,15 +9,17 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const [lenis, setLenis] = useState<Lenis | null>(null)
 
   useEffect(() => {
-    // Initialize Lenis smooth scrolling
+    // Initialize Lenis smooth scrolling with enhanced settings
     const lenisInstance = new Lenis({
-      duration: 1.2, // Longer duration gives more weight
+      duration: 1.5, // Longer duration for more weight
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing function
       direction: "vertical",
       gestureDirection: "vertical",
       smooth: true,
       smoothTouch: false, // Disable on touch devices for better performance
       touchMultiplier: 2,
+      wheelMultiplier: 1.2, // Slightly increase wheel sensitivity
+      lerp: 0.08, // Linear interpolation factor - lower = smoother
     })
 
     // Set up RAF loop for Lenis
@@ -29,8 +31,12 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     requestAnimationFrame(raf)
     setLenis(lenisInstance)
 
+    // Add class to html for styling
+    document.documentElement.classList.add("lenis-smooth")
+
     return () => {
       lenisInstance.destroy()
+      document.documentElement.classList.remove("lenis-smooth")
     }
   }, [])
 

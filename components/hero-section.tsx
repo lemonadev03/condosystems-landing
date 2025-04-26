@@ -4,6 +4,7 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, DollarSign, Home, Play, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import AnimatedEZTextFont from "@/components/animated-ez-text-font"
 
 interface HeroSectionProps {
   onMouseEnter: (variant: string, text?: string) => void
@@ -58,27 +59,7 @@ export default function HeroSection({
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="block text-gray-800 mb-2">Real estate sales is hard, until it's</span>
               <div className="relative inline-block mt-4 px-4 mx-auto">
-                <motion.span
-                  className="text-[#407140] text-6xl md:text-8xl lg:text-9xl italic relative z-10 tracking-wider inline-block"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 10,
-                    delay: 0.3,
-                  }}
-                >
-                  EZ
-                </motion.span>
-                <div className="absolute h-6 md:h-8 bg-[#407140]/20 left-0 right-0 bottom-4 md:bottom-6 -rotate-2 z-0 transform-gpu"></div>
-                <div className="absolute h-2 md:h-3 bg-[#407140] left-0 right-0 bottom-6 md:bottom-8 -rotate-1 z-0 transform-gpu"></div>
-                <motion.div
-                  className="absolute h-1 md:h-2 bg-[#407140]/60 left-0 right-0 bottom-5 md:bottom-7 rotate-1 z-0 transform-gpu"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                />
+                <AnimatedEZTextFont className="w-48 h-24 md:w-64 md:h-32 lg:w-80 lg:h-40" />
               </div>
             </h1>
           </motion.div>
@@ -86,7 +67,7 @@ export default function HeroSection({
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 2.8 }} // Delay increased to wait for EZ animation
             className="text-xl md:text-2xl text-gray-600 mb-8"
           >
             Join the elite network of real estate professionals who are redefining success in the industry.
@@ -95,7 +76,7 @@ export default function HeroSection({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 3.0 }} // Delay increased to wait for EZ animation
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button
@@ -122,16 +103,48 @@ export default function HeroSection({
           </motion.div>
         </div>
 
-        {/* Floating 3D elements */}
-        <div className="absolute top-1/4 left-10 animate-float-slow opacity-60">
-          <Home className="h-16 w-16 text-[#407140]" />
-        </div>
-        <div className="absolute bottom-1/4 right-10 animate-float opacity-60">
-          <DollarSign className="h-16 w-16 text-[#407140]" />
-        </div>
-        <div className="absolute top-1/3 right-1/4 animate-float-medium opacity-60">
-          <Users className="h-16 w-16 text-[#407140]" />
-        </div>
+        {/* Floating 3D elements with improved animations */}
+        <motion.div
+          className="absolute top-1/4 left-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 0.6, y: 0 }}
+          transition={{ delay: 3.2, duration: 0.8 }}
+        >
+          <motion.div
+            animate={{ y: [-20, 0, -20] }}
+            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 6, ease: "easeInOut" }}
+          >
+            <Home className="h-16 w-16 text-[#407140]" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-1/4 right-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 0.6, y: 0 }}
+          transition={{ delay: 3.4, duration: 0.8 }}
+        >
+          <motion.div
+            animate={{ y: [-20, 0, -20] }}
+            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 5, ease: "easeInOut" }}
+          >
+            <DollarSign className="h-16 w-16 text-[#407140]" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="absolute top-1/3 right-1/4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 0.6, y: 0 }}
+          transition={{ delay: 3.6, duration: 0.8 }}
+        >
+          <motion.div
+            animate={{ y: [-15, 0, -15] }}
+            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 7, ease: "easeInOut" }}
+          >
+            <Users className="h-16 w-16 text-[#407140]" />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
