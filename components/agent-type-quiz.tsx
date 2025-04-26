@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react"
 
+
 interface AgentTypeQuizProps {
   onMouseEnter: (variant: string, text?: string) => void
   onMouseLeave: () => void
