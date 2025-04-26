@@ -15,7 +15,7 @@ import QuizSection from "@/components/quiz-section"
 import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
-import ScrollDrawerSection from "@/components/scroll-drawer-section"
+import StackSection from "@/components/stack-section"
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -24,15 +24,6 @@ export default function LandingPage() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  // Refs for each section to track active section
-  const heroRef = useRef(null)
-  const valueRef = useRef(null)
-  const processRef = useRef(null)
-  const testimonialsRef = useRef(null)
-  const calculatorRef = useRef(null)
-  const quizRef = useRef(null)
-  const ctaRef = useRef(null)
 
   // Scroll progress for gradient background
   const { scrollYProgress } = useScroll()
@@ -55,6 +46,7 @@ export default function LandingPage() {
   const [calculatorInViewRef, calculatorInView] = useInView({ threshold: 0.3 })
   const [quizInViewRef, quizInView] = useInView({ threshold: 0.3 })
   const [ctaInViewRef, ctaInView] = useInView({ threshold: 0.5 })
+  const [faqInViewRef, faqInView] = useInView({ threshold: 0.3 })
 
   // Update active section based on which section is in view
   useEffect(() => {
@@ -64,8 +56,9 @@ export default function LandingPage() {
     else if (testimonialsInView) setActiveSection("testimonials")
     else if (calculatorInView) setActiveSection("calculator")
     else if (quizInView) setActiveSection("quiz")
+    else if (faqInView) setActiveSection("faq")
     else if (ctaInView) setActiveSection("cta")
-  }, [heroInView, valueInView, processInView, testimonialsInView, calculatorInView, quizInView, ctaInView])
+  }, [heroInView, valueInView, processInView, testimonialsInView, calculatorInView, quizInView, faqInView, ctaInView])
 
   // Handle scroll events
   useEffect(() => {
@@ -109,7 +102,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f8f8f8] font-sans">
+    <div className="relative overflow-hidden bg-[#f8f8f8] font-sans">
       <CustomCursor variant={cursorVariant} text={cursorText} />
 
       {/* Background gradient overlay that changes with scroll */}
@@ -135,7 +128,7 @@ export default function LandingPage() {
       />
 
       <main className="relative">
-        {/* Hero Section */}
+        {/* Hero Section - Not part of the stacking effect */}
         <HeroSection
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -146,9 +139,10 @@ export default function LandingPage() {
           heroInViewRef={heroInViewRef}
         />
 
-        {/* Value Proposition Section */}
-        <ScrollDrawerSection id="value" bgColor="bg-white" zIndex={10} inViewRef={valueInViewRef}>
-          <div className="container mx-auto px-4">
+        {/* Create a wrapper for the stacking sections */}
+        <div className="relative">
+          {/* Value Proposition Section */}
+          <StackSection id="value" bgColor="bg-white" index={0} inViewRef={valueInViewRef}>
             <div className="max-w-4xl mx-auto text-center mb-16">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -171,57 +165,54 @@ export default function LandingPage() {
                 career.
               </motion.p>
             </div>
+            <ValueSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} valueInViewRef={() => {}} />
+          </StackSection>
 
-            {/* Value section content */}
-            <ValueSection
+          {/* Process Section */}
+          <StackSection id="process" bgColor="bg-[#f8f8f8]" index={1} inViewRef={processInViewRef}>
+            <ProcessSection processInViewRef={() => {}} />
+          </StackSection>
+
+          {/* Testimonials Section */}
+          <StackSection id="testimonials" bgColor="bg-white" index={2} inViewRef={testimonialsInViewRef}>
+            <TestimonialsSection
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              valueInViewRef={() => {}} // Empty function since we're handling the ref in ScrollDrawerSection
+              scrollToSection={scrollToSection}
+              testimonialsInViewRef={() => {}}
+              count1={count1}
+              count2={count2}
+              count3={count3}
             />
-          </div>
-        </ScrollDrawerSection>
+          </StackSection>
 
-        {/* Process Section */}
-        <ScrollDrawerSection id="process" bgColor="bg-[#f8f8f8]" zIndex={11} inViewRef={processInViewRef}>
-          <ProcessSection processInViewRef={() => {}} />
-        </ScrollDrawerSection>
+          {/* Income Calculator Section */}
+          <StackSection id="calculator" bgColor="bg-[#f8f8f8]" index={3} inViewRef={calculatorInViewRef}>
+            <CalculatorSection
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              calculatorInViewRef={() => {}}
+            />
+          </StackSection>
 
-        {/* Testimonials Section */}
-        <ScrollDrawerSection id="testimonials" bgColor="bg-white" zIndex={12} inViewRef={testimonialsInViewRef}>
-          <TestimonialsSection
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            scrollToSection={scrollToSection}
-            testimonialsInViewRef={() => {}}
-            count1={count1}
-            count2={count2}
-            count3={count3}
-          />
-        </ScrollDrawerSection>
+          {/* Agent Type Quiz Section */}
+          <StackSection id="quiz" bgColor="bg-white" index={4} inViewRef={quizInViewRef}>
+            <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
+          </StackSection>
 
-        {/* Income Calculator Section */}
-        <ScrollDrawerSection id="calculator" bgColor="bg-[#f8f8f8]" zIndex={13} inViewRef={calculatorInViewRef}>
-          <CalculatorSection
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            calculatorInViewRef={() => {}}
-          />
-        </ScrollDrawerSection>
+          {/* FAQ Section */}
+          <StackSection id="faq" bgColor="bg-[#f8f8f8]" index={5} inViewRef={faqInViewRef}>
+            <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+          </StackSection>
 
-        {/* Agent Type Quiz Section */}
-        <ScrollDrawerSection id="quiz" bgColor="bg-white" zIndex={14} inViewRef={quizInViewRef}>
-          <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
-        </ScrollDrawerSection>
+          {/* CTA Section */}
+          <StackSection id="cta" bgColor="bg-white" index={6} inViewRef={ctaInViewRef}>
+            <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
+          </StackSection>
+        </div>
 
-        {/* FAQ Section */}
-        <ScrollDrawerSection id="faq" bgColor="bg-[#f8f8f8]" zIndex={15}>
-          <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
-        </ScrollDrawerSection>
-
-        {/* CTA Section */}
-        <ScrollDrawerSection id="cta" bgColor="bg-white" zIndex={16} inViewRef={ctaInViewRef}>
-          <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
-        </ScrollDrawerSection>
+        {/* Add a spacer to ensure we can scroll to the bottom */}
+        <div style={{ height: "100vh" }}></div>
       </main>
 
       <Footer />
