@@ -16,6 +16,8 @@ import QuizSection from "@/components/quiz-section"
 import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
+import LoadingIndicator from "@/components/loading-indicator"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 // Import SmoothScroll with dynamic import to avoid SSR issues
 const SmoothScroll = dynamic(() => import("@/components/smooth-scroll"), {
@@ -28,7 +30,23 @@ export default function LandingPage() {
   const [cursorText, setCursorText] = useState("")
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
+  const [isLoading, setIsLoading] = useState(true)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+
+  // Handle initial loading
+  useEffect(() => {
+    // Set loading to false after a short delay
+    // If user prefers reduced motion, make it even shorter
+    const timer = setTimeout(
+      () => {
+        setIsLoading(false)
+      },
+      prefersReducedMotion ? 300 : 800,
+    )
+
+    return () => clearTimeout(timer)
+  }, [prefersReducedMotion])
 
   // Scroll progress for gradient background
   const { scrollYProgress } = useScroll()
@@ -105,199 +123,206 @@ export default function LandingPage() {
       // @ts-ignore
       window.lenis.scrollTo(document.getElementById(sectionId), {
         offset: 0,
-        duration: 1.2,
+        duration: prefersReducedMotion ? 0.5 : 1.2,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       })
     } else {
       // Fallback to default scrolling
       const section = document.getElementById(sectionId)
       if (section) {
-        section.scrollIntoView({ behavior: "smooth" })
+        section.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" })
       }
     }
   }
 
   return (
-    <SmoothScroll>
-      <div className="relative overflow-hidden bg-[#f8f8f8] font-sans">
-        <CustomCursor variant={cursorVariant} text={cursorText} />
+    <>
+      <LoadingIndicator isLoading={isLoading} />
+      <SmoothScroll>
+        <div className="relative overflow-hidden bg-[#f8f8f8] font-sans">
+          <CustomCursor variant={cursorVariant} text={cursorText} />
 
-        {/* Background gradient overlay that changes with scroll */}
-        <motion.div
-          className="fixed inset-0 pointer-events-none opacity-10"
-          style={{
-            background: `linear-gradient(135deg, ${backgroundBlue}, transparent)`,
-            zIndex: 0,
-          }}
-        />
+          {/* Background gradient overlay that changes with scroll */}
+          <motion.div
+            className="fixed inset-0 pointer-events-none opacity-10"
+            style={{
+              background: `linear-gradient(135deg, ${backgroundBlue}, transparent)`,
+              zIndex: 0,
+            }}
+          />
 
-        {/* Subtle geometric patterns */}
-        <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat"></div>
-        </div>
+          {/* Subtle geometric patterns */}
+          <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat"></div>
+          </div>
 
-        {/* Navigation */}
-        <Navigation
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          scrollToSection={scrollToSection}
-          activeSection={activeSection}
-        />
-
-        <main className="relative">
-          {/* Hero Section */}
-          <HeroSection
+          {/* Navigation */}
+          <Navigation
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             scrollToSection={scrollToSection}
-            videoRef={videoRef}
-            isVideoPlaying={isVideoPlaying}
-            handleVideoPlay={handleVideoPlay}
-            heroInViewRef={heroInViewRef}
+            activeSection={activeSection}
           />
 
-          {/* Value Proposition Section */}
-          <motion.section
-            id="value"
-            ref={valueInViewRef}
-            className="py-20 md:py-32 bg-white"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto text-center mb-16">
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
-                >
-                  Why Top Agents Choose <span className="text-azure-500">EZ BIG</span>
-                </motion.h2>
+          <main className="relative">
+            {/* Hero Section */}
+            <HeroSection
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              scrollToSection={scrollToSection}
+              videoRef={videoRef}
+              isVideoPlaying={isVideoPlaying}
+              handleVideoPlay={handleVideoPlay}
+              heroInViewRef={heroInViewRef}
+            />
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-xl text-gray-600"
-                >
-                  We've reimagined the real estate affiliate experience to maximize your potential and elevate your
-                  career.
-                </motion.p>
+            {/* Value Proposition Section */}
+            <motion.section
+              id="value"
+              ref={valueInViewRef}
+              className="py-20 md:py-32 bg-white"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto text-center mb-16">
+                  <motion.h2
+                    initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: prefersReducedMotion ? 0.2 : 0.6 }}
+                    className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
+                  >
+                    Why Top Agents Choose <span className="text-azure-500">EZ BIG</span>
+                  </motion.h2>
+
+                  <motion.p
+                    initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: prefersReducedMotion ? 0.2 : 0.6, delay: prefersReducedMotion ? 0 : 0.2 }}
+                    className="text-xl text-gray-600"
+                  >
+                    We've reimagined the real estate affiliate experience to maximize your potential and elevate your
+                    career.
+                  </motion.p>
+                </div>
+                <ValueSection
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  valueInViewRef={() => {}}
+                />
               </div>
-              <ValueSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} valueInViewRef={() => {}} />
-            </div>
-          </motion.section>
+            </motion.section>
 
-          {/* Process Section */}
-          <motion.section
-            id="process"
-            ref={processInViewRef}
-            className="py-20 md:py-32 bg-[#f8f8f8]"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <ProcessSection processInViewRef={() => {}} />
-            </div>
-          </motion.section>
+            {/* Process Section */}
+            <motion.section
+              id="process"
+              ref={processInViewRef}
+              className="py-20 md:py-32 bg-[#f8f8f8]"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <ProcessSection processInViewRef={() => {}} />
+              </div>
+            </motion.section>
 
-          {/* Testimonials Section */}
-          <motion.section
-            id="testimonials"
-            ref={testimonialsInViewRef}
-            className="py-20 md:py-32 bg-white"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <TestimonialsSection
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                scrollToSection={scrollToSection}
-                testimonialsInViewRef={() => {}}
-                count1={count1}
-                count2={count2}
-                count3={count3}
-              />
-            </div>
-          </motion.section>
+            {/* Testimonials Section */}
+            <motion.section
+              id="testimonials"
+              ref={testimonialsInViewRef}
+              className="py-20 md:py-32 bg-white"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <TestimonialsSection
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  scrollToSection={scrollToSection}
+                  testimonialsInViewRef={() => {}}
+                  count1={count1}
+                  count2={count2}
+                  count3={count3}
+                />
+              </div>
+            </motion.section>
 
-          {/* Income Calculator Section */}
-          <motion.section
-            id="calculator"
-            ref={calculatorInViewRef}
-            className="py-20 md:py-32 bg-[#f8f8f8]"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <CalculatorSection
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                calculatorInViewRef={() => {}}
-              />
-            </div>
-          </motion.section>
+            {/* Income Calculator Section */}
+            <motion.section
+              id="calculator"
+              ref={calculatorInViewRef}
+              className="py-20 md:py-32 bg-[#f8f8f8]"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <CalculatorSection
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  calculatorInViewRef={() => {}}
+                />
+              </div>
+            </motion.section>
 
-          {/* Agent Type Quiz Section */}
-          <motion.section
-            id="quiz"
-            ref={quizInViewRef}
-            className="py-20 md:py-32 bg-white"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
-            </div>
-          </motion.section>
+            {/* Agent Type Quiz Section */}
+            <motion.section
+              id="quiz"
+              ref={quizInViewRef}
+              className="py-20 md:py-32 bg-white"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <QuizSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} quizInViewRef={() => {}} />
+              </div>
+            </motion.section>
 
-          {/* FAQ Section */}
-          <motion.section
-            id="faq"
-            ref={faqInViewRef}
-            className="py-20 md:py-32 bg-[#f8f8f8]"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
-            </div>
-          </motion.section>
+            {/* FAQ Section */}
+            <motion.section
+              id="faq"
+              ref={faqInViewRef}
+              className="py-20 md:py-32 bg-[#f8f8f8]"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <FAQSection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+              </div>
+            </motion.section>
 
-          {/* CTA Section */}
-          <motion.section
-            id="cta"
-            ref={ctaInViewRef}
-            className="py-20 md:py-32 bg-white"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="container mx-auto px-4">
-              <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
-            </div>
-          </motion.section>
-        </main>
+            {/* CTA Section */}
+            <motion.section
+              id="cta"
+              ref={ctaInViewRef}
+              className="py-20 md:py-32 bg-white"
+              initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: prefersReducedMotion ? 0.2 : 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="container mx-auto px-4">
+                <CTASection onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ctaInViewRef={() => {}} />
+              </div>
+            </motion.section>
+          </main>
 
-        <Footer />
-      </div>
-    </SmoothScroll>
+          <Footer />
+        </div>
+      </SmoothScroll>
+    </>
   )
 }

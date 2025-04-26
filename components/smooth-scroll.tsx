@@ -4,11 +4,19 @@ import type React from "react"
 
 import { useEffect, useState } from "react"
 import Lenis from "@studio-freight/lenis"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
+    // Don't initialize smooth scrolling if user prefers reduced motion
+    if (prefersReducedMotion) {
+      document.documentElement.classList.remove("lenis-smooth")
+      return
+    }
+
     // Initialize Lenis smooth scrolling with enhanced settings
     const lenisInstance = new Lenis({
       duration: 1.5, // Longer duration for more weight
@@ -38,7 +46,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       lenisInstance.destroy()
       document.documentElement.classList.remove("lenis-smooth")
     }
-  }, [])
+  }, [prefersReducedMotion])
 
   // Expose lenis instance to window for debugging
   useEffect(() => {
