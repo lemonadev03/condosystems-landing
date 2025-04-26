@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Building2 } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -16,9 +16,15 @@ export default function Navigation({ onMouseEnter, onMouseLeave, scrollToSection
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#f8f8f8]/90 backdrop-blur-xl shadow-md border-b border-gray-200/20">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Building2 className="h-8 w-8 text-azure-500" />
-          <span className="text-xl font-bold text-azure-500">EZ BIG Realty</span>
+        <div className="flex items-center">
+          <Image
+            src="/ez-big-realty-logo.png"
+            alt="EZ BIG Realty Logo"
+            width={150}
+            height={40}
+            className="h-auto"
+            priority
+          />
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
