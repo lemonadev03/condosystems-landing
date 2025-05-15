@@ -1,231 +1,123 @@
 "use client"
-
 import { motion } from "framer-motion"
+import { Home, DollarSign, Users, Clock, MapPin } from "lucide-react"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import Image from "next/image"
-import { Building2, MapPin, Users } from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
 
-interface ValueSectionProps {
+type ValueSectionProps = {
   onMouseEnter: (variant: string, text?: string) => void
   onMouseLeave: () => void
-  valueInViewRef: (node: Element | null) => void
+  valueInViewRef: any
+  showNationwide?: boolean
 }
 
-export default function ValueSection({ onMouseEnter, onMouseLeave, valueInViewRef }: ValueSectionProps) {
+export default function ValueSection({
+  onMouseEnter,
+  onMouseLeave,
+  valueInViewRef,
+  showNationwide = true,
+}: ValueSectionProps) {
+  const prefersReducedMotion = useReducedMotion()
+
+  const benefits = [
+    {
+      icon: <Home className="h-8 w-8 text-azure-500" />,
+      title: "Work From Home (WFH)",
+      description:
+        "Enjoy the flexibility of working from your home office with our cutting-edge virtual tools and support.",
+    },
+    {
+      icon: <DollarSign className="h-8 w-8 text-azure-500" />,
+      title: "Industry-leading Commission Splits",
+      description: "Maximize your earnings with our competitive commission structure designed to reward your success.",
+    },
+    {
+      icon: <Users className="h-8 w-8 text-azure-500" />,
+      title: "Mentorship from Experts",
+      description:
+        "Learn from top-performing agents and industry veterans who are committed to your professional growth.",
+    },
+    {
+      icon: <Clock className="h-8 w-8 text-azure-500" />,
+      title: "Flexible Scheduling",
+      description: "Create your own schedule and achieve the work-life balance you've always wanted.",
+    },
+  ]
+
   return (
-    <div className="w-full max-w-5xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-      <Tabs defaultValue="earnings" className="w-full">
-        <div className="px-6 pt-6">
-          <TabsList className="grid w-full grid-cols-3 bg-gray-100/70 p-1.5 rounded-xl">
-            <TabsTrigger
-              value="earnings"
-              className="text-lg py-3 data-[state=active]:bg-azure-500 data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
-              onMouseEnter={() => onMouseEnter("tab")}
-              onMouseLeave={onMouseLeave}
-            >
-              Earnings
-            </TabsTrigger>
-            <TabsTrigger
-              value="support"
-              className="text-lg py-3 data-[state=active]:bg-azure-500 data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
-              onMouseEnter={() => onMouseEnter("tab")}
-              onMouseLeave={onMouseLeave}
-            >
-              Support
-            </TabsTrigger>
-            <TabsTrigger
-              value="lifestyle"
-              className="text-lg py-3 data-[state=active]:bg-azure-500 data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-gray-200/70"
-              onMouseEnter={() => onMouseEnter("tab")}
-              onMouseLeave={onMouseLeave}
-            >
-              Lifestyle
-            </TabsTrigger>
-          </TabsList>
-        </div>
-
-        <div className="p-6">
-          <TabsContent value="earnings" className="mt-0 space-y-4">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow border border-gray-100 group">
-                <div className="mb-6">
-                  <span className="inline-block bg-azure-500/10 text-azure-500 font-medium px-3 py-1 rounded-full text-sm mb-2">
-                    Industry Leading
-                  </span>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-azure-500 transition-colors">
-                    Commission Splits That Reward Success
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Our innovative commission structure ensures you keep more of what you earn, with splits starting at
-                    80/20 and increasing based on performance.
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">Standard Agent</span>
-                      <span className="text-azure-500 font-medium">80%</span>
-                    </div>
-                    <Progress value={80} className="h-2.5 bg-gray-200" indicatorClassName="bg-azure-500" />
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">Elite Agent</span>
-                      <span className="text-azure-500 font-medium">90%</span>
-                    </div>
-                    <Progress value={90} className="h-2.5 bg-gray-200" indicatorClassName="bg-azure-500" />
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-gray-600">Legacy Partner</span>
-                      <span className="text-azure-500 font-medium">95%</span>
-                    </div>
-                    <Progress value={95} className="h-2.5 bg-gray-200" indicatorClassName="bg-azure-500" />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 300, damping: 10 }}>
-                  <Image
-                    src="/closing-deal-joy.png"
-                    alt="Successful real estate agent"
-                    width={800}
-                    height={600}
-                    className="rounded-2xl shadow-lg"
-                  />
-                </motion.div>
-              </div>
+    <div ref={valueInViewRef} className="w-full">
+      {/* Main Benefits Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {benefits.map((benefit, index) => (
+          <motion.div
+            key={index}
+            className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100"
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.3, // Reduce duration
+              delay: prefersReducedMotion ? 0 : index * 0.05, // Reduce stagger delay
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            onMouseEnter={() => onMouseEnter("card")}
+            onMouseLeave={onMouseLeave}
+          >
+            <div className="flex flex-col h-full">
+              <div className="mb-4 p-3 bg-azure-50 rounded-full w-fit">{benefit.icon}</div>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">{benefit.title}</h3>
+              <p className="text-gray-600">{benefit.description}</p>
             </div>
-          </TabsContent>
+          </motion.div>
+        ))}
+      </div>
 
-          <TabsContent value="support" className="mt-0 space-y-4">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 300, damping: 10 }}>
-                  <Image
-                    src="/collaborative-real-estate-strategy.png"
-                    alt="Real estate team collaboration"
-                    width={800}
-                    height={600}
-                    className="rounded-2xl shadow-lg"
-                  />
-                </motion.div>
+      {/* Nationwide Presence Section - Conditionally rendered */}
+      {showNationwide && (
+        <motion.div
+          className="mt-16 bg-white rounded-xl shadow-md overflow-hidden"
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: prefersReducedMotion ? 0 : 0.3 }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="p-8 flex flex-col justify-center">
+              <div className="flex items-center mb-4">
+                <MapPin className="h-6 w-6 text-azure-500 mr-2" />
+                <h3 className="text-2xl font-bold text-gray-800">Our Nationwide Presence</h3>
               </div>
-
-              <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow border border-gray-100 group">
-                <div className="mb-6">
-                  <span className="inline-block bg-azure-500/10 text-azure-500 font-medium px-3 py-1 rounded-full text-sm mb-2">
-                    Always Available
-                  </span>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-azure-500 transition-colors">
-                    Comprehensive Support System
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Never feel alone in your business. Our dedicated support team and community of successful agents are
-                    always available to help you overcome challenges.
-                  </p>
-                </div>
-
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="bg-azure-500/20 p-2 rounded-full mt-1">
-                      <Users className="h-5 w-5 text-azure-500" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-800">Dedicated Mentorship</h4>
-                      <p className="text-gray-600">One-on-one guidance from top-performing agents</p>
-                    </div>
-                  </li>
-
-                  <li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="bg-azure-500/20 p-2 rounded-full mt-1">
-                      <Building2 className="h-5 w-5 text-azure-500" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-800">Administrative Support</h4>
-                      <p className="text-gray-600">Focus on selling while we handle the paperwork</p>
-                    </div>
-                  </li>
-
-                  <li className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="bg-azure-500/20 p-2 rounded-full mt-1">
-                      <MapPin className="h-5 w-5 text-azure-500" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-800">Lead Generation</h4>
-                      <p className="text-gray-600">Cutting-edge marketing tools and qualified leads</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <p className="text-gray-600 mb-6">
+                With agents across all 50 states, EZ BIG Realty provides you with a vast network of professionals and
+                resources no matter where you're located.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-700">
+                  <span className="h-2 w-2 bg-azure-500 rounded-full mr-2"></span>
+                  Access to nationwide referral opportunities
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <span className="h-2 w-2 bg-azure-500 rounded-full mr-2"></span>
+                  Regional training and networking events
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <span className="h-2 w-2 bg-azure-500 rounded-full mr-2"></span>
+                  Local market expertise and support
+                </li>
+              </ul>
             </div>
-          </TabsContent>
-
-          <TabsContent value="lifestyle" className="mt-0 space-y-4">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="bg-gray-50 shadow-md rounded-2xl p-8 hover:shadow-lg transition-shadow border border-gray-100 group">
-                <div className="mb-6">
-                  <span className="inline-block bg-azure-500/10 text-azure-500 font-medium px-3 py-1 rounded-full text-sm mb-2">
-                    Work-Life Balance
-                  </span>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-azure-500 transition-colors">
-                    Lifestyle Designed For You
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Our innovative approach allows you to build a thriving real estate career while maintaining the
-                    lifestyle you desire.
-                  </p>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="relative bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-azure-500 to-transparent"></div>
-                    <div className="pl-4">
-                      <h4 className="font-medium text-gray-800">Flexible Scheduling</h4>
-                      <p className="text-gray-600">Build your business around your life, not the other way around</p>
-                    </div>
-                  </div>
-
-                  <div className="relative bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-azure-500 to-transparent"></div>
-                    <div className="pl-4">
-                      <h4 className="font-medium text-gray-800">Remote Work Options</h4>
-                      <p className="text-gray-600">State-of-the-art technology allows you to work from anywhere</p>
-                    </div>
-                  </div>
-
-                  <div className="relative bg-white p-4 rounded-lg shadow-sm hover:shadow transition-shadow">
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-azure-500 to-transparent"></div>
-                    <div className="pl-4">
-                      <h4 className="font-medium text-gray-800">Wellness Programs</h4>
-                      <p className="text-gray-600">
-                        Exclusive access to fitness, mental health, and lifestyle benefits
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 300, damping: 10 }}>
-                  <Image
-                    src="/welcoming-real-estate-team.png"
-                    alt="Real estate work-life balance"
-                    width={800}
-                    height={600}
-                    className="rounded-2xl shadow-lg"
-                  />
-                </motion.div>
-              </div>
+            <div className="relative h-64 md:h-auto">
+              <Image
+                src="/usa-map-locations.png"
+                alt="EZ BIG Realty nationwide presence map"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
             </div>
-          </TabsContent>
-        </div>
-      </Tabs>
+          </div>
+        </motion.div>
+      )}
     </div>
   )
 }

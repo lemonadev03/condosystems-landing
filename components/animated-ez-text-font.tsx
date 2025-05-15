@@ -28,13 +28,13 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
       opacity: 1,
       transition: {
         pathLength: {
-          delay: prefersReducedMotion ? 0 : 0.1 + i * 0.1,
-          duration: prefersReducedMotion ? 0 : 0.6,
+          delay: prefersReducedMotion ? 0 : 0.05 + i * 0.05, // Reduce delay
+          duration: prefersReducedMotion ? 0 : 0.3, // Reduce duration
           ease: "easeInOut",
         },
         opacity: {
-          delay: prefersReducedMotion ? 0 : 0.1 + i * 0.1,
-          duration: prefersReducedMotion ? 0 : 0.2,
+          delay: prefersReducedMotion ? 0 : 0.05 + i * 0.05, // Reduce delay
+          duration: prefersReducedMotion ? 0 : 0.1, // Reduce duration
         },
       },
     }),
@@ -48,10 +48,10 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
     },
     visible: {
       scaleY: 1,
-      opacity: 0.9, // Higher opacity for stronger effect
+      opacity: 0.9,
       transition: {
-        delay: prefersReducedMotion ? 0 : 1.0,
-        duration: prefersReducedMotion ? 0 : 0.4,
+        delay: prefersReducedMotion ? 0 : 0.4, // Reduce delay
+        duration: prefersReducedMotion ? 0 : 0.3, // Reduce duration
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -67,8 +67,8 @@ export default function AnimatedEZTextFont({ className = "" }: AnimatedEZTextFon
       opacity: 1,
       scale: 1,
       transition: {
-        delay: prefersReducedMotion ? 0 : 1.4 + i * 0.15,
-        duration: prefersReducedMotion ? 0 : 0.4,
+        delay: prefersReducedMotion ? 0 : 0.6 + i * 0.08, // Reduce delay
+        duration: prefersReducedMotion ? 0 : 0.3, // Reduce duration
         type: "spring",
       },
     }),

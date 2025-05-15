@@ -43,10 +43,10 @@ export default function HeroSection({
       alt: "Modern luxury home",
       width: 300,
       height: 200,
-      position: "left-[-5%] md:left-[5%] top-[20%]",
+      position: "left-[-8%] xs:left-[-5%] md:left-[5%] top-[15%] md:top-[20%]",
       delay: 2.0,
       duration: 5,
-      blur: "blur-sm",
+      blur: "blur-sm md:blur-sm",
       zIndex: "z-[1]",
       rotate: -2,
       parallaxFactor: 0.1,
@@ -56,10 +56,10 @@ export default function HeroSection({
       alt: "Beautiful neighborhood",
       width: 280,
       height: 180,
-      position: "left-[5%] md:left-[10%] bottom-[15%]",
+      position: "left-[-5%] xs:left-[0%] md:left-[10%] bottom-[10%] md:bottom-[15%]",
       delay: 2.1,
       duration: 5.5,
-      blur: "blur-[2px]",
+      blur: "blur-[2px] md:blur-[2px]",
       zIndex: "z-[2]",
       rotate: 3,
       parallaxFactor: 0.15,
@@ -69,10 +69,10 @@ export default function HeroSection({
       alt: "Real estate agent with clients",
       width: 320,
       height: 210,
-      position: "right-[5%] md:right-[10%] top-[25%]",
+      position: "right-[-8%] xs:right-[-5%] md:right-[10%] top-[15%] md:top-[25%]",
       delay: 2.2,
       duration: 6,
-      blur: "blur-[3px]",
+      blur: "blur-[3px] md:blur-[3px]",
       zIndex: "z-[1]",
       rotate: -1,
       parallaxFactor: 0.2,
@@ -82,10 +82,10 @@ export default function HeroSection({
       alt: "Luxury home interior",
       width: 260,
       height: 170,
-      position: "right-[-3%] md:right-[5%] bottom-[20%]",
+      position: "right-[-5%] xs:right-[-3%] md:right-[5%] bottom-[10%] md:bottom-[20%]",
       delay: 2.3,
       duration: 5,
-      blur: "blur-sm",
+      blur: "blur-sm md:blur-sm",
       zIndex: "z-[2]",
       rotate: 2,
       parallaxFactor: 0.12,
@@ -131,8 +131,8 @@ export default function HeroSection({
       opacity: 1,
       y: 0,
       transition: {
-        delay,
-        duration: 0.6,
+        delay: delay * 0.5, // Cut delays in half
+        duration: 0.3, // Reduce duration
         ease: [0.16, 1, 0.3, 1],
       },
     }),
@@ -145,8 +145,8 @@ export default function HeroSection({
       opacity: 1,
       y: 0,
       transition: {
-        delay: 1.8,
-        duration: 0.5,
+        delay: 0.8, // Reduce delay
+        duration: 0.3, // Reduce duration
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -233,7 +233,7 @@ export default function HeroSection({
         return (
           <motion.div
             key={index}
-            className={`absolute ${image.position} ${image.blur} ${image.zIndex} pointer-events-none hidden sm:block`}
+            className={`absolute ${image.position} ${image.blur} ${image.zIndex} pointer-events-none`}
             custom={image.delay}
             variants={imageVariants}
             initial="hidden"
@@ -248,7 +248,7 @@ export default function HeroSection({
                 ease: "easeInOut",
                 repeatType: "reverse",
               }}
-              className="rounded-2xl overflow-hidden shadow-2xl cursor-pointer pointer-events-auto"
+              className="rounded-2xl overflow-hidden shadow-2xl cursor-pointer pointer-events-auto w-[70%] xs:w-[80%] sm:w-full"
               style={{
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 40px rgba(69, 114, 173, 0.2)",
                 transform: `rotate(${image.rotate}deg)`,
@@ -281,7 +281,16 @@ export default function HeroSection({
         <div className="max-w-3xl mx-auto text-center">
           <motion.div custom={0.5} variants={contentVariants} initial="hidden" animate={controls}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight relative z-20">
-              <span className="block text-gray-800 mb-2 drop-shadow-md">Real estate sales is hard, until it's</span>
+              {/* Added white glow effect to the heading text */}
+              <span className="block text-gray-800 mb-2 drop-shadow-md relative">
+                {/* White glow background */}
+                <span className="absolute -inset-x-4 -inset-y-2 bg-white/60 rounded-xl blur-xl"></span>
+
+                {/* Text with shadow for better contrast */}
+                <span className="relative inline-block py-2 px-4 bg-white/30 backdrop-blur-sm rounded-lg text-shadow-white">
+                  Real estate sales is hard, until it's
+                </span>
+              </span>
               <div className="relative inline-block mt-4 px-4 mx-auto z-20">
                 <AnimatedEZTextFont className="w-48 h-24 md:w-64 md:h-32 lg:w-80 lg:h-40" />
               </div>

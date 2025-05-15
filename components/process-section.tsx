@@ -1,40 +1,77 @@
 "use client"
 
-import { motion } from "framer-motion"
-import InteractiveTimeline from "@/components/interactive-timeline"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
+import SectionHeader from "./section-header"
 
 interface ProcessSectionProps {
   processInViewRef: (node: Element | null) => void
+  hyperlinks?: Record<string, string>
 }
 
-export default function ProcessSection({ processInViewRef }: ProcessSectionProps) {
+export default function ProcessSection({ processInViewRef, hyperlinks }: ProcessSectionProps) {
+  const prefersReducedMotion = useReducedMotion()
+
+  const steps = [
+    {
+      number: "01",
+      title: "Discovery Call",
+      description:
+        "We start with a personalized call to understand your goals, experience, and what you're looking for in a brokerage.",
+    },
+    {
+      number: "02",
+      title: "Personalized Plan",
+      description:
+        "Our team creates a custom success roadmap tailored to your specific strengths, goals, and market opportunities.",
+    },
+    {
+      number: "03",
+      title: "Seamless Onboarding",
+      description:
+        "Our streamlined process gets you set up with all systems, tools, and resources in as little as 48 hours.",
+    },
+    {
+      number: "04",
+      title: "Launch & Growth",
+      description:
+        "Hit the ground running with immediate support, leads, and a community ready to help you succeed from day one.",
+    },
+  ]
+
   return (
-    <section id="process" ref={processInViewRef} className="py-20 md:py-32 bg-[#f8f8f8]">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
-          >
-            Your Journey to <span className="text-azure-500">Excellence</span>
-          </motion.h2>
+    <div className="max-w-6xl mx-auto" ref={processInViewRef}>
+      <SectionHeader
+        title="Your Journey to Excellence"
+        subtitle="Our proven process transforms ambitious agents into market leaders through personalized support and strategic guidance."
+      />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-600"
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {steps.map((step, index) => (
+          <div
+            key={step.number}
+            className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-100 group"
           >
-            We've designed a clear path to help you transform your real estate career and achieve unprecedented success.
-          </motion.p>
-        </div>
-
-        <InteractiveTimeline />
+            <div className="flex flex-col h-full">
+              <div className="mb-4">
+                <span className="text-5xl font-black text-azure-500/20 group-hover:text-azure-500/30 transition-colors">
+                  {step.number}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-azure-500 transition-colors">
+                {step.title}
+              </h3>
+              <p className="text-gray-600 flex-grow">{step.description}</p>
+              <div className="mt-4 h-1.5 w-12 bg-azure-500/70 rounded-full transform origin-left group-hover:scale-x-150 transition-transform"></div>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+
+      <div className="mt-16 text-center">
+        <div className="inline-block bg-azure-500/10 text-azure-500 font-medium px-4 py-2 rounded-full text-sm">
+          Average onboarding time: Just 48 hours
+        </div>
+      </div>
+    </div>
   )
 }

@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        xs: "480px",
+      },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
         display: ["Lexend", "system-ui", "sans-serif"],

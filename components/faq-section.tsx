@@ -1,38 +1,32 @@
 "use client"
-
-import { motion } from "framer-motion"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import SectionHeader from "./section-header"
 
 interface FAQSectionProps {
   onMouseEnter: (variant: string, text?: string) => void
   onMouseLeave: () => void
   inViewRef?: (node: Element | null) => void
+  hyperlinks?: Record<string, string>
+  useBlueHeader?: boolean
 }
 
-export default function FAQSection({ onMouseEnter, onMouseLeave, inViewRef }: FAQSectionProps) {
+export default function FAQSection({
+  onMouseEnter,
+  onMouseLeave,
+  inViewRef,
+  hyperlinks,
+  useBlueHeader = false,
+}: FAQSectionProps) {
   return (
     <section ref={inViewRef} className="w-full">
-      <div className="max-w-4xl mx-auto text-center mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-bold text-gray-800 mb-6"
-        >
-          Frequently Asked <span className="text-azure-500">Questions</span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl text-gray-600"
-        >
-          Everything you need to know about joining the EZ BIG family.
-        </motion.p>
-      </div>
+      <SectionHeader
+        title={
+          <>
+            Frequently Asked <span className="text-white">Questions</span>
+          </>
+        }
+        subtitle="Everything you need to know about joining the EZ BIG family."
+      />
 
       <div className="max-w-3xl mx-auto">
         <Accordion type="single" collapsible className="space-y-4">

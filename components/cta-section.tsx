@@ -3,87 +3,79 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
+import { cn } from "@/lib/utils"
+import SectionHeader from "./section-header"
 
 interface CTASectionProps {
   onMouseEnter: (variant: string, text?: string) => void
   onMouseLeave: () => void
   ctaInViewRef: (node: Element | null) => void
+  showMoreBackground?: boolean
+  hyperlinks?: Record<string, string>
+  useBlueHeader?: boolean
 }
 
-export default function CTASection({ onMouseEnter, onMouseLeave, ctaInViewRef }: CTASectionProps) {
+export default function CTASection({
+  onMouseEnter,
+  onMouseLeave,
+  ctaInViewRef,
+  showMoreBackground = false,
+  hyperlinks = { JOIN_EZBIG: "https://onboarding.ezbig.com" },
+  useBlueHeader = false,
+}: CTASectionProps) {
+  const prefersReducedMotion = useReducedMotion()
+
   return (
-    <section id="cta" ref={ctaInViewRef} className="py-20 md:py-32 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto bg-azure-500 rounded-3xl overflow-hidden shadow-xl">
-          <div className="grid md:grid-cols-2">
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
-              >
-                Ready to Transform Your Real Estate Career?
-              </motion.h2>
+    <section id="cta" ref={ctaInViewRef} className="relative">
+      <div
+        className={`max-w-4xl mx-auto ${
+          showMoreBackground
+            ? "bg-white/50 backdrop-blur-sm rounded-xl p-8 shadow-lg"
+            : "bg-white rounded-xl p-10 shadow-lg"
+        }`}
+      >
+        <div className="text-center">
+          <SectionHeader
+            title={
+              <>
+                Ready to Transform Your <span className="text-white">Real Estate Career</span>?
+              </>
+            }
+            subtitle="Join EZ BIG today and experience the difference that comes with our innovative approach, supportive community, and industry-leading resources."
+            className="mb-8"
+          />
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-white/90 text-xl mb-8"
-              >
-                Join the elite network of real estate professionals who are redefining success in the industry.
-              </motion.p>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-sm p-8 md:p-12 flex flex-col justify-center">
-              <div className="bg-white/10 rounded-xl p-6 mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Take the Next Step</h3>
-                <p className="text-white/90 mb-6">
-                  Click below to visit our onboarding site where you can complete your application and begin your
-                  journey with EZ BIG Realty.
-                </p>
-
-                <ul className="space-y-3 mb-8">
-                  {[
-                    "Simple online application",
-                    "Fast approval process",
-                    "Immediate access to resources",
-                    "Dedicated onboarding specialist",
-                  ].map((benefit, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                      className="flex items-center gap-2 text-white"
-                    >
-                      <div className="bg-white/20 p-1 rounded-full">
-                        <svg className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      {benefit}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-
-              <a href="https://onboarding.ezbig.com" target="_blank" rel="noopener noreferrer" className="block">
+          <motion.div
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            className="flex justify-center"
+          >
+            <div className={cn("relative inline-block", !prefersReducedMotion && "animate-attention-pulse")}>
+              <div
+                className={cn(
+                  "absolute inset-0 bg-azure-400/30 rounded-lg -m-1",
+                  !prefersReducedMotion && "animate-attention-glow",
+                )}
+              ></div>
+              <a href={hyperlinks.JOIN_EZBIG} target="_blank" rel="noopener noreferrer">
                 <Button
-                  className="w-full bg-white text-azure-500 hover:bg-white/90 py-6 text-xl font-medium"
+                  size="lg"
+                  className={cn(
+                    "bg-azure-500 hover:bg-azure-600 text-white px-10 py-6 text-lg rounded-lg flex items-center gap-2 shadow-lg relative z-10",
+                    !prefersReducedMotion && "animate-subtle-bounce",
+                  )}
                   onMouseEnter={() => onMouseEnter("button", "Join Now")}
                   onMouseLeave={onMouseLeave}
                 >
-                  Join Our Team Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  Join EZ BIG Today
+                  <ArrowRight className="h-5 w-5" />
                 </Button>
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
