@@ -21,24 +21,24 @@ export default function ValueSection({
 
   const benefits = [
     {
-      icon: <Home className="h-8 w-8 text-azure-500" />,
+      icon: <Home className="h-10 w-10 text-azure-500" />,
       title: "Work From Home (WFH)",
       description:
         "Enjoy the flexibility of working from your home office with our cutting-edge virtual tools and support.",
     },
     {
-      icon: <DollarSign className="h-8 w-8 text-azure-500" />,
+      icon: <DollarSign className="h-10 w-10 text-azure-500" />,
       title: "Industry-leading Commission Splits",
       description: "Maximize your earnings with our competitive commission structure designed to reward your success.",
     },
     {
-      icon: <Users className="h-8 w-8 text-azure-500" />,
+      icon: <Users className="h-10 w-10 text-azure-500" />,
       title: "Mentorship from Experts",
       description:
         "Learn from top-performing agents and industry veterans who are committed to your professional growth.",
     },
     {
-      icon: <Clock className="h-8 w-8 text-azure-500" />,
+      icon: <Clock className="h-10 w-10 text-azure-500" />,
       title: "Flexible Scheduling",
       description: "Create your own schedule and achieve the work-life balance you've always wanted.",
     },
@@ -56,17 +56,24 @@ export default function ValueSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{
-              duration: 0.3, // Reduce duration
-              delay: prefersReducedMotion ? 0 : index * 0.05, // Reduce stagger delay
+              duration: 0.3,
+              delay: prefersReducedMotion ? 0 : index * 0.05,
               ease: [0.16, 1, 0.3, 1],
             }}
             onMouseEnter={() => onMouseEnter("card")}
             onMouseLeave={onMouseLeave}
           >
-            <div className="flex flex-col h-full">
-              <div className="mb-4 p-3 bg-azure-50 rounded-full w-fit">{benefit.icon}</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-800">{benefit.title}</h3>
-              <p className="text-gray-600">{benefit.description}</p>
+            <div className="flex items-start gap-5">
+              <div className="p-4 bg-azure-50 rounded-full flex-shrink-0">{benefit.icon}</div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-800 relative">
+                  <span className="relative z-10">
+                    {benefit.title}
+                    <span className="absolute bottom-1 left-0 w-full h-3 bg-azure-200 opacity-50 -z-10 rounded-sm"></span>
+                  </span>
+                </h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </div>
             </div>
           </motion.div>
         ))}
@@ -84,8 +91,13 @@ export default function ValueSection({
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-8 flex flex-col justify-center">
               <div className="flex items-center mb-4">
-                <MapPin className="h-6 w-6 text-azure-500 mr-2" />
-                <h3 className="text-2xl font-bold text-gray-800">Our Nationwide Presence</h3>
+                <MapPin className="h-8 w-8 text-azure-500 mr-3" />
+                <h3 className="text-2xl font-bold text-gray-800 relative">
+                  <span className="relative z-10">
+                    Our Nationwide Presence
+                    <span className="absolute bottom-1 left-0 w-full h-3 bg-azure-200 opacity-50 -z-10 rounded-sm"></span>
+                  </span>
+                </h3>
               </div>
               <p className="text-gray-600 mb-6">
                 With agents across all 50 states, EZ BIG Realty provides you with a vast network of professionals and
