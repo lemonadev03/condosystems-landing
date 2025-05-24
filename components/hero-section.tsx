@@ -44,7 +44,7 @@ export default function HeroSection({
       width: 300,
       height: 200,
       position: "left-[-8%] xs:left-[-5%] md:left-[5%] top-[15%] md:top-[20%]",
-      delay: 2.0,
+      delay: 0.5, // Changed from 2.0
       duration: 5,
       blur: "blur-sm md:blur-sm",
       zIndex: "z-[1]",
@@ -57,7 +57,7 @@ export default function HeroSection({
       width: 280,
       height: 180,
       position: "left-[-5%] xs:left-[0%] md:left-[10%] bottom-[10%] md:bottom-[15%]",
-      delay: 2.1,
+      delay: 0.6, // Changed from 2.1
       duration: 5.5,
       blur: "blur-[2px] md:blur-[2px]",
       zIndex: "z-[2]",
@@ -70,7 +70,7 @@ export default function HeroSection({
       width: 320,
       height: 210,
       position: "right-[-8%] xs:right-[-5%] md:right-[10%] top-[15%] md:top-[25%]",
-      delay: 2.2,
+      delay: 0.7, // Changed from 2.2
       duration: 6,
       blur: "blur-[3px] md:blur-[3px]",
       zIndex: "z-[1]",
@@ -83,7 +83,7 @@ export default function HeroSection({
       width: 260,
       height: 170,
       position: "right-[-5%] xs:right-[-3%] md:right-[5%] bottom-[10%] md:bottom-[20%]",
-      delay: 2.3,
+      delay: 0.8, // Changed from 2.3
       duration: 5,
       blur: "blur-sm md:blur-sm",
       zIndex: "z-[2]",
@@ -110,7 +110,7 @@ export default function HeroSection({
       scale: 1,
       transition: {
         delay,
-        duration: 0.8,
+        duration: 0.4,
         ease: [0.16, 1, 0.3, 1],
       },
     }),
@@ -120,7 +120,7 @@ export default function HeroSection({
       filter: "blur(0px)",
       boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 40px rgba(69, 114, 173, 0.3)",
       transition: {
-        duration: 0.3,
+        duration: 0.15,
       },
     },
   }
@@ -132,7 +132,7 @@ export default function HeroSection({
       y: 0,
       transition: {
         delay: delay * 0.5, // Cut delays in half
-        duration: 0.3, // Reduce duration
+        duration: 0.15, // Reduce duration
         ease: [0.16, 1, 0.3, 1],
       },
     }),
@@ -145,8 +145,8 @@ export default function HeroSection({
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.8, // Reduce delay
-        duration: 0.3, // Reduce duration
+        delay: 0.4, // Reduce delay
+        duration: 0.15, // Reduce duration
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -159,7 +159,7 @@ export default function HeroSection({
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.15,
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -167,7 +167,7 @@ export default function HeroSection({
       opacity: 0,
       scale: 0.8,
       transition: {
-        duration: 0.2,
+        duration: 0.1,
       },
     },
   }
@@ -186,7 +186,7 @@ export default function HeroSection({
   useEffect(() => {
     const startAnimations = async () => {
       // Small delay before starting animations
-      await new Promise((resolve) => setTimeout(resolve, 500))
+      await new Promise((resolve) => setTimeout(resolve, 100)) // Changed from 250
       controls.start("visible")
     }
 

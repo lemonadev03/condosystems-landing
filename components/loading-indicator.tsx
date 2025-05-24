@@ -29,7 +29,7 @@ export default function LoadingIndicator({ isLoading }: LoadingIndicatorProps) {
       className="fixed inset-0 flex items-center justify-center bg-white z-50"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 0.5, delay: 0.5 }}
+      transition={{ duration: 0.25, delay: 0.25 }}
       exit={{ opacity: 0 }}
     >
       <div className="relative w-16 h-16">
@@ -39,7 +39,7 @@ export default function LoadingIndicator({ isLoading }: LoadingIndicatorProps) {
           animate={{ opacity: 0, scale: 1.2 }}
           transition={{
             repeat: Number.POSITIVE_INFINITY,
-            duration: 1.2,
+            duration: 0.6,
             ease: "easeOut",
           }}
         />
@@ -48,7 +48,7 @@ export default function LoadingIndicator({ isLoading }: LoadingIndicatorProps) {
           animate={{ rotate: 360 }}
           transition={{
             repeat: Number.POSITIVE_INFINITY,
-            duration: 1,
+            duration: 0.5,
             ease: "linear",
           }}
         />

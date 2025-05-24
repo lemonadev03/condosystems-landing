@@ -27,8 +27,7 @@ export default function ProcessSection({ processInViewRef, hyperlinks }: Process
     {
       number: "03",
       title: "Seamless Onboarding",
-      description:
-        "Our streamlined process gets you set up with all systems, tools, and resources in as little as 48 hours.",
+      description: "Our streamlined process gets you set up with all systems, tools, and resources.",
     },
     {
       number: "04",
@@ -65,12 +64,6 @@ export default function ProcessSection({ processInViewRef, hyperlinks }: Process
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-16 text-center">
-        <div className="inline-block bg-azure-500/10 text-azure-500 font-medium px-4 py-2 rounded-full text-sm">
-          Average onboarding time: Just 48 hours
-        </div>
       </div>
     </div>
   )

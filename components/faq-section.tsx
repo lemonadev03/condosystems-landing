@@ -44,12 +44,7 @@ export default function FAQSection({
             {
               question: "How does the commission structure work?",
               answer:
-                "Our commission structure starts at an 80/20 split in your favor and increases based on performance. Elite agents can earn up to 90%, and Legacy Partners can earn up to 95%. There are no desk fees, and we offer multiple paths to increase your commission split based on your individual goals.",
-            },
-            {
-              question: "Is EZ BIG available in my area?",
-              answer:
-                "EZ BIG is rapidly expanding across the country and currently operates in 32+ markets nationwide. If we're not in your area yet, we have expansion plans and would be happy to discuss bringing EZ BIG to your market.",
+                "Our industry-leading commission structure is designed to maximize your earnings and grows with your success. We offer multiple paths to increase your commission split based on your individual goals and performance, with no desk fees.",
             },
             {
               question: "What technology does EZ BIG provide?",

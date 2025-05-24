@@ -81,7 +81,7 @@ export default function Navigation({
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
@@ -149,7 +149,7 @@ export default function Navigation({
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.15 }}
         >
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-2">

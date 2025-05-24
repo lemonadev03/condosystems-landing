@@ -29,7 +29,8 @@ export default function ValueSection({
     {
       icon: <DollarSign className="h-10 w-10 text-azure-500" />,
       title: "Industry-leading Commission Splits",
-      description: "Maximize your earnings with our competitive commission structure designed to reward your success.",
+      description:
+        "Maximize your earnings with our industry-leading commission structure designed to reward your success.",
     },
     {
       icon: <Users className="h-10 w-10 text-azure-500" />,
@@ -56,8 +57,8 @@ export default function ValueSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{
-              duration: 0.3,
-              delay: prefersReducedMotion ? 0 : index * 0.05,
+              duration: 0.15,
+              delay: prefersReducedMotion ? 0 : index * 0.025,
               ease: [0.16, 1, 0.3, 1],
             }}
             onMouseEnter={() => onMouseEnter("card")}
@@ -86,7 +87,7 @@ export default function ValueSection({
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: prefersReducedMotion ? 0 : 0.3 }}
+          transition={{ duration: 0.3, delay: prefersReducedMotion ? 0 : 0.15 }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-8 flex flex-col justify-center">

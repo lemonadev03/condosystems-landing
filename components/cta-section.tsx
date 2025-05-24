@@ -50,7 +50,7 @@ export default function CTASection({
             initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            transition={{ duration: 0.15, delay: 0.1 }}
             className="flex justify-center"
           >
             <div className={cn("relative inline-block", !prefersReducedMotion && "animate-attention-pulse")}>

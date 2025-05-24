@@ -94,7 +94,7 @@ export default function LandingPage() {
       () => {
         setIsLoading(false)
       },
-      prefersReducedMotion ? 100 : 300,
+      prefersReducedMotion ? 50 : 150,
     )
 
     return () => clearTimeout(timer)
@@ -175,7 +175,7 @@ export default function LandingPage() {
       // @ts-ignore
       window.lenis.scrollTo(document.getElementById(sectionId), {
         offset: 0,
-        duration: prefersReducedMotion ? 0.5 : 1.2,
+        duration: prefersReducedMotion ? 0.25 : 0.6,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       })
     } else {
@@ -239,6 +239,7 @@ export default function LandingPage() {
                 imageSrc={SECTION_BACKGROUNDS.VALUE}
                 alt="Elegant open living space"
                 overlayOpacity={0.92}
+                fixedBackground={true}
               >
                 <motion.section
                   id="value"
@@ -247,7 +248,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <SectionHeader
@@ -272,7 +273,12 @@ export default function LandingPage() {
 
             {/* Process Section */}
             {FEATURE_FLAGS.SHOW_PROCESS && (
-              <SectionBackground imageSrc={SECTION_BACKGROUNDS.PROCESS} alt="Sleek modern villa" overlayOpacity={0.9}>
+              <SectionBackground
+                imageSrc={SECTION_BACKGROUNDS.PROCESS}
+                alt="Sleek modern villa"
+                overlayOpacity={0.9}
+                fixedBackground={true}
+              >
                 <motion.section
                   id="process"
                   ref={processInViewRef}
@@ -280,7 +286,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <ProcessSection processInViewRef={() => {}} hyperlinks={HYPERLINKS} />
@@ -303,7 +309,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <TestimonialsSection
@@ -335,7 +341,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <CalculatorSection
@@ -365,7 +371,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <QuizSection
@@ -395,7 +401,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <FAQSection
@@ -425,7 +431,7 @@ export default function LandingPage() {
                   initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.1 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="container mx-auto px-4">
                     <CTASection

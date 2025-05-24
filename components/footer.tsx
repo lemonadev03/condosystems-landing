@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Building2 } from "lucide-react"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -8,8 +8,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Building2 className="h-8 w-8 text-azure-500" />
-              <span className="text-xl font-bold text-azure-500">EZ BIG Realty</span>
+              <div className="relative h-8 w-24">
+                <Image src="/ez-big-realty-logo.png" alt="EZ BIG" fill sizes="96px" style={{ objectFit: "contain" }} />
+              </div>
+              <span className="text-xl font-bold text-azure-500">EZ BIG</span>
             </div>
             <p className="text-gray-600 mb-4">
               Redefining success in real estate through innovation, support, and exceptional opportunities.
@@ -111,7 +113,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-200 mt-12 pt-8 text-center">
-          <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} EZ BIG Realty. All rights reserved.</p>
+          <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} EZ BIG. All rights reserved.</p>
         </div>
       </div>
     </footer>
