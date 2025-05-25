@@ -21,7 +21,7 @@ export default function CTASection({
   onMouseLeave,
   ctaInViewRef,
   showMoreBackground = false,
-  hyperlinks = { JOIN_EZBIG: "https://onboarding.ezbig.com" },
+  hyperlinks = { JOIN_EZBIG: "https://scale.ezbig.space" },
   useBlueHeader = false,
 }: CTASectionProps) {
   const prefersReducedMotion = useReducedMotion()
