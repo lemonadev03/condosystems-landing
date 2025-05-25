@@ -5,20 +5,20 @@ export default function Footer() {
   return (
     <footer className="bg-gray-100 border-t border-gray-200 py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
+          <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="relative h-8 w-24">
-                <Image src="/ez-big-realty-logo.png" alt="EZ BIG" fill sizes="96px" style={{ objectFit: "contain" }} />
+                <Image src="/ez-big-banner-logo.png" alt="EZ BIG" fill sizes="96px" style={{ objectFit: "contain" }} />
               </div>
-              <span className="text-xl font-bold text-azure-500">EZ BIG</span>
+              {/* <span className="text-xl font-bold text-azure-500">EZ BIG</span> */}
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-4 max-w-sm">
               Redefining success in real estate through innovation, support, and exceptional opportunities.
             </p>
           </div>
 
-          <div>
+          <div className="md:justify-self-center">
             <h3 className="text-lg font-bold text-gray-800 mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
@@ -32,16 +32,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="/press" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Press
-                </Link>
-              </li>
-              <li>
                 <Link href="/contact" className="text-gray-600 hover:text-azure-500 transition-colors">
                   Contact
                 </Link>
@@ -49,38 +39,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/blog" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/agent-resources" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Agent Resources
-                </Link>
-              </li>
-              <li>
-                <Link href="/training" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Training
-                </Link>
-              </li>
-              <li>
-                <Link href="/events" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
+          <div className="md:justify-self-end">
             <h3 className="text-lg font-bold text-gray-800 mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
@@ -91,21 +50,6 @@ export default function Footer() {
               <li>
                 <Link href="/terms-of-service" className="text-gray-600 hover:text-azure-500 transition-colors">
                   Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookie-policy" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Cookie Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/gdpr" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  GDPR
-                </Link>
-              </li>
-              <li>
-                <Link href="/licensing" className="text-gray-600 hover:text-azure-500 transition-colors">
-                  Licensing
                 </Link>
               </li>
             </ul>

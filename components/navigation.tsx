@@ -94,8 +94,8 @@ export default function Navigation({
           >
             <div className="relative h-10 w-32 md:h-12 md:w-40">
               <Image
-                src="/ez-big-realty-logo.png"
-                alt="EZ BIG Realty"
+                src="/ez-big-banner-logo.png"
+                alt="EZ BIG"
                 fill
                 sizes="(max-width: 768px) 128px, 160px"
                 style={{ objectFit: "contain" }}

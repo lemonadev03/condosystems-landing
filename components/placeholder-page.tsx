@@ -3,7 +3,7 @@
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Building2 } from "lucide-react"
+import Image from "next/image"
 
 interface PlaceholderPageProps {
   title: string
@@ -15,9 +15,10 @@ export default function PlaceholderPage({ title }: PlaceholderPageProps) {
       {/* Header */}
       <header className="bg-[#f8f8f8]/70 backdrop-blur-xl shadow-sm border-b border-gray-200/20 py-4">
         <div className="container mx-auto px-4 flex items-center">
-          <div className="flex items-center gap-2">
-            <Building2 className="h-8 w-8 text-azure-500" />
-            <span className="text-xl font-bold text-azure-500">EZ BIG Realty</span>
+          <div className="flex items-center">
+            <div className="relative h-8 w-24">
+              <Image src="/ez-big-banner-logo.png" alt="EZ BIG" fill sizes="96px" style={{ objectFit: "contain" }} />
+            </div>
           </div>
         </div>
       </header>
@@ -41,7 +42,7 @@ export default function PlaceholderPage({ title }: PlaceholderPageProps) {
       {/* Footer */}
       <footer className="bg-gray-100 border-t border-gray-200 py-6">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} EZ BIG Realty. All rights reserved.</p>
+          <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} EZ BIG. All rights reserved.</p>
         </div>
       </footer>
     </div>

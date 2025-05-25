@@ -207,7 +207,7 @@ export default function HeroSection({
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f8f8f8]"
     >
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <video ref={videoRef} className="absolute inset-0 w-full h-full object-cover opacity-30" loop muted playsInline>
           <source src="/placeholder.mp4" type="video/mp4" />
         </video>
@@ -222,7 +222,7 @@ export default function HeroSection({
         >
           <Play className="h-6 w-6 text-azure-500" />
         </button>
-      </div>
+      </div> */}
 
       {/* Floating Images */}
       {floatingImages.map((image, index) => {

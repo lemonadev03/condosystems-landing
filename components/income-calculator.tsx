@@ -58,7 +58,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
         <CardHeader>
           <CardTitle className="text-gray-800 text-2xl">Income Potential Calculator</CardTitle>
           <CardDescription className="text-gray-600">
-            Adjust the sliders to see how your income could change with EZ BIG Realty
+            Adjust the sliders to see how your income could change with EZ BIG
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-8">
@@ -70,7 +70,7 @@ export default function IncomeCalculator({ onMouseEnter, onMouseLeave }: IncomeC
                 onMouseEnter={() => onMouseEnter("tab")}
                 onMouseLeave={onMouseLeave}
               >
-                EZ BIG Realty
+                EZ BIG
               </TabsTrigger>
               <TabsTrigger
                 value="traditional"

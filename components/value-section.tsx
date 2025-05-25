@@ -101,7 +101,7 @@ export default function ValueSection({
                 </h3>
               </div>
               <p className="text-gray-600 mb-6">
-                With agents across all 50 states, EZ BIG Realty provides you with a vast network of professionals and
+                With agents across all 50 states, EZ BIG provides you with a vast network of professionals and
                 resources no matter where you're located.
               </p>
               <ul className="space-y-2">

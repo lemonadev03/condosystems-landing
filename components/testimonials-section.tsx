@@ -45,7 +45,7 @@ export default function TestimonialsSection({
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-600"
           >
-            Hear from agents who transformed their careers with EZ BIG Realty.
+            Hear from agents who transformed their careers with EZ BIG.
           </motion.p>
         </div>
 

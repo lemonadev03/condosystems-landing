@@ -17,9 +17,8 @@ const lexend = Lexend({
 })
 
 export const metadata: Metadata = {
-  title: "EZ BIG Realty - The Best Team in Real Estate",
-  description: "Join the elite network of real estate professionals who are redefining success in the industry.",
-    generator: 'v0.dev'
+  title: "EZ BIG - The Best Team in Real Estate",
+  description: "Join the elite network of real estate professionals who are redefining success in the industry."
 }
 
 export default function RootLayout({
@@ -28,9 +27,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${lexend.variable}`}>
+    <html lang="en" className={`${inter.variable} ${lexend.variable}`} suppressHydrationWarning={true}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/ezbig-square-logo.png" sizes="any" />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
