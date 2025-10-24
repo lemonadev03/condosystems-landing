@@ -3,6 +3,7 @@
 import type React from "react"
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useEffect } from "react"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
@@ -66,7 +67,7 @@ export default function HeroSection({
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f8f8f8]"
     >
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
           <motion.div
             custom={0.5}
@@ -77,14 +78,14 @@ export default function HeroSection({
           >
 
             {/* Main Headline with gradient text */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
                 The All-In-One System for Managing Your Property
               </span>
             </h1>
 
             {/* Subheadline with emphasis */}
-            <p className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-xl font-light text-gray-600 leading-relaxed">
               We Make Property Management {" "}
               <span className="relative inline-block font-semibold text-azure-600">
                 <span className="relative z-10">Easy</span>
@@ -100,12 +101,12 @@ export default function HeroSection({
               <Button
                 size="lg"
                 className="relative overflow-hidden bg-gradient-to-r from-azure-500 to-azure-600 hover:from-azure-600 hover:to-coral-500 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
-                onMouseEnter={() => onMouseEnter("button", "Schedule a Demo")}
+                onMouseEnter={() => onMouseEnter("button", "Book a Demo")}
                 onMouseLeave={onMouseLeave}
                 asChild
               >
                 <a href={hyperlinks.SCHEDULE_CALL} target="_blank" rel="noopener noreferrer">
-                  <span className="relative z-10">Schedule a Demo</span>
+                  <span className="relative z-10">Book a Demo</span>
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
@@ -135,91 +136,39 @@ export default function HeroSection({
             variants={contentVariants}
             initial="hidden"
             animate={controls}
-            className="relative h-[400px] md:h-[500px] lg:h-[600px]"
+            className="relative w-full"
+            style={{ aspectRatio: "3024 / 1794" }}
           >
-            {/* Background device frame (Back Layer) */}
+            {/* Background Image with Glow */}
             <motion.div
-              className="absolute top-[5%] left-[5%] w-[85%] h-[75%] rounded-2xl shadow-2xl overflow-hidden border border-white/50"
+              className="absolute top-[5%] left-[-5%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
               initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              style={{
-                background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
-                boxShadow: "0 25px 50px -12px rgba(69, 114, 173, 0.25)",
-                y: y1,
-              }}
+              style={{ y: y1 }}
             >
-              {/* TODO: Replace with your actual product screenshot */}
-              {/* <Image src="/product-screenshot-1.png" alt="Dashboard Overview" fill className="object-cover" /> */}
-              <div className="w-full h-full bg-white/70 backdrop-blur-sm flex items-center justify-center p-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-azure-500/20 rounded-full flex items-center justify-center">
-                    <div className="w-8 h-8 bg-azure-500/40 rounded-full"></div>
-                  </div>
-                  <p className="text-gray-500 font-medium">Product Screenshot 1</p>
-                  <p className="text-gray-400 text-sm mt-2">Replace with /product-screenshot-1.png</p>
-                </div>
+              <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" />
+              {/* Background Glow */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-4 right-4 w-24 h-24 bg-azure-300/20 rounded-full blur-2xl"></div>
+                <div className="absolute bottom-4 left-4 w-32 h-32 bg-azure-400/15 rounded-full blur-3xl"></div>
               </div>
-
-              {/* Floating status badge */}
-              <motion.div
-                className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-3"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                  <span className="text-xs font-medium text-gray-700">Live Updates</span>
-                </div>
-              </motion.div>
-
-              {/* Decorative elements */}
-              <div className="absolute top-4 right-4 w-24 h-24 bg-azure-300/20 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-4 left-4 w-32 h-32 bg-azure-400/15 rounded-full blur-3xl"></div>
             </motion.div>
 
-            {/* Foreground device frame (Front Layer - with 3D perspective) */}
+            {/* Foreground Image with Glow */}
             <motion.div
-              className="absolute bottom-[5%] right-[5%] w-[85%] h-[75%] rounded-2xl shadow-2xl overflow-hidden border-2 border-white"
+              className="absolute bottom-[5%] right-[10%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
               initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                boxShadow: "0 30px 60px -15px rgba(69, 114, 173, 0.4)",
-                y: y2,
-              }}
+              style={{ y: y2 }}
             >
-              {/* TODO: Replace with your actual product screenshot */}
-              {/* <Image src="/product-screenshot-2.png" alt="Property Management Interface" fill className="object-cover" /> */}
-              <div className="w-full h-full bg-white/80 backdrop-blur-sm flex items-center justify-center p-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-azure-500/30 rounded-full flex items-center justify-center">
-                    <div className="w-8 h-8 bg-azure-500/50 rounded-full"></div>
-                  </div>
-                  <p className="text-gray-600 font-medium">Product Screenshot 2</p>
-                  <p className="text-gray-500 text-sm mt-2">Replace with /product-screenshot-2.png</p>
-                </div>
+              <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" />
+              {/* Foreground Glow */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-6 right-6 w-20 h-20 bg-azure-400/25 rounded-full blur-2xl"></div>
+                <div className="absolute bottom-6 left-6 w-28 h-28 bg-azure-300/20 rounded-full blur-3xl"></div>
               </div>
-
-              {/* Data visualization floating element */}
-              <motion.div
-                className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl p-4"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, delay: 0.5 }}
-              >
-                <div className="flex items-end gap-1">
-                  <div className="w-2 h-8 bg-azure-500 rounded"></div>
-                  <div className="w-2 h-12 bg-azure-400 rounded"></div>
-                  <div className="w-2 h-6 bg-azure-300 rounded"></div>
-                  <div className="w-2 h-14 bg-azure-500 rounded"></div>
-                </div>
-                <p className="text-xs text-gray-600 mt-2">Revenue Growth</p>
-              </motion.div>
-
-              {/* Decorative elements */}
-              <div className="absolute top-6 right-6 w-20 h-20 bg-azure-400/25 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-6 left-6 w-28 h-28 bg-azure-300/20 rounded-full blur-3xl"></div>
             </motion.div>
           </motion.div>
         </div>

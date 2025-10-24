@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, useScroll } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
@@ -46,7 +46,6 @@ export default function Navigation({
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { scrollYProgress } = useScroll()
 
   // Check if scrolled past threshold
   useEffect(() => {
@@ -81,20 +80,13 @@ export default function Navigation({
 
   return (
     <>
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-azure-500 via-coral-500 to-azure-500 z-50 origin-left"
-        style={{ scaleX: scrollYProgress }}
-      />
-
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white/90 backdrop-blur-md shadow-md py-2" : "bg-transparent py-4"
+          isScrolled ? "bg-white/90 backdrop-blur-md shadow-md py-5" : "bg-transparent py-6"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        style={{ paddingTop: "4px" }}
       >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
@@ -122,10 +114,10 @@ export default function Navigation({
             <button
               onClick={() => scrollToSection("cta")}
               className="px-4 py-2 bg-azure-500 text-white rounded-md text-sm font-medium hover:bg-azure-600 transition-colors"
-              onMouseEnter={() => onMouseEnter("button", "Schedule a Demo")}
+              onMouseEnter={() => onMouseEnter("button", "Book a Demo")}
               onMouseLeave={onMouseLeave}
             >
-              Schedule a Demo
+              Book a Demo
             </button>
           </nav>
 
@@ -158,7 +150,7 @@ export default function Navigation({
                 }}
                 className="px-4 py-2 bg-azure-500 text-white rounded-md text-center hover:bg-azure-600 transition-colors"
               >
-                Schedule a Demo
+                Book a Demo
               </button>
             </nav>
           </div>
