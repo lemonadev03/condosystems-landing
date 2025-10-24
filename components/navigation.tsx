@@ -23,6 +23,7 @@ type NavigationProps = {
     SHOW_CTA: boolean
     SHOW_NATIONWIDE: boolean
   }
+  hyperlinks?: Record<string, string>
 }
 
 export default function Navigation({
@@ -104,12 +105,12 @@ export default function Navigation({
             onMouseEnter={() => onMouseEnter("logo")}
             onMouseLeave={onMouseLeave}
           >
-            <div className="relative h-10 w-32 md:h-12 md:w-40">
+            <div className="relative h-10 w-48 md:h-12 md:w-56">
               <Image
                 src="/condo-systems-text.svg"
                 alt="Condo Systems"
                 fill
-                sizes="(max-width: 768px) 128px, 160px"
+                sizes="(max-width: 768px) 192px, 224px"
                 style={{ objectFit: "contain" }}
                 priority
               />

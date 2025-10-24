@@ -7,8 +7,9 @@ import Image from "next/image"
 type ValueSectionProps = {
   onMouseEnter: (variant: string, text?: string) => void
   onMouseLeave: () => void
-  valueInViewRef: any
+  valueInViewRef: (node: HTMLDivElement | null) => void
   showNationwide?: boolean
+  hyperlinks?: Record<string, string>
 }
 
 export default function ValueSection({

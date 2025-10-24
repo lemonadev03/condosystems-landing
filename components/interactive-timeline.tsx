@@ -1,11 +1,20 @@
 "use client"
+import type { ReactNode } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useInView } from "react-intersection-observer"
 import { CheckCircle2, Lightbulb, Target, Trophy, Users } from "lucide-react"
 
+type TimelineStepData = {
+  title: string
+  description: string
+  icon: ReactNode
+  image: string
+  details: string[]
+}
+
 export default function InteractiveTimeline() {
-  const steps = [
+  const steps: TimelineStepData[] = [
     {
       title: "Join the Team",
       description:
@@ -65,14 +74,14 @@ export default function InteractiveTimeline() {
       {/* Timeline steps */}
       <div className="space-y-16 md:space-y-24 relative">
         {steps.map((step, index) => (
-          <TimelineStep key={index} step={step} index={index} />
+          <TimelineStep key={step.title} step={step} index={index} />
         ))}
       </div>
     </div>
   )
 }
 
-function TimelineStep({ step, index }) {
+function TimelineStep({ step, index }: { step: TimelineStepData; index: number }) {
   const [ref, inView] = useInView({
     threshold: 0.5,
     triggerOnce: true,
@@ -113,7 +122,7 @@ function TimelineStep({ step, index }) {
               <h4 className="font-medium text-gray-800 mb-3">What to Expect:</h4>
               <ul className="space-y-2">
                 {step.details.map((detail, i) => (
-                  <li key={i} className="flex items-start gap-2">
+                  <li key={`${step.title}-detail-${i}`} className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-azure-500 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">{detail}</span>
                   </li>
@@ -128,8 +137,15 @@ function TimelineStep({ step, index }) {
             whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
             initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            animate={
+              inView
+                ? {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, delay: 0.2 },
+                  }
+                : {}
+            }
           >
             <Image
               src={step.image || "/placeholder.svg"}

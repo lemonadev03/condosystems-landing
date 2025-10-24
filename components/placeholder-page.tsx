@@ -16,8 +16,8 @@ export default function PlaceholderPage({ title }: PlaceholderPageProps) {
       <header className="bg-[#f8f8f8]/70 backdrop-blur-xl shadow-sm border-b border-gray-200/20 py-4">
         <div className="container mx-auto px-4 flex items-center">
           <div className="flex items-center">
-            <div className="relative h-8 w-40">
-              <Image src="/condo-systems-text.svg" alt="Condo Systems" fill sizes="160px" style={{ objectFit: "contain" }} />
+            <div className="relative h-8 w-56">
+              <Image src="/condo-systems-text.svg" alt="Condo Systems" fill sizes="224px" style={{ objectFit: "contain" }} />
             </div>
           </div>
         </div>

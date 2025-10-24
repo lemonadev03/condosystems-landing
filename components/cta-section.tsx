@@ -81,9 +81,7 @@ export default function CTASection({
             <a href={hyperlinks.SCHEDULE_CALL} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
-                className="w-full bg-white hover:bg-gray-100 text-azure-600 px-6 py-6 text-lg rounded-lg flex items-center justify-center gap-2 shadow-lg font-semibold"
-                onMouseEnter={() => onMouseEnter("button", "Schedule Now")}
-                onMouseLeave={onMouseLeave}
+                className="w-full bg-white hover:bg-white text-azure-600 px-6 py-6 text-lg rounded-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-xl font-semibold transition-shadow duration-200"
               >
                 Schedule a Call
                 <ArrowRight className="h-5 w-5" />

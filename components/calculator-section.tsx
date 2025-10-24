@@ -7,9 +7,14 @@ interface CalculatorSectionProps {
   onMouseEnter: (variant: string, text?: string) => void
   onMouseLeave: () => void
   calculatorInViewRef: (node: Element | null) => void
+  hyperlinks?: Record<string, string>
 }
 
-export default function CalculatorSection({ onMouseEnter, onMouseLeave, calculatorInViewRef }: CalculatorSectionProps) {
+export default function CalculatorSection({
+  onMouseEnter,
+  onMouseLeave,
+  calculatorInViewRef,
+}: CalculatorSectionProps) {
   return (
     <section id="calculator" ref={calculatorInViewRef} className="py-20 md:py-32 bg-[#f8f8f8]">
       <div className="container mx-auto px-4">

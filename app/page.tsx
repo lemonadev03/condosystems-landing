@@ -20,6 +20,7 @@ import Footer from "@/components/footer"
 import LoadingIndicator from "@/components/loading-indicator"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import SectionHeader from "@/components/section-header"
+import SectionBackground from "@/components/section-background"
 
 // Hyperlinks - centralized for easy management
 const HYPERLINKS = {
@@ -71,6 +72,13 @@ const SECTION_COLORS = {
   FAQ: "#FDFDFD",
   CTA: "#FDFDFD",
 }
+
+const SECTION_BACKGROUNDS = {
+  TESTIMONIALS:
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23f4f7fe'/%3E%3Cstop offset='100%25' stop-color='%23dce6fb'/%3E%3C/linearGradient%3E%3CradialGradient id='rad1' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.9'/%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23grad1)'/%3E%3Ccircle cx='260' cy='200' r='220' fill='url(%23rad1)'/%3E%3Ccircle cx='940' cy='540' r='260' fill='url(%23rad1)'/%3E%3C/svg%3E",
+  CALCULATOR:
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0%25' stop-color='%23fef6f4'/%3E%3Cstop offset='100%25' stop-color='%23f3f7ff'/%3E%3C/linearGradient%3E%3CradialGradient id='rad2' cx='70%25' cy='35%25' r='60%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.85'/%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23grad2)'/%3E%3Cellipse cx='860' cy='280' rx='260' ry='220' fill='url(%23rad2)'/%3E%3C/svg%3E",
+} as const
 
 // Import SmoothScroll with dynamic import to avoid SSR issues
 const SmoothScroll = dynamic(() => import("@/components/smooth-scroll"), {

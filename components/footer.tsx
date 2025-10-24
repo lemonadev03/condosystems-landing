@@ -8,8 +8,8 @@ export default function Footer() {
         {/* Logo | Text Blurb | All Rights Reserved */}
         <div className="flex items-center justify-between gap-8">
           {/* Logo */}
-          <div className="relative h-8 w-40 flex-shrink-0">
-            <Image src="/condo-systems-text.svg" alt="Condo Systems" fill sizes="160px" style={{ objectFit: "contain" }} />
+          <div className="relative h-8 w-56 flex-shrink-0">
+            <Image src="/condo-systems-text.svg" alt="Condo Systems" fill sizes="224px" style={{ objectFit: "contain" }} />
           </div>
 
           {/* Text Blurb */}

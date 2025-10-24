@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, type MotionValue } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,9 +10,10 @@ interface TestimonialsSectionProps {
   onMouseLeave: () => void
   scrollToSection: (sectionId: string) => void
   testimonialsInViewRef: (node: Element | null) => void
-  count1: any
-  count2: any
-  count3: any
+  count1: MotionValue<number>
+  count2: MotionValue<number>
+  count3: MotionValue<number>
+  hyperlinks?: Record<string, string>
 }
 
 export default function TestimonialsSection({
