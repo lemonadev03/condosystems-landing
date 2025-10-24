@@ -13,11 +13,12 @@ type NavigationProps = {
   activeSection: string
   featureFlags?: {
     SHOW_HERO: boolean
+    SHOW_VALUE_PROPOSITION: boolean
     SHOW_VALUE: boolean
-    SHOW_PROCESS: boolean
+    SHOW_FEATURES: boolean
     SHOW_TESTIMONIALS: boolean
     SHOW_CALCULATOR: boolean
-    SHOW_QUIZ: boolean
+    SHOW_OUTCOMES: boolean
     SHOW_FAQ: boolean
     SHOW_CTA: boolean
     SHOW_NATIONWIDE: boolean
@@ -31,11 +32,12 @@ export default function Navigation({
   activeSection,
   featureFlags = {
     SHOW_HERO: true,
+    SHOW_VALUE_PROPOSITION: true,
     SHOW_VALUE: true,
-    SHOW_PROCESS: true,
+    SHOW_FEATURES: true,
     SHOW_TESTIMONIALS: true,
     SHOW_CALCULATOR: true,
-    SHOW_QUIZ: true,
+    SHOW_OUTCOMES: true,
     SHOW_FAQ: true,
     SHOW_CTA: true,
     SHOW_NATIONWIDE: true,
@@ -63,11 +65,12 @@ export default function Navigation({
   // Navigation items based on feature flags
   const navigationItems = [
     { id: "hero", label: "Home", enabled: featureFlags.SHOW_HERO },
+    { id: "value-proposition", label: "Value Proposition", enabled: featureFlags.SHOW_VALUE_PROPOSITION },
     { id: "value", label: "Benefits", enabled: featureFlags.SHOW_VALUE },
-    { id: "process", label: "Journey", enabled: featureFlags.SHOW_PROCESS },
+    { id: "features", label: "Features", enabled: featureFlags.SHOW_FEATURES },
     { id: "testimonials", label: "Success Stories", enabled: featureFlags.SHOW_TESTIMONIALS },
     { id: "calculator", label: "Earnings", enabled: featureFlags.SHOW_CALCULATOR },
-    { id: "quiz", label: "Find Your Fit", enabled: featureFlags.SHOW_QUIZ },
+    { id: "outcomes", label: "Outcomes", enabled: featureFlags.SHOW_OUTCOMES },
     { id: "faq", label: "FAQ", enabled: featureFlags.SHOW_FAQ },
   ]
 

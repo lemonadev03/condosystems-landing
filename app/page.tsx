@@ -8,17 +8,17 @@ import dynamic from "next/dynamic"
 import CustomCursor from "@/components/custom-cursor"
 import Navigation from "@/components/navigation"
 import HeroSection from "@/components/hero-section"
+import ValuePropositionSection from "@/components/value-proposition-section"
 import ValueSection from "@/components/value-section"
-import ProcessSection from "@/components/process-section"
+import FeaturesSection from "@/components/features-section"
 import TestimonialsSection from "@/components/testimonials-section"
 import CalculatorSection from "@/components/calculator-section"
-import QuizSection from "@/components/quiz-section"
+import OutcomesSection from "@/components/outcomes-section"
 import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
 import LoadingIndicator from "@/components/loading-indicator"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
-import SectionBackground from "@/components/section-background"
 import SectionHeader from "@/components/section-header"
 
 // Hyperlinks - centralized for easy management
@@ -51,25 +51,25 @@ const HYPERLINKS = {
 // Feature flags - toggle these to enable/disable sections during development
 const FEATURE_FLAGS = {
   SHOW_HERO: true,
+  SHOW_VALUE_PROPOSITION: true,
   SHOW_VALUE: true,
-  SHOW_PROCESS: true,
+  SHOW_FEATURES: true,
   SHOW_TESTIMONIALS: false, // Success Stories - disabled as requested
   SHOW_CALCULATOR: false, // Income Calculator - previously disabled
-  SHOW_QUIZ: true,
-  SHOW_FAQ: true,
+  SHOW_OUTCOMES: true,
+  SHOW_FAQ: false,
   SHOW_CTA: true,
   SHOW_NATIONWIDE: false, // Nationwide Presence - disabled as requested
 }
 
-// Background images for sections
-const SECTION_BACKGROUNDS = {
-  VALUE: "/elegant-open-living.png",
-  PROCESS: "/sleek-modern-villa.png",
-  TESTIMONIALS: "/confident-agent-handshake.png",
-  CALCULATOR: "/collaborative-strategy.png",
-  QUIZ: "/tree-lined-avenue.png",
-  FAQ: "/open-house-tour.png",
-  CTA: "/real-estate-workshop.png",
+// Section background colors (replacing images for SaaS style)
+const SECTION_COLORS = {
+  VALUE_PROPOSITION: "#FDFDFD",
+  VALUE: "#FAFAFA",
+  FEATURES: "#FDFDFD",
+  OUTCOMES: "#FAFAFA",
+  FAQ: "#FDFDFD",
+  CTA: "#FDFDFD",
 }
 
 // Import SmoothScroll with dynamic import to avoid SSR issues
@@ -81,10 +81,8 @@ export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0)
   const [cursorVariant, setCursorVariant] = useState("default")
   const [cursorText, setCursorText] = useState("")
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const [isLoading, setIsLoading] = useState(true)
-  const videoRef = useRef<HTMLVideoElement>(null)
   const prefersReducedMotion = useReducedMotion()
 
   // Handle initial loading
@@ -115,25 +113,27 @@ export default function LandingPage() {
 
   // Intersection observers for sections
   const [heroInViewRef, heroInView] = useInView({ threshold: 0.5 })
+  const [valuePropositionInViewRef, valuePropositionInView] = useInView({ threshold: 0.3 })
   const [valueInViewRef, valueInView] = useInView({ threshold: 0.3 })
-  const [processInViewRef, processInView] = useInView({ threshold: 0.3 })
+  const [featuresInViewRef, featuresInView] = useInView({ threshold: 0.3 })
   const [testimonialsInViewRef, testimonialsInView] = useInView({ threshold: 0.3 })
   const [calculatorInViewRef, calculatorInView] = useInView({ threshold: 0.3 })
-  const [quizInViewRef, quizInView] = useInView({ threshold: 0.3 })
+  const [outcomesInViewRef, outcomesInView] = useInView({ threshold: 0.3 })
   const [ctaInViewRef, ctaInView] = useInView({ threshold: 0.5 })
   const [faqInViewRef, faqInView] = useInView({ threshold: 0.3 })
 
   // Update active section based on which section is in view
   useEffect(() => {
     if (heroInView) setActiveSection("hero")
+    else if (valuePropositionInView) setActiveSection("value-proposition")
     else if (valueInView) setActiveSection("value")
-    else if (processInView) setActiveSection("process")
+    else if (featuresInView) setActiveSection("features")
     else if (FEATURE_FLAGS.SHOW_TESTIMONIALS && testimonialsInView) setActiveSection("testimonials")
     else if (FEATURE_FLAGS.SHOW_CALCULATOR && calculatorInView) setActiveSection("calculator")
-    else if (quizInView) setActiveSection("quiz")
+    else if (outcomesInView) setActiveSection("outcomes")
     else if (faqInView) setActiveSection("faq")
     else if (ctaInView) setActiveSection("cta")
-  }, [heroInView, valueInView, processInView, testimonialsInView, calculatorInView, quizInView, faqInView, ctaInView])
+  }, [heroInView, valuePropositionInView, valueInView, featuresInView, testimonialsInView, calculatorInView, outcomesInView, faqInView, ctaInView])
 
   // Handle scroll events
   useEffect(() => {
@@ -144,18 +144,6 @@ export default function LandingPage() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  // Handle video play/pause
-  const handleVideoPlay = () => {
-    if (videoRef.current) {
-      if (isVideoPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsVideoPlaying(!isVideoPlaying)
-    }
-  }
 
   // Cursor handlers
   const handleMouseEnter = (variant: string, text = "") => {
@@ -225,74 +213,67 @@ export default function LandingPage() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 scrollToSection={scrollToSection}
-                videoRef={videoRef}
-                isVideoPlaying={isVideoPlaying}
-                handleVideoPlay={handleVideoPlay}
                 heroInViewRef={heroInViewRef}
                 hyperlinks={HYPERLINKS}
               />
             )}
 
             {/* Value Proposition Section */}
-            {FEATURE_FLAGS.SHOW_VALUE && (
-              <SectionBackground
-                imageSrc={SECTION_BACKGROUNDS.VALUE}
-                alt="Elegant open living space"
-                overlayOpacity={0.92}
-                fixedBackground={true}
+            {FEATURE_FLAGS.SHOW_VALUE_PROPOSITION && (
+              <section
+                id="value-proposition"
+                ref={valuePropositionInViewRef}
+                className="py-20 md:py-32 min-h-screen flex items-center"
+                style={{ backgroundColor: SECTION_COLORS.VALUE_PROPOSITION }}
               >
-                <motion.section
-                  id="value"
-                  ref={valueInViewRef}
-                  className="py-20 md:py-32"
-                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="container mx-auto px-4">
-                    <SectionHeader
-                      title={
-                        <>
-                          Why Top Agents Choose <span className="text-white">EZ BIG</span>
-                        </>
-                      }
-                      subtitle="We've reimagined the real estate affiliate experience to maximize your potential and elevate your career."
-                    />
-                    <ValueSection
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                      valueInViewRef={() => {}}
-                      showNationwide={FEATURE_FLAGS.SHOW_NATIONWIDE}
-                      hyperlinks={HYPERLINKS}
-                    />
-                  </div>
-                </motion.section>
-              </SectionBackground>
+                <ValuePropositionSection
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  valuePropositionInViewRef={() => {}}
+                />
+              </section>
             )}
 
-            {/* Process Section */}
-            {FEATURE_FLAGS.SHOW_PROCESS && (
-              <SectionBackground
-                imageSrc={SECTION_BACKGROUNDS.PROCESS}
-                alt="Sleek modern villa"
-                overlayOpacity={0.9}
-                fixedBackground={true}
+            {/* Value Section */}
+            {FEATURE_FLAGS.SHOW_VALUE && (
+              <section
+                id="value"
+                ref={valueInViewRef}
+                className="py-20 md:py-32 min-h-screen flex items-center"
+                style={{ backgroundColor: SECTION_COLORS.VALUE }}
               >
-                <motion.section
-                  id="process"
-                  ref={processInViewRef}
-                  className="py-20 md:py-32"
-                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="container mx-auto px-4">
-                    <ProcessSection processInViewRef={() => {}} hyperlinks={HYPERLINKS} />
-                  </div>
-                </motion.section>
-              </SectionBackground>
+                <div className="container mx-auto px-4 w-full">
+                  <SectionHeader
+                    title={
+                      <>
+                        Why Top Agents Choose <span className="text-white">EZ BIG</span>
+                      </>
+                    }
+                    subtitle="We've reimagined the real estate affiliate experience to maximize your potential and elevate your career."
+                  />
+                  <ValueSection
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    valueInViewRef={() => {}}
+                    showNationwide={FEATURE_FLAGS.SHOW_NATIONWIDE}
+                    hyperlinks={HYPERLINKS}
+                  />
+                </div>
+              </section>
+            )}
+
+            {/* Features Section */}
+            {FEATURE_FLAGS.SHOW_FEATURES && (
+              <section
+                id="features"
+                ref={featuresInViewRef}
+                className="py-20 md:py-32 min-h-screen flex items-center"
+                style={{ backgroundColor: SECTION_COLORS.FEATURES }}
+              >
+                <div className="container mx-auto px-4 w-full">
+                  <FeaturesSection featuresInViewRef={() => {}} />
+                </div>
+              </section>
             )}
 
             {/* Testimonials Section */}
@@ -355,96 +336,58 @@ export default function LandingPage() {
               </SectionBackground>
             )}
 
-            {/* Agent Type Quiz Section */}
-            {FEATURE_FLAGS.SHOW_QUIZ && (
-              <SectionBackground
-                imageSrc={SECTION_BACKGROUNDS.QUIZ}
-                alt="Tree lined avenue"
-                overlayOpacity={0.75}
-                blurAmount="5px"
-                fixedBackground={true}
+            {/* Outcomes Section */}
+            {FEATURE_FLAGS.SHOW_OUTCOMES && (
+              <section
+                id="outcomes"
+                ref={outcomesInViewRef}
+                className="py-20 md:py-32 min-h-screen flex items-center"
+                style={{ backgroundColor: SECTION_COLORS.OUTCOMES }}
               >
-                <motion.section
-                  id="quiz"
-                  ref={quizInViewRef}
-                  className="py-20 md:py-32"
-                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="container mx-auto px-4">
-                    <QuizSection
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                      quizInViewRef={() => {}}
-                      hyperlinks={HYPERLINKS}
-                      useBlueHeader={true}
-                    />
-                  </div>
-                </motion.section>
-              </SectionBackground>
+                <div className="container mx-auto px-4 w-full">
+                  <OutcomesSection outcomesInViewRef={() => {}} />
+                </div>
+              </section>
             )}
 
             {/* FAQ Section */}
             {FEATURE_FLAGS.SHOW_FAQ && (
-              <SectionBackground
-                imageSrc={SECTION_BACKGROUNDS.FAQ}
-                alt="Open house tour"
-                overlayOpacity={0.9}
-                fixedBackground={true}
+              <section
+                id="faq"
+                ref={faqInViewRef}
+                className="py-20 md:py-32 min-h-screen flex items-center"
+                style={{ backgroundColor: SECTION_COLORS.FAQ }}
               >
-                <motion.section
-                  id="faq"
-                  ref={faqInViewRef}
-                  className="py-20 md:py-32"
-                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="container mx-auto px-4">
-                    <FAQSection
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                      hyperlinks={HYPERLINKS}
-                      useBlueHeader={true}
-                    />
-                  </div>
-                </motion.section>
-              </SectionBackground>
+                <div className="container mx-auto px-4 w-full">
+                  <FAQSection
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    hyperlinks={HYPERLINKS}
+                    useBlueHeader={true}
+                  />
+                </div>
+              </section>
             )}
 
             {/* CTA Section */}
             {FEATURE_FLAGS.SHOW_CTA && (
-              <SectionBackground
-                imageSrc={SECTION_BACKGROUNDS.CTA}
-                alt="Real estate workshop"
-                overlayOpacity={0.65}
-                blurAmount="5px"
-                fixedBackground={true}
+              <section
+                id="cta"
+                ref={ctaInViewRef}
+                className="py-20 md:py-32 min-h-screen flex items-center"
+                style={{ backgroundColor: SECTION_COLORS.CTA }}
               >
-                <motion.section
-                  id="cta"
-                  ref={ctaInViewRef}
-                  className="py-20 md:py-32"
-                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: prefersReducedMotion ? 0.05 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="container mx-auto px-4">
-                    <CTASection
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                      ctaInViewRef={() => {}}
-                      showMoreBackground={true}
-                      hyperlinks={HYPERLINKS}
-                      useBlueHeader={true}
-                    />
-                  </div>
-                </motion.section>
-              </SectionBackground>
+                <div className="container mx-auto px-4 w-full">
+                  <CTASection
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    ctaInViewRef={() => {}}
+                    showMoreBackground={true}
+                    hyperlinks={HYPERLINKS}
+                    useBlueHeader={true}
+                  />
+                </div>
+              </section>
             )}
           </main>
 
