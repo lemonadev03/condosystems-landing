@@ -182,18 +182,72 @@ export default function LandingPage() {
         <div className="relative overflow-hidden bg-[#f8f8f8] font-sans">
           <CustomCursor variant={cursorVariant} text={cursorText} />
 
-          {/* Background gradient overlay that changes with scroll */}
-          <motion.div
-            className="fixed inset-0 pointer-events-none opacity-10"
+          {/* LAYER 1: Base gradient with subtle color variation */}
+          <div
+            className="fixed inset-0 pointer-events-none z-0"
             style={{
-              background: `linear-gradient(135deg, ${backgroundBlue}, transparent)`,
-              zIndex: 0,
+              background: `
+                radial-gradient(circle at 20% 50%, rgba(69, 114, 173, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(69, 114, 173, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, #fafafa 0%, #f8f8f8 50%, #f5f5f5 100%)
+              `,
             }}
           />
 
-          {/* Subtle geometric patterns */}
-          <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('/Interlocking Dimensions.png')] bg-repeat"></div>
+          {/* LAYER 2: Animated mesh gradient overlay */}
+          <motion.div
+            className="fixed inset-0 pointer-events-none z-0 opacity-30"
+            animate={{
+              background: [
+                "radial-gradient(at 0% 0%, rgba(69, 114, 173, 0.08) 0%, transparent 50%)",
+                "radial-gradient(at 100% 100%, rgba(69, 114, 173, 0.08) 0%, transparent 50%)",
+                "radial-gradient(at 0% 0%, rgba(69, 114, 173, 0.08) 0%, transparent 50%)",
+              ],
+            }}
+            transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          />
+
+          {/* LAYER 3: Noise texture for grain */}
+          <div
+            className="fixed inset-0 pointer-events-none z-0 opacity-[0.015]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              mixBlendMode: "multiply",
+            }}
+          />
+
+          {/* LAYER 4: Floating orbs for depth */}
+          <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <motion.div
+              className="absolute w-[800px] h-[800px] rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(69, 114, 173, 0.06) 0%, transparent 70%)",
+                filter: "blur(60px)",
+                top: "-20%",
+                left: "-10%",
+              }}
+              animate={{
+                x: [0, 50, 0],
+                y: [0, 30, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute w-[600px] h-[600px] rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(69, 114, 173, 0.04) 0%, transparent 70%)",
+                filter: "blur(80px)",
+                bottom: "-15%",
+                right: "-5%",
+              }}
+              animate={{
+                x: [0, -30, 0],
+                y: [0, -50, 0],
+                scale: [1, 1.15, 1],
+              }}
+              transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            />
           </div>
 
           {/* Navigation */}
@@ -223,9 +277,17 @@ export default function LandingPage() {
               <section
                 id="value-proposition"
                 ref={valuePropositionInViewRef}
-                className="py-20 md:py-32 min-h-screen flex items-center"
+                className="py-20 md:py-32 min-h-screen flex items-center relative"
                 style={{ backgroundColor: SECTION_COLORS.VALUE_PROPOSITION }}
               >
+                {/* Radial gradient vignette */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at center, transparent 0%, rgba(69, 114, 173, 0.02) 100%)",
+                  }}
+                />
                 <ValuePropositionSection
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
@@ -267,9 +329,20 @@ export default function LandingPage() {
               <section
                 id="features"
                 ref={featuresInViewRef}
-                className="py-20 md:py-32 min-h-screen flex items-center"
+                className="py-20 md:py-32 min-h-screen flex items-center relative"
                 style={{ backgroundColor: SECTION_COLORS.FEATURES }}
               >
+                {/* Subtle geometric texture */}
+                <div
+                  className="absolute inset-0 opacity-[0.015]"
+                  style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(69, 114, 173, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(69, 114, 173, 0.1) 1px, transparent 1px)
+                    `,
+                    backgroundSize: "60px 60px",
+                  }}
+                />
                 <div className="container mx-auto px-4 w-full">
                   <FeaturesSection featuresInViewRef={() => {}} />
                 </div>
@@ -341,9 +414,17 @@ export default function LandingPage() {
               <section
                 id="outcomes"
                 ref={outcomesInViewRef}
-                className="py-20 md:py-32 min-h-screen flex items-center"
+                className="py-20 md:py-32 min-h-screen flex items-center relative"
                 style={{ backgroundColor: SECTION_COLORS.OUTCOMES }}
               >
+                {/* Gradient accent overlay */}
+                <div
+                  className="absolute inset-0 opacity-30"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 80% 20%, rgba(69, 114, 173, 0.08) 0%, transparent 50%)",
+                  }}
+                />
                 <div className="container mx-auto px-4 w-full">
                   <OutcomesSection outcomesInViewRef={() => {}} />
                 </div>
@@ -391,7 +472,7 @@ export default function LandingPage() {
             )}
           </main>
 
-          <Footer hyperlinks={HYPERLINKS} />
+          <Footer />
         </div>
       </SmoothScroll>
     </>

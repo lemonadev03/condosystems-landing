@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, useScroll } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
@@ -45,6 +45,7 @@ export default function Navigation({
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const { scrollYProgress } = useScroll()
 
   // Check if scrolled past threshold
   useEffect(() => {
@@ -78,14 +79,22 @@ export default function Navigation({
   const enabledNavigationItems = navigationItems.filter((item) => item.enabled)
 
   return (
-    <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-md py-2" : "bg-transparent py-4"
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <>
+      {/* Scroll progress bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-azure-500 via-coral-500 to-azure-500 z-50 origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
+
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-white/90 backdrop-blur-md shadow-md py-2" : "bg-transparent py-4"
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        style={{ paddingTop: "4px" }}
+      >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -97,8 +106,8 @@ export default function Navigation({
           >
             <div className="relative h-10 w-32 md:h-12 md:w-40">
               <Image
-                src="/ez-big-banner-logo.png"
-                alt="EZ BIG"
+                src="/condo-systems-text.svg"
+                alt="Condo Systems"
                 fill
                 sizes="(max-width: 768px) 128px, 160px"
                 style={{ objectFit: "contain" }}
@@ -109,28 +118,13 @@ export default function Navigation({
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            {enabledNavigationItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleSectionClick(item.id)}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  activeSection === item.id
-                    ? "text-azure-600 bg-azure-50"
-                    : "text-gray-700 hover:text-azure-600 hover:bg-gray-100"
-                }`}
-                onMouseEnter={() => onMouseEnter("link", item.label)}
-                onMouseLeave={onMouseLeave}
-              >
-                {item.label}
-              </button>
-            ))}
             <button
               onClick={() => scrollToSection("cta")}
-              className="ml-2 px-4 py-2 bg-azure-500 text-white rounded-md text-sm font-medium hover:bg-azure-600 transition-colors"
-              onMouseEnter={() => onMouseEnter("button", "Sign Up Now")}
+              className="px-4 py-2 bg-azure-500 text-white rounded-md text-sm font-medium hover:bg-azure-600 transition-colors"
+              onMouseEnter={() => onMouseEnter("button", "Schedule a Demo")}
               onMouseLeave={onMouseLeave}
             >
-              Sign Up Now
+              Schedule a Demo
             </button>
           </nav>
 
@@ -156,19 +150,6 @@ export default function Navigation({
         >
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-2">
-              {enabledNavigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleSectionClick(item.id)}
-                  className={`px-4 py-2 rounded-md text-left ${
-                    activeSection === item.id
-                      ? "text-azure-600 bg-azure-50"
-                      : "text-gray-700 hover:text-azure-600 hover:bg-gray-100"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
               <button
                 onClick={() => {
                   scrollToSection("cta")
@@ -176,12 +157,13 @@ export default function Navigation({
                 }}
                 className="px-4 py-2 bg-azure-500 text-white rounded-md text-center hover:bg-azure-600 transition-colors"
               >
-                Sign Up Now
+                Schedule a Demo
               </button>
             </nav>
           </div>
         </motion.div>
       )}
     </motion.header>
+    </>
   )
 }

@@ -3,52 +3,70 @@ import Image from "next/image"
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 border-t border-gray-200 py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+    <footer className="relative bg-white border-t border-gray-200 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Logo | Text Blurb | All Rights Reserved */}
+        <div className="flex items-center justify-between gap-8">
+          {/* Logo */}
+          <div className="relative h-8 w-40 flex-shrink-0">
+            <Image src="/condo-systems-text.svg" alt="Condo Systems" fill sizes="160px" style={{ objectFit: "contain" }} />
+          </div>
+
+          {/* Text Blurb */}
+          <p className="text-gray-700 text-sm leading-relaxed flex-1">
+            Redefining success in real estate through innovation, support, and exceptional opportunities.
+          </p>
+
+          {/* All Rights Reserved */}
+          <p className="text-gray-600 text-xs whitespace-nowrap flex-shrink-0">
+            &copy; {new Date().getFullYear()} EZ BIG. All rights reserved.
+          </p>
+        </div>
+
+        {/* Commented out - old multi-column layout
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+          <div>
+            <div className="flex items-center gap-2 mb-6">
               <div className="relative h-8 w-24">
                 <Image src="/ez-big-banner-logo.png" alt="EZ BIG" fill sizes="96px" style={{ objectFit: "contain" }} />
               </div>
-              {/* <span className="text-xl font-bold text-azure-500">EZ BIG</span> */}
             </div>
-            <p className="text-gray-600 mb-4 max-w-sm">
+            <p className="text-gray-700 mb-4 max-w-sm leading-relaxed">
               Redefining success in real estate through innovation, support, and exceptional opportunities.
             </p>
           </div>
 
-          <div className="md:justify-self-center">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Company</h3>
-            <ul className="space-y-2">
+          <div>
+            <h3 className="text-base font-bold text-gray-900 mb-6">Company</h3>
+            <ul className="space-y-3">
               <li>
-                <Link href="/about-us" className="text-gray-600 hover:text-azure-500 transition-colors">
+                <Link href="/about-us" className="text-gray-700 hover:text-azure-600 transition-colors duration-200">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/our-team" className="text-gray-600 hover:text-azure-500 transition-colors">
+                <Link href="/our-team" className="text-gray-700 hover:text-azure-600 transition-colors duration-200">
                   Our Team
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-azure-500 transition-colors">
+                <Link href="/contact" className="text-gray-700 hover:text-azure-600 transition-colors duration-200">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="md:justify-self-end">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Legal</h3>
-            <ul className="space-y-2">
+          <div>
+            <h3 className="text-base font-bold text-gray-900 mb-6">Legal</h3>
+            <ul className="space-y-3">
               <li>
-                <Link href="/privacy-policy" className="text-gray-600 hover:text-azure-500 transition-colors">
+                <Link href="/privacy-policy" className="text-gray-700 hover:text-azure-600 transition-colors duration-200">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="text-gray-600 hover:text-azure-500 transition-colors">
+                <Link href="/terms-of-service" className="text-gray-700 hover:text-azure-600 transition-colors duration-200">
                   Terms of Service
                 </Link>
               </li>
@@ -57,8 +75,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-200 mt-12 pt-8 text-center">
-          <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} EZ BIG. All rights reserved.</p>
+          <p className="text-gray-600 text-sm">&copy; {new Date().getFullYear()} EZ BIG. All rights reserved.</p>
         </div>
+        */}
       </div>
     </footer>
   )
