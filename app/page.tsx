@@ -348,7 +348,7 @@ export default function LandingPage() {
                   }}
                 />
                 <div className="container mx-auto px-4 w-full">
-                  <FeaturesSection featuresInViewRef={() => {}} />
+                  <FeaturesSection featuresInViewRef={() => {}} hyperlinks={HYPERLINKS} />
                 </div>
               </section>
             )}

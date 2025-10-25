@@ -67,7 +67,7 @@ export default function HeroSection({
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f8f8f8]"
     >
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-16 items-center justify-items-center lg:justify-items-start max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[38%_62%] gap-12 lg:gap-20 items-center justify-items-center lg:justify-items-start max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
           <motion.div
             custom={0.5}
@@ -143,7 +143,7 @@ export default function HeroSection({
             <div className="hidden lg:block relative w-full" style={{ aspectRatio: "3024 / 1794" }}>
               {/* Background Image with Glow */}
               <motion.div
-                className="absolute top-[5%] left-[-5%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
+                className="absolute top-[5%] left-[0%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -159,7 +159,7 @@ export default function HeroSection({
 
               {/* Foreground Image with Glow */}
               <motion.div
-                className="absolute bottom-[5%] right-[10%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
+                className="absolute bottom-[5%] right-[5%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
