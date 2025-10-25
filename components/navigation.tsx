@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 
 type NavigationProps = {
   onMouseEnter: (variant: string, text?: string) => void
@@ -111,7 +111,16 @@ export default function Navigation({
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-4">
+            <a
+              href="tel:+639214529051"
+              className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-azure-600 transition-colors text-sm font-medium"
+              onMouseEnter={() => onMouseEnter("link", "Call us")}
+              onMouseLeave={onMouseLeave}
+            >
+              <Phone size={16} />
+              (+63) 921 452 9051
+            </a>
             <a
               href={hyperlinks?.SCHEDULE_CALL}
               target="_blank"
@@ -146,6 +155,14 @@ export default function Navigation({
         >
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-2">
+              <a
+                href="tel:+639214529051"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center justify-center gap-2 px-4 py-2 text-gray-700 hover:text-azure-600 transition-colors border border-gray-300 rounded-md"
+              >
+                <Phone size={16} />
+                (+63) 921 452 9051
+              </a>
               <a
                 href={hyperlinks?.SCHEDULE_CALL}
                 target="_blank"

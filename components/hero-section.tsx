@@ -67,7 +67,7 @@ export default function HeroSection({
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f8f8f8]"
     >
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-16 items-center justify-items-center lg:justify-items-start max-w-7xl mx-auto">
           {/* Left Column - Text Content */}
           <motion.div
             custom={0.5}
@@ -96,17 +96,17 @@ export default function HeroSection({
               </span>
             </p>
 
-            {/* CTA Button with gradient */}
+            {/* CTA Button */}
             <div className="pt-4 space-y-4">
               <Button
                 size="lg"
-                className="relative overflow-hidden bg-gradient-to-r from-azure-500 to-azure-600 hover:from-azure-600 hover:to-coral-500 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-azure-500 hover:bg-azure-600 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
                 onMouseEnter={() => onMouseEnter("button", "Book a Demo")}
                 onMouseLeave={onMouseLeave}
                 asChild
               >
                 <a href={hyperlinks.SCHEDULE_CALL} target="_blank" rel="noopener noreferrer">
-                  <span className="relative z-10">Book a Demo</span>
+                  Book a Demo
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
@@ -137,39 +137,77 @@ export default function HeroSection({
             initial="hidden"
             animate={controls}
             className="relative w-full"
-            style={{ aspectRatio: "3024 / 1794" }}
+            style={{ aspectRatio: "auto" }}
           >
-            {/* Background Image with Glow */}
-            <motion.div
-              className="absolute top-[5%] left-[-5%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
-              initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              style={{ y: y1 }}
-            >
-              <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" />
-              {/* Background Glow */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-4 right-4 w-24 h-24 bg-azure-300/20 rounded-full blur-2xl"></div>
-                <div className="absolute bottom-4 left-4 w-32 h-32 bg-azure-400/15 rounded-full blur-3xl"></div>
-              </div>
-            </motion.div>
+            {/* Desktop: Absolute positioning layout */}
+            <div className="hidden lg:block relative w-full" style={{ aspectRatio: "3024 / 1794" }}>
+              {/* Background Image with Glow */}
+              <motion.div
+                className="absolute top-[5%] left-[-5%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{ y: y1 }}
+              >
+                <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" />
+                {/* Background Glow */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-4 right-4 w-24 h-24 bg-azure-300/20 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-4 left-4 w-32 h-32 bg-azure-400/15 rounded-full blur-3xl"></div>
+                </div>
+              </motion.div>
 
-            {/* Foreground Image with Glow */}
-            <motion.div
-              className="absolute bottom-[5%] right-[10%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
-              initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              style={{ y: y2 }}
-            >
-              <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" />
-              {/* Foreground Glow */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-6 right-6 w-20 h-20 bg-azure-400/25 rounded-full blur-2xl"></div>
-                <div className="absolute bottom-6 left-6 w-28 h-28 bg-azure-300/20 rounded-full blur-3xl"></div>
-              </div>
-            </motion.div>
+              {/* Foreground Image with Glow */}
+              <motion.div
+                className="absolute bottom-[5%] right-[10%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                style={{ y: y2 }}
+              >
+                <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" priority />
+                {/* Foreground Glow */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-6 right-6 w-20 h-20 bg-azure-400/25 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-6 left-6 w-28 h-28 bg-azure-300/20 rounded-full blur-3xl"></div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Mobile: Layered layout with container */}
+            <div className="lg:hidden relative" style={{ width: "85%", aspectRatio: "3024 / 1794", margin: "0 auto" }}>
+              {/* Background Image with Glow */}
+              <motion.div
+                className="absolute top-[5%] left-[-5%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{ y: y1 }}
+              >
+                <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" />
+                {/* Background Glow */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-azure-300/20 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-4 left-4 w-16 h-16 bg-azure-400/15 rounded-full blur-3xl"></div>
+                </div>
+              </motion.div>
+
+              {/* Foreground Image with Glow */}
+              <motion.div
+                className="absolute bottom-[5%] right-[10%] w-[100%] h-[100%] rounded-2xl shadow-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                style={{ y: y2 }}
+              >
+                <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" priority />
+                {/* Foreground Glow */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-azure-400/25 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-4 left-4 w-16 h-16 bg-azure-300/20 rounded-full blur-3xl"></div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

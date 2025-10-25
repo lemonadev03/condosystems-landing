@@ -63,13 +63,7 @@ export default function CTASection({
         </div>
 
         {/* Main CTA Component */}
-        <motion.div
-          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-12 mb-8 grid grid-cols-1 lg:grid-cols-2 gap-12"
-        >
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-12 mb-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left: CTA Card */}
           <div className="flex flex-col justify-between">
             <div>
@@ -117,7 +111,7 @@ export default function CTASection({
               <p className="text-blue-100 text-sm italic">and many more...</p>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Benefits Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -128,7 +122,7 @@ export default function CTASection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 hover:bg-white/15 transition-all duration-300"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 hover:bg-white/15"
             >
               <h4 className="text-xl font-bold text-white mb-3">{benefit.title}</h4>
               <p className="text-blue-100 text-sm leading-relaxed">{benefit.description}</p>

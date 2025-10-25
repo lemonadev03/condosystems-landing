@@ -106,7 +106,7 @@ function OutcomeCard({
         backgroundSize: "200px 200px",
         backgroundPosition: "0 0",
       }}
-      className="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 border border-gray-100/50 group cursor-pointer overflow-hidden
+      className="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl p-8 border border-gray-100/50 group cursor-pointer overflow-hidden
                  before:absolute before:inset-0 before:bg-gradient-to-br before:from-azure-50/30 before:to-transparent before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500
                  after:absolute after:inset-0 after:opacity-[0.02] after:pointer-events-none"
     >
