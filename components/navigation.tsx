@@ -43,6 +43,7 @@ export default function Navigation({
     SHOW_CTA: true,
     SHOW_NATIONWIDE: true,
   },
+  hyperlinks,
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -99,7 +100,7 @@ export default function Navigation({
           >
             <div className="relative h-10 w-48 md:h-12 md:w-56">
               <Image
-                src="/condo-systems-text.svg"
+                src="/condo-systems-text.png"
                 alt="Condo Systems"
                 fill
                 sizes="(max-width: 768px) 192px, 224px"
@@ -111,14 +112,16 @@ export default function Navigation({
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            <button
-              onClick={() => scrollToSection("cta")}
+            <a
+              href={hyperlinks?.SCHEDULE_CALL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 bg-azure-500 text-white rounded-md text-sm font-medium hover:bg-azure-600 transition-colors"
               onMouseEnter={() => onMouseEnter("button", "Book a Demo")}
               onMouseLeave={onMouseLeave}
             >
               Book a Demo
-            </button>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -143,15 +146,15 @@ export default function Navigation({
         >
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-2">
-              <button
-                onClick={() => {
-                  scrollToSection("cta")
-                  setIsMenuOpen(false)
-                }}
+              <a
+                href={hyperlinks?.SCHEDULE_CALL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
                 className="px-4 py-2 bg-azure-500 text-white rounded-md text-center hover:bg-azure-600 transition-colors"
               >
                 Book a Demo
-              </button>
+              </a>
             </nav>
           </div>
         </motion.div>

@@ -24,14 +24,14 @@ import SectionBackground from "@/components/section-background"
 
 // Hyperlinks - centralized for easy management
 const HYPERLINKS = {
-  JOIN_EZBIG: "https://onboarding.ezbig.com",
-  SIGN_IN: "https://signin.ezbig.com",
-  SCHEDULE_CALL: "https://calendly.com/ezbig/intro",
-  FACEBOOK: "https://facebook.com/ezbig",
-  TWITTER: "https://twitter.com/ezbig",
-  INSTAGRAM: "https://instagram.com/ezbig",
-  LINKEDIN: "https://linkedin.com/company/ezbig",
-  YOUTUBE: "https://youtube.com/c/ezbig",
+  JOIN_CondoSystems: "https://onboarding.CondoSystems.com",
+  SIGN_IN: "https://signin.CondoSystems.com",
+  SCHEDULE_CALL: "https://calendly.com/lesmon-bscale/bscale-discovery",
+  FACEBOOK: "https://facebook.com/CondoSystems",
+  TWITTER: "https://twitter.com/CondoSystems",
+  INSTAGRAM: "https://instagram.com/CondoSystems",
+  LINKEDIN: "https://linkedin.com/company/CondoSystems",
+  YOUTUBE: "https://youtube.com/c/CondoSystems",
   PRIVACY_POLICY: "/privacy-policy",
   TERMS_OF_SERVICE: "/terms-of-service",
   COOKIE_POLICY: "/cookie-policy",
@@ -43,7 +43,7 @@ const HYPERLINKS = {
   PRESS: "/press",
   CONTACT: "/contact",
   BLOG: "/blog",
-  AGENT_RESOURCES: "/agent-resources",
+  PROPERTY_RESOURCES: "/property-resources",
   TRAINING: "/training",
   EVENTS: "/events",
   FAQ: "/faq",
@@ -314,12 +314,8 @@ export default function LandingPage() {
               >
                 <div className="container mx-auto px-4 w-full">
                   <SectionHeader
-                    title={
-                      <>
-                        Why Top Agents Choose <span className="text-white">EZ BIG</span>
-                      </>
-                    }
-                    subtitle="We've reimagined the real estate affiliate experience to maximize your potential and elevate your career."
+                    title="Who Does CondoSystems Support?"
+                    subtitle="We dove into the inner workings of condo management to create a platform that truly works for everyone involved."
                   />
                   <ValueSection
                     onMouseEnter={handleMouseEnter}

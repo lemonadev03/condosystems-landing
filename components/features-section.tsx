@@ -12,24 +12,24 @@ export default function FeaturesSection({ featuresInViewRef }: FeaturesSectionPr
 
   const features = [
     {
-      title: "Powerful Analytics",
+      title: "Financial Operations",
       description:
-        "Track and analyze your performance with real-time data insights. Make informed decisions with comprehensive dashboards and reporting tools.",
+        "Automate billing, track payments in real-time, and generate accurate financial reports. Keep cash flow healthy with on-time collections and complete visibility into your building's finances.",
     },
     {
-      title: "Seamless Integration",
+      title: "Maintenance Management and Ticketing",
       description:
-        "Connect with your existing tools and workflows effortlessly. Our platform integrates with all the services you already use.",
+        "Track every work order from submission to completion. Assign tasks to staff, monitor progress, and keep residents updated automatically—no request falls through the cracks.",
     },
     {
-      title: "Advanced Automation",
+      title: "Document Management System",
       description:
-        "Automate repetitive tasks and focus on what matters most. Set up workflows that run on autopilot and save hours every week.",
+        "Store, organize, and share all building documents in one secure location. From contracts to compliance records, find what you need instantly with powerful search and categorization.",
     },
     {
-      title: "Team Collaboration",
+      title: "Reporting and Analytics",
       description:
-        "Work together seamlessly with your team members. Share insights, assign tasks, and communicate all in one place.",
+        "Make data-driven decisions with comprehensive dashboards and customizable reports. Track key metrics, identify trends, and optimize operations with actionable insights.",
     },
   ]
 
@@ -37,10 +37,10 @@ export default function FeaturesSection({ featuresInViewRef }: FeaturesSectionPr
     <div ref={featuresInViewRef} className="w-full">
       <div className="text-center mb-20">
         <h2 className="inline-block bg-azure-500 text-white px-6 py-3 rounded-lg text-3xl md:text-5xl font-bold mb-6">
-          Features
+          Every feature you need, all in one place.
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Everything you need to succeed, all in one powerful platform.
+        Connected systems that eliminate busywork and keep your entire operation in sync. No silos, just seamless integration.
         </p>
       </div>
 

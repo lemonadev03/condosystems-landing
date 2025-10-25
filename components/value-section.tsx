@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { Home, DollarSign, Users, Clock, MapPin } from "lucide-react"
+import { Home, DollarSign, Users, Clock, MapPin, User, Wrench, UserCheck, Building2 } from "lucide-react"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import Image from "next/image"
 
@@ -22,27 +22,27 @@ export default function ValueSection({
 
   const benefits = [
     {
-      icon: <Home className="h-10 w-10 text-azure-500" />,
-      title: "Work From Home (WFH)",
+      icon: <Building2 className="h-10 w-10 text-azure-500" />,
+      title: "Admin Office",
       description:
-        "Enjoy the flexibility of working from your home office with our cutting-edge virtual tools and support.",
+        "Centralize operations with dashboards, billing tools, and reporting features that give you complete visibility and control.",
     },
     {
-      icon: <DollarSign className="h-10 w-10 text-azure-500" />,
-      title: "Industry-leading Commission Splits",
+      icon: <User className="h-10 w-10 text-azure-500" />,
+      title: "Owners and Tenants",
       description:
-        "Maximize your earnings with our industry-leading commission structure designed to reward your success.",
+        "Pay dues, book amenities, and submit maintenance requests anytime, anywhere through an intuitive mobile app.",
     },
     {
-      icon: <Users className="h-10 w-10 text-azure-500" />,
-      title: "Mentorship from Experts",
+      icon: <UserCheck className="h-10 w-10 text-azure-500" />,
+      title: "Concierge and Front Desk",
       description:
-        "Learn from top-performing agents and industry veterans who are committed to your professional growth.",
+        "Manage visitor logs, announcements, and resident requests efficiently with a dedicated front desk interface.",
     },
     {
-      icon: <Clock className="h-10 w-10 text-azure-500" />,
-      title: "Flexible Scheduling",
-      description: "Create your own schedule and achieve the work-life balance you've always wanted.",
+      icon: <Wrench className="h-10 w-10 text-azure-500" />,
+      title: "Maintenance and Engineering",
+      description: "Track work orders, manage schedules, and update job statuses in real-time from any device.",
     },
   ]
 

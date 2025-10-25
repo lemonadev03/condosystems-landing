@@ -14,26 +14,16 @@ export default function OutcomesSection({ outcomesInViewRef }: OutcomesSectionPr
 
   const outcomes = [
     {
-      category: "Time saved",
-      stat: "1,250 hours",
-      statNumber: 1250,
-      suffix: " hours",
-      description: "Average time saved per year with our automation and workflow tools.",
+      category: "Spot-On Accounting",
+      description: "Predictable cash flow and zero payment delays. Your building's finances stay healthy with on-time collections and accurate reporting you can trust.",
     },
     {
-      category: "Efficiency boost",
-      stat: "Up to 85%",
-      statNumber: 85,
-      prefix: "Up to ",
-      suffix: "%",
-      description: "Increase in productivity and operational efficiency for our customers.",
+      category: "Complete Audit Trail",
+      description: "Full accountability and peace of mind. Every transaction, request, and decision is documented and traceable for audits, disputes, or compliance.",
     },
     {
-      category: "Customer satisfaction",
-      stat: "98%",
-      statNumber: 98,
-      suffix: "%",
-      description: "Average satisfaction rate reported by users of our platform.",
+      category: "Transparency That Builds Trust",
+      description: "A connected community where residents feel informed and valued. Build lasting trust through clear communication and accessible information.",
     },
   ]
 
@@ -41,7 +31,7 @@ export default function OutcomesSection({ outcomesInViewRef }: OutcomesSectionPr
     <div ref={outcomesInViewRef} className="w-full">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-          Achieve more, only with our platform.
+          Turn Operations into Outcomes
         </h2>
       </div>
 
@@ -50,33 +40,12 @@ export default function OutcomesSection({ outcomesInViewRef }: OutcomesSectionPr
           <OutcomeCard key={index} outcome={outcome} index={index} prefersReducedMotion={prefersReducedMotion} />
         ))}
       </div>
-
-      <div className="mt-16 text-center">
-        <p className="text-sm text-gray-500 max-w-4xl mx-auto">
-          These metrics are based on internal data from our customer base. Past performance does not guarantee future
-          results, which may vary.
-        </p>
-      </div>
     </div>
   )
 }
 
 // Animated counter component
-function AnimatedCounter({
-  from = 0,
-  to,
-  duration = 2,
-  prefix = "",
-  suffix = "",
-  prefersReducedMotion,
-}: {
-  from?: number
-  to: number
-  duration?: number
-  prefix?: string
-  suffix?: string
-  prefersReducedMotion: boolean
-}) {
+function AnimatedCounter({ from = 0, to, duration = 2, prefersReducedMotion }: { from?: number; to: number; duration?: number; prefersReducedMotion: boolean }) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 })
   const count = useMotionValue(from)
   const [displayValue, setDisplayValue] = useState(from)
@@ -96,9 +65,7 @@ function AnimatedCounter({
 
   return (
     <span ref={ref}>
-      {prefix}
-      {displayValue.toLocaleString()}
-      {suffix}
+      {displayValue}
     </span>
   )
 }
@@ -111,10 +78,6 @@ function OutcomeCard({
 }: {
   outcome: {
     category: string
-    stat: string
-    statNumber: number
-    prefix?: string
-    suffix: string
     description: string
   }
   index: number
@@ -152,18 +115,6 @@ function OutcomeCard({
         <h3 className="text-xl font-bold text-gray-800 group-hover:text-azure-600 transition-colors">
           {outcome.category}
         </h3>
-      </div>
-
-      {/* Stat with animated counter */}
-      <div className="mb-4 relative">
-        <p className="text-4xl md:text-5xl font-bold text-azure-500">
-          <AnimatedCounter
-            to={outcome.statNumber}
-            prefix={outcome.prefix}
-            suffix={outcome.suffix}
-            prefersReducedMotion={prefersReducedMotion}
-          />
-        </p>
       </div>
 
       {/* Description */}

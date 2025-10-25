@@ -17,8 +17,20 @@ const lexend = Lexend({
 })
 
 export const metadata: Metadata = {
-  title: "EZ BIG - The Best Team in Real Estate",
-  description: "Join the elite network of real estate professionals who are redefining success in the industry."
+  title: "CondoSystems - All-In-One Property Management Platform",
+  description: "Streamline condo and property management with CondoSystems. Manage operations, finances, and communications all in one place.",
+  openGraph: {
+    title: "CondoSystems - All-In-One Property Management Platform",
+    description: "Streamline condo and property management with CondoSystems. Manage operations, finances, and communications all in one place.",
+    type: "website",
+    url: "https://CondoSystems.com",
+    siteName: "CondoSystems",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CondoSystems - All-In-One Property Management Platform",
+    description: "Streamline condo and property management with CondoSystems. Manage operations, finances, and communications all in one place.",
+  },
 }
 
 export default function RootLayout({
@@ -29,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${lexend.variable}`} suppressHydrationWarning={true}>
       <head>
-        <link rel="icon" href="/ezbig-square-logo.png" sizes="any" />
+        <link rel="icon" href="/CondoSystems-square-logo.svg" type="image/svg+xml" />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>

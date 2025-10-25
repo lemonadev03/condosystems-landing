@@ -9,17 +9,17 @@ export default function Footer() {
         <div className="flex items-center justify-between gap-8">
           {/* Logo */}
           <div className="relative h-8 w-56 flex-shrink-0">
-            <Image src="/condo-systems-text.svg" alt="Condo Systems" fill sizes="224px" style={{ objectFit: "contain" }} />
+            <Image src="/condo-systems-text.png" alt="Condo Systems" fill sizes="224px" style={{ objectFit: "contain" }} />
           </div>
 
           {/* Text Blurb */}
           <p className="text-gray-700 text-sm leading-relaxed flex-1">
-            Redefining success in real estate through innovation, support, and exceptional opportunities.
+            Transforming property management through innovation, efficiency, and community support.
           </p>
 
           {/* All Rights Reserved */}
           <p className="text-gray-600 text-xs whitespace-nowrap flex-shrink-0">
-            &copy; {new Date().getFullYear()} EZ BIG. All rights reserved.
+            &copy; {new Date().getFullYear()} CondoSystems. All rights reserved.
           </p>
         </div>
 

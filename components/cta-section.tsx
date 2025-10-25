@@ -20,32 +20,32 @@ export default function CTASection({
   onMouseLeave,
   ctaInViewRef,
   showMoreBackground = false,
-  hyperlinks = { SCHEDULE_CALL: "https://calendly.com/ezbig/intro" },
+  hyperlinks = { SCHEDULE_CALL: "https://calendly.com/CondoSystems/demo" },
   useBlueHeader = false,
 }: CTASectionProps) {
   const prefersReducedMotion = useReducedMotion()
 
   const features = [
-    "Complete Strategy & Planning",
-    "Market Research & Analysis",
-    "Dedicated Mentor Support",
-    "Community Access & Networking",
-    "Growth & Scaling Playbook",
-    "Ongoing Updates & Resources",
+    "Billing Management System",
+    "Digital Maintenance Tracking",
+    "Resident Mobile App",
+    "Document Management System",
+    "Amenity Booking System",
+    "Financial Reporting & Analytics",
   ]
 
   const benefits = [
     {
-      title: "Industry-Leading Success Rate",
-      description: "90% of our agents successfully grow their business within the first year.",
+      title: "Quick Setup",
+      description: "Get started in days, not months. Our team assists with migration and trains your staff.",
     },
     {
-      title: "Expert-Led Community",
-      description: "Connect with successful agents and get direct mentorship from industry experts.",
+      title: "Dedicated Support",
+      description: "Direct access to our support team whenever you need help—no ticket queues or long waits.",
     },
     {
-      title: "Continuous Support",
-      description: "Weekly strategy calls and unlimited access to our thriving agent network.",
+      title: "Regular Updates",
+      description: "Continuous improvements and new features based on feedback from property managers like you.",
     },
   ]
 
@@ -55,10 +55,10 @@ export default function CTASection({
         {/* Header */}
         <div className="text-center mb-2">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-            Ready to Scale Your Real Estate Business?
+            Ready to Modernize Your Condo Management?
           </h2>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            Get everything you need to succeed as an EZ BIG agent. Access our proven framework, expert guidance, and thriving community.
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Join forward-thinking condo communities that have simplified operations and elevated resident satisfaction.
           </p>
         </div>
 
@@ -73,9 +73,9 @@ export default function CTASection({
           {/* Left: CTA Card */}
           <div className="flex flex-col justify-between">
             <div>
-              <h3 className="text-3xl font-bold text-white mb-2">Start Your Journey</h3>
+              <h3 className="text-3xl font-bold text-white mb-2">See It in Action</h3>
               <p className="text-blue-100 mb-8">
-                Schedule a call with our team to discuss how we can help you achieve your goals.
+                Book a personalized demo and discover how CondoSystems can transform your operations.
               </p>
             </div>
             <a href={hyperlinks.SCHEDULE_CALL} target="_blank" rel="noopener noreferrer">
@@ -83,7 +83,7 @@ export default function CTASection({
                 size="lg"
                 className="w-full bg-white hover:bg-white text-azure-600 px-6 py-6 text-lg rounded-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-xl font-semibold transition-shadow duration-200"
               >
-                Schedule a Call
+                Book a Demo
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </a>
@@ -91,7 +91,7 @@ export default function CTASection({
 
           {/* Right: Features Grid */}
           <div>
-            <p className="text-blue-100 text-sm font-semibold mb-6">Everything you get included:</p>
+            <p className="text-blue-100 text-sm font-semibold mb-6">What's included:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, index) => (
                 <motion.div
@@ -107,6 +107,15 @@ export default function CTASection({
                 </motion.div>
               ))}
             </div>
+            <motion.div
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: features.length * 0.05 }}
+              className="mt-4 pt-4 border-t border-white/20"
+            >
+              <p className="text-blue-100 text-sm italic">and many more...</p>
+            </motion.div>
           </div>
         </motion.div>
 
