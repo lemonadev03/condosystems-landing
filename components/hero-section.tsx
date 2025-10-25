@@ -147,9 +147,9 @@ export default function HeroSection({
                 initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                style={{ y: y1 }}
+                style={{ y: y1, willChange: 'transform' }}
               >
-                <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" />
+                <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" quality={85} sizes="(max-width: 768px) 85vw, 50vw" />
                 {/* Background Glow */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute top-4 right-4 w-24 h-24 bg-azure-300/20 rounded-full blur-2xl"></div>
@@ -163,9 +163,9 @@ export default function HeroSection({
                 initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                style={{ y: y2 }}
+                style={{ y: y2, willChange: 'transform' }}
               >
-                <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" priority />
+                <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" priority quality={85} sizes="(max-width: 768px) 85vw, 50vw" />
                 {/* Foreground Glow */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute top-6 right-6 w-20 h-20 bg-azure-400/25 rounded-full blur-2xl"></div>
@@ -182,9 +182,9 @@ export default function HeroSection({
                 initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                style={{ y: y1 }}
+                style={{ y: y1, willChange: 'transform' }}
               >
-                <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" />
+                <Image src="/hero/hero-2.png" alt="Dashboard Overview" fill className="object-cover" quality={85} sizes="85vw" />
                 {/* Background Glow */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute top-4 right-4 w-12 h-12 bg-azure-300/20 rounded-full blur-2xl"></div>
@@ -198,9 +198,9 @@ export default function HeroSection({
                 initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                style={{ y: y2 }}
+                style={{ y: y2, willChange: 'transform' }}
               >
-                <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" priority />
+                <Image src="/hero/hero-1.png" alt="Property Management Interface" fill className="object-cover" priority quality={85} sizes="85vw" />
                 {/* Foreground Glow */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute top-4 right-4 w-12 h-12 bg-azure-400/25 rounded-full blur-2xl"></div>

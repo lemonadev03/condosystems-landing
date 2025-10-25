@@ -204,7 +204,7 @@ function ImageLightbox({ images, alt, initialIndex, isOpen, onClose }: ImageLigh
                   height={1794}
                   className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
                   sizes="90vw"
-                  priority
+                  quality={85}
                 />
               </motion.div>
             </AnimatePresence>
@@ -261,6 +261,8 @@ function FeatureImage({ images, alt, position = "right" }: { images: string | st
               height={1794}
               className="w-full h-auto object-contain"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
+              quality={85}
             />
           </div>
         </div>
@@ -332,6 +334,8 @@ function FeatureImage({ images, alt, position = "right" }: { images: string | st
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                loading="lazy"
+                quality={85}
               />
               {/* Glow effects */}
               <div className="absolute inset-0 pointer-events-none">

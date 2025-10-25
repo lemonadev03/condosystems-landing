@@ -10,17 +10,30 @@ import Navigation from "@/components/navigation"
 import HeroSection from "@/components/hero-section"
 import ValuePropositionSection from "@/components/value-proposition-section"
 import ValueSection from "@/components/value-section"
-import FeaturesSection from "@/components/features-section"
 import TestimonialsSection from "@/components/testimonials-section"
 import CalculatorSection from "@/components/calculator-section"
-import OutcomesSection from "@/components/outcomes-section"
 import FAQSection from "@/components/faq-section"
-import CTASection from "@/components/cta-section"
 import Footer from "@/components/footer"
 import LoadingIndicator from "@/components/loading-indicator"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 import SectionHeader from "@/components/section-header"
 import SectionBackground from "@/components/section-background"
+
+// Lazy load below-fold sections for better initial load performance
+const FeaturesSection = dynamic(() => import("@/components/features-section"), {
+  loading: () => <div className="w-full h-[600px] animate-pulse bg-gray-50" />,
+  ssr: true,
+})
+
+const OutcomesSection = dynamic(() => import("@/components/outcomes-section"), {
+  loading: () => <div className="w-full h-[400px] animate-pulse bg-gray-50" />,
+  ssr: true,
+})
+
+const CTASection = dynamic(() => import("@/components/cta-section"), {
+  loading: () => <div className="w-full h-[500px] animate-pulse bg-gray-50" />,
+  ssr: true,
+})
 
 // Hyperlinks - centralized for easy management
 const HYPERLINKS = {
@@ -91,7 +104,45 @@ export default function LandingPage() {
   const [cursorText, setCursorText] = useState("")
   const [activeSection, setActiveSection] = useState("hero")
   const [isLoading, setIsLoading] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isScrolling, setIsScrolling] = useState(false)
   const prefersReducedMotion = useReducedMotion()
+
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Detect scrolling state for animation optimization
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true)
+
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false)
+      }, 150)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
+  }, [])
 
   // Handle initial loading
   useEffect(() => {
@@ -119,16 +170,22 @@ export default function LandingPage() {
   const count2 = useTransform(scrollYProgress, [0.3, 0.4], [0, 87])
   const count3 = useTransform(scrollYProgress, [0.3, 0.4], [0, 32])
 
-  // Intersection observers for sections
-  const [heroInViewRef, heroInView] = useInView({ threshold: 0.5 })
-  const [valuePropositionInViewRef, valuePropositionInView] = useInView({ threshold: 0.3 })
-  const [valueInViewRef, valueInView] = useInView({ threshold: 0.3 })
-  const [featuresInViewRef, featuresInView] = useInView({ threshold: 0.3 })
-  const [testimonialsInViewRef, testimonialsInView] = useInView({ threshold: 0.3 })
-  const [calculatorInViewRef, calculatorInView] = useInView({ threshold: 0.3 })
-  const [outcomesInViewRef, outcomesInView] = useInView({ threshold: 0.3 })
-  const [ctaInViewRef, ctaInView] = useInView({ threshold: 0.5 })
-  const [faqInViewRef, faqInView] = useInView({ threshold: 0.3 })
+  // Intersection observers for sections - optimized for performance
+  const observerOptions = {
+    threshold: isMobile ? 0.1 : 0.3,
+    rootMargin: '50px 0px',
+    triggerOnce: true
+  }
+
+  const [heroInViewRef, heroInView] = useInView({ threshold: isMobile ? 0.3 : 0.5, rootMargin: '0px 0px' })
+  const [valuePropositionInViewRef, valuePropositionInView] = useInView(observerOptions)
+  const [valueInViewRef, valueInView] = useInView(observerOptions)
+  const [featuresInViewRef, featuresInView] = useInView(observerOptions)
+  const [testimonialsInViewRef, testimonialsInView] = useInView(observerOptions)
+  const [calculatorInViewRef, calculatorInView] = useInView(observerOptions)
+  const [outcomesInViewRef, outcomesInView] = useInView(observerOptions)
+  const [ctaInViewRef, ctaInView] = useInView(observerOptions)
+  const [faqInViewRef, faqInView] = useInView(observerOptions)
 
   // Update active section based on which section is in view
   useEffect(() => {
@@ -224,17 +281,18 @@ export default function LandingPage() {
             }}
           />
 
-          {/* LAYER 4: Floating orbs for depth */}
+          {/* LAYER 4: Floating orbs for depth - optimized for mobile */}
           <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
             <motion.div
               className="absolute w-[800px] h-[800px] rounded-full"
               style={{
                 background: "radial-gradient(circle, rgba(69, 114, 173, 0.06) 0%, transparent 70%)",
-                filter: "blur(60px)",
+                filter: isMobile ? "blur(30px)" : "blur(60px)",
                 top: "-20%",
                 left: "-10%",
+                willChange: isScrolling ? "auto" : "transform",
               }}
-              animate={{
+              animate={isScrolling ? {} : {
                 x: [0, 50, 0],
                 y: [0, 30, 0],
                 scale: [1, 1.1, 1],
@@ -245,11 +303,12 @@ export default function LandingPage() {
               className="absolute w-[600px] h-[600px] rounded-full"
               style={{
                 background: "radial-gradient(circle, rgba(69, 114, 173, 0.04) 0%, transparent 70%)",
-                filter: "blur(80px)",
+                filter: isMobile ? "blur(40px)" : "blur(80px)",
                 bottom: "-15%",
                 right: "-5%",
+                willChange: isScrolling ? "auto" : "transform",
               }}
-              animate={{
+              animate={isScrolling ? {} : {
                 x: [0, -30, 0],
                 y: [0, -50, 0],
                 scale: [1, 1.15, 1],
