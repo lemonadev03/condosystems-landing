@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${lexend.variable}`} suppressHydrationWarning={true}>
       <head>
-        <link rel="icon" href="/CondoSystems-square-logo.svg" type="image/svg+xml" />
+        <link rel="icon" href="/condosystems-square-logo.svg" type="image/svg+xml" />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>

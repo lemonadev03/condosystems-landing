@@ -359,6 +359,7 @@ function FeatureImage({ images, alt, position = "right" }: { images: string | st
 
 export default function FeaturesSection({ featuresInViewRef, hyperlinks }: FeaturesSectionProps) {
   const prefersReducedMotion = useReducedMotion()
+  const [shouldPreload, setShouldPreload] = useState(false)
 
   const features = [
     {
@@ -390,6 +391,15 @@ export default function FeaturesSection({ featuresInViewRef, hyperlinks }: Featu
       alt: "Reporting and Analytics Dashboard"
     },
   ]
+
+  // Smart delayed preload: Start loading images in background after 1 second
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldPreload(true)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div ref={featuresInViewRef} className="w-full">
@@ -473,6 +483,24 @@ export default function FeaturesSection({ featuresInViewRef, hyperlinks }: Featu
           </div>
         </motion.div>
       </div>
+
+      {/* Hidden preload images - loads in background after 1 second */}
+      {shouldPreload && (
+        <div className="hidden" aria-hidden="true">
+          {features.flatMap((feature) =>
+            (Array.isArray(feature.images) ? feature.images : [feature.images]).map((img) => (
+              <Image
+                key={img}
+                src={img}
+                alt=""
+                width={3024}
+                height={1794}
+                priority
+              />
+            ))
+          )}
+        </div>
+      )}
     </div>
   )
 }
